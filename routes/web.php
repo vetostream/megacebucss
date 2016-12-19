@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/createpost', 'PostController@index');
+Route::post('/getpost', 'PostController@getPost');

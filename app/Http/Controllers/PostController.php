@@ -1,0 +1,117 @@
+<?php
+/**
+ * Author: Tom Abao
+ * Github: https://github.com/kormin
+ * Email: abaotom14@gmail.com
+ * Description: 
+ * Created On: December 12, 2016
+ * Additional Comments: 
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `post_type_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ */
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Routing\Redirector;
+
+class PostController extends Controller
+{
+	protected $table = 'posts';
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+	}
+
+	/**
+	 * Show the application dashboard.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
+	{
+		return view('createpost');
+	}
+
+
+	/**
+	 * Gets the post from form
+	 * @param Request $request
+	 * @return null
+	 */
+	public function getPost(Request $request) {
+		$input = array('title', 'content');
+
+		$messages = [
+			$input[0].'.required' => 'Title field is required.',
+			$input[1].'.required' => 'Content field is required.',
+		];
+
+		$this->validate($request, [
+			$input[0] => 'required',
+			$input[1] => 'required'
+		], $messages);
+
+		$this->create($input[0], $input[1]);
+		// return redirect()->action('PostController@index');
+	}
+
+	public function getTime() {
+		$time = '7:30';
+		return $time;
+	}
+
+	public function getUserId() {
+		$id = 1;
+		return $id;
+	}
+
+	public function getPostTypeId() {
+		$id = 1;
+		return $id;
+	}
+
+	public function create($title, $content) {
+		$created = $updated = $this->getTime();
+		$userid = $this->getUserId();
+		$posttypeid = $this->getPostTypeId();
+		$arr = ['title' => $title, 'content' => $content, 
+		'created_at' => $created, 'updated_at' => $updated,
+		'user_id' => $userid, 'post_type_id' => $posttypeid];
+		var_dump($arr);
+		// DB::table($table)->insert($arr);
+	}
+
+	public function read() {
+		$allres = DB::table($table)->get();
+		return $allres;
+	}
+
+	public function update($id, $title, $content) {
+		$updated = $this->getTime();
+		$arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
+		DB::table($table)->where('id', $id)->update($arr);
+	}
+
+	public function delete($id) {
+		DB::table($table)->where('id', $id)->delete();
+	}
+}
