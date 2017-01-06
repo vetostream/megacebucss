@@ -25,13 +25,15 @@ CREATE TABLE `posts` (
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 
+
 class PostController extends Controller
 {
-	protected $table = 'posts';
+	// protected $table = 'posts';
 	/**
 	 * Create a new controller instance.
 	 *
@@ -69,8 +71,7 @@ class PostController extends Controller
 			$input[0] => 'required',
 			$input[1] => 'required'
 		], $messages);
-
-		$this->create($input[0], $input[1]);
+		$this->create($request->$input[0], $request->$input[1]);
 		// return redirect()->action('PostController@index');
 	}
 
@@ -90,14 +91,21 @@ class PostController extends Controller
 	}
 
 	public function create($title, $content) {
-		$created = $updated = $this->getTime();
+		// $created = $updated = $this->getTime();
 		$userid = $this->getUserId();
 		$posttypeid = $this->getPostTypeId();
-		$arr = ['title' => $title, 'content' => $content, 
-		'created_at' => $created, 'updated_at' => $updated,
-		'user_id' => $userid, 'post_type_id' => $posttypeid];
-		var_dump($arr);
+		// $arr = ['title' => $title, 'content' => $content, 
+		// 'created_at' => $created, 'updated_at' => $updated,
+		// 'user_id' => $userid, 'post_type_id' => $posttypeid];
+		// var_dump($arr);
 		// DB::table($table)->insert($arr);
+
+		$post = new Post;
+		$post->title = $title;
+		$post->content = $content;
+		$post->user_id = $userid;
+		$post->post_type_id = $posttypeid;
+		$post->save();
 	}
 
 	public function read() {
