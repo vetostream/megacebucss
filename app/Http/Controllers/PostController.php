@@ -50,9 +50,16 @@ class PostController extends Controller
 	 */
 	public function index()
 	{
+		return view('showpost');
+	}
+
+	public function insertPost() {
 		return view('createpost');
 	}
 
+	public function updatePost() {
+		return view('editpost');
+	}
 
 	/**
 	 * Gets the post from form
@@ -75,11 +82,6 @@ class PostController extends Controller
 		// return redirect()->action('PostController@index');
 	}
 
-	public function getTime() {
-		$time = '7:30';
-		return $time;
-	}
-
 	public function getUserId() {
 		$id = 1;
 		return $id;
@@ -91,7 +93,6 @@ class PostController extends Controller
 	}
 
 	public function create($title, $content) {
-		// $created = $updated = $this->getTime();
 		$userid = $this->getUserId();
 		$posttypeid = $this->getPostTypeId();
 		// $arr = ['title' => $title, 'content' => $content, 
@@ -113,13 +114,18 @@ class PostController extends Controller
 		return $allres;
 	}
 
-	public function update($id, $title, $content) {
-		$updated = $this->getTime();
-		$arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
-		DB::table($table)->where('id', $id)->update($arr);
+	public function update($postid, $title, $content) {
+		// $updated = $this->getTime();
+		// $arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
+		// DB::table($table)->where('id', $id)->update($arr);
+		$post = App\Models\Post::find($postid);
+		$post->$title = $title;
+		$post->$content = $content;
+		$post->save();
 	}
 
-	public function delete($id) {
-		DB::table($table)->where('id', $id)->delete();
+	public function delete($postid) {
+		// DB::table($table)->where('id', $id)->delete();
+		App\Model\Post::destroy($postid);
 	}
 }

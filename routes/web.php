@@ -15,5 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/createpost', 'PostController@index');
+Route::get('/posts', 'PostController@index');
+Route::get('/insertpost', 'PostController@insertPost');
+Route::get('/updatepost', 'PostController@updatePost');
 Route::post('/getpost', 'PostController@getPost');
+
+Route::get('toeditpost/{id}', ['uses' => 'PostController@editPost']);
