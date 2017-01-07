@@ -20,8 +20,10 @@ Route::get('/error404', function () {
 });
 
 Route::get('/posts', 'PostController@index');
+Route::get('/myposts', 'PostController@showMyPosts');
 Route::get('/insertpost', 'PostController@insertPost');
 Route::get('updatepost/{id}', ['uses' => 'PostController@updatePost']);
+
 Route::post('/getpost', 'PostController@getPost');
 Route::post('/editpost', 'PostController@editPost');
 

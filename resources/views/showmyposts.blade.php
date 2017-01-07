@@ -10,7 +10,7 @@
 ?>
 @extends('layouts.app')
 
-@section('title', 'Create Post')
+@section('title', 'My Posts')
 
 @section('body')
 <div class="container">
@@ -20,7 +20,7 @@
 		<p>
 			{{$post->content}}
 		</p>
-		<a href="{{url('updatepost/$post->id')}}">Edit Post</a>
+		<a href="{{url('updatepost/'.$post->id)}}">Edit Post</a>
 	</div>
 	<hr>
 @endforeach

@@ -29,12 +29,12 @@ use App\Models\Post as Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 
 
 class PostController extends Controller
 {
 	// protected $table = 'posts';
-	private $postId;
 
 	/**
 	 * Create a new controller instance.
@@ -52,7 +52,28 @@ class PostController extends Controller
 	 */
 	public function index()
 	{
-		return view('showpost');
+		$posts = Post::all();
+		$users = DB::table('users')->get();
+		// var_dump($posts);
+		return view('showposts', ['posts' => $posts, 'users' => $users]);
+	}
+
+	public function getUserId() {
+		$id = 1;
+		return $id;
+	}
+
+	public function getPostTypeId() {
+		$id = 1;
+		return $id;
+	}
+
+	public function showMyPosts() {
+		$id = $this->getUserId();
+		$posts = Post::where('user_id', $id)->get();
+		$users = DB::table('users')->get();
+		// var_dump($posts);
+		return view('showmyposts', ['posts' => $posts, 'users' => $users]);
 	}
 
 	public function insertPost() {
@@ -60,20 +81,13 @@ class PostController extends Controller
 	}
 
 	public function updatePost($id) {
+		// add check if user_id == user's id; if not, no edit allowed
 		$post = $this->readById($id);
 		if ($post == null) {
 			return view('errors/404');
 		}
 		// var_dump($post);
 		return view('editpost', $post);
-	}
-
-	function setPostId($id) {
-		$this->postId = $id;
-	}
-
-	function getPostId() {
-		return $this->postId;
 	}
 
 	/**
@@ -101,17 +115,6 @@ class PostController extends Controller
 	public function editPost(Request $request) {
 		$input = array('title', 'content');
 
-
-	}
-
-	public function getUserId() {
-		$id = 1;
-		return $id;
-	}
-
-	public function getPostTypeId() {
-		$id = 1;
-		return $id;
 	}
 
 	public function create($title, $content) {
