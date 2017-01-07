@@ -59,18 +59,18 @@ class PostController extends Controller
 	}
 
 	public function getUserId() {
-		$id = 1;
-		return $id;
+		$userid = 1;
+		return $userid;
 	}
 
 	public function getPostTypeId() {
-		$id = 1;
-		return $id;
+		$posttypeid = 1;
+		return $posttypeid;
 	}
 
 	public function showMyPosts() {
-		$id = $this->getUserId();
-		$posts = Post::where('user_id', $id)->get();
+		$userid = $this->getUserId();
+		$posts = Post::where('user_id', $userid)->get();
 		$users = DB::table('users')->get();
 		// var_dump($posts);
 		return view('showmyposts', ['posts' => $posts, 'users' => $users]);
@@ -80,14 +80,19 @@ class PostController extends Controller
 		return view('createpost');
 	}
 
-	public function updatePost($id) {
+	public function updatePost($postid) {
 		// add check if user_id == user's id; if not, no edit allowed
-		$post = $this->readById($id);
+		$post = $this->readById($postid);
 		if ($post == null) {
 			return view('errors/404');
 		}
 		// var_dump($post);
 		return view('editpost', $post);
+	}
+
+	public function deletePost($postid) {
+		// add check if user_id == user's id; if not, no edit allowed
+		$this->delete($postid);
 	}
 
 	/**
@@ -139,17 +144,17 @@ class PostController extends Controller
 		return $allres;
 	}
 
-	public function readById($id) {
+	public function readById($postid) {
 		// $post = DB::table()->where('picname', $picname)->first();
-		// $post = App\Models\Post::find($id);
-		$post = Post::find($id);
+		// $post = App\Models\Post::find($postid);
+		$post = Post::find($postid);
 		return $post;
 	}
 
 	public function update($postid, $title, $content) {
 		// $updated = $this->getTime();
 		// $arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
-		// DB::table($table)->where('id', $id)->update($arr);
+		// DB::table($table)->where('id', $vid)->update($arr);
 		$post = Post::find($postid);
 		$post->$title = $title;
 		$post->$content = $content;
@@ -157,7 +162,7 @@ class PostController extends Controller
 	}
 
 	public function delete($postid) {
-		// DB::table($table)->where('id', $id)->delete();
+		// DB::table($table)->where('id', $vid)->delete();
 		Post::destroy($postid);
 	}
 }

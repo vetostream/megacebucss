@@ -21,6 +21,7 @@
 			{{$post->content}}
 		</p>
 		<a href="{{url('updatepost/'.$post->id)}}">Edit Post</a>
+		<a href="{{url('deletepost/'.$post->id)}}">Delete Post</a>
 	</div>
 	<hr>
 @endforeach

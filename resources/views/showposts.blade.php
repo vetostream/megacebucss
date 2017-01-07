@@ -23,6 +23,7 @@ $userid = 1;
 		</p>
 		@if ($userid == $post->user_id)
 		<a href="{{url('updatepost/'.$post->id)}}">Edit Post</a>
+		<a href="{{url('deletepost/'.$post->id)}}">Delete Post</a>
 		@endif
 	</div>
 	<hr>
