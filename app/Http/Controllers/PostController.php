@@ -118,8 +118,10 @@ class PostController extends Controller
 	}
 
 	public function editPost(Request $request) {
-		$input = array('title', 'content');
-
+		$input = array('title', 'content', 'id');
+		if ($request->$input[0]=='') {
+			$this->updateContent()
+		}
 	}
 
 	public function create($title, $content) {
@@ -151,7 +153,19 @@ class PostController extends Controller
 		return $post;
 	}
 
-	public function update($postid, $title, $content) {
+	public function updateTitle($postid, $title) {
+		$post = Post::find($postid);
+		$post->$title = $title;
+		$post->save();
+	}
+
+	public function updateContent($postid, $content) {
+		$post = Post::find($postid);
+		$post->$content = $content;
+		$post->save();
+	}
+
+	public function updateAll($postid, $title, $content) {
 		// $updated = $this->getTime();
 		// $arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
 		// DB::table($table)->where('id', $vid)->update($arr);
