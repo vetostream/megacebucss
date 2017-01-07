@@ -25,7 +25,7 @@ CREATE TABLE `posts` (
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Post as Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
@@ -34,6 +34,8 @@ use Illuminate\Routing\Redirector;
 class PostController extends Controller
 {
 	// protected $table = 'posts';
+	private $postId;
+
 	/**
 	 * Create a new controller instance.
 	 *
@@ -57,8 +59,21 @@ class PostController extends Controller
 		return view('createpost');
 	}
 
-	public function updatePost() {
-		return view('editpost');
+	public function updatePost($id) {
+		$post = $this->readById($id);
+		if ($post == null) {
+			return view('errors/404');
+		}
+		// var_dump($post);
+		return view('editpost', $post);
+	}
+
+	function setPostId($id) {
+		$this->postId = $id;
+	}
+
+	function getPostId() {
+		return $this->postId;
 	}
 
 	/**
@@ -78,8 +93,15 @@ class PostController extends Controller
 			$input[0] => 'required',
 			$input[1] => 'required'
 		], $messages);
+
 		$this->create($request->$input[0], $request->$input[1]);
 		// return redirect()->action('PostController@index');
+	}
+
+	public function editPost(Request $request) {
+		$input = array('title', 'content');
+
+
 	}
 
 	public function getUserId() {
@@ -114,11 +136,18 @@ class PostController extends Controller
 		return $allres;
 	}
 
+	public function readById($id) {
+		// $post = DB::table()->where('picname', $picname)->first();
+		// $post = App\Models\Post::find($id);
+		$post = Post::find($id);
+		return $post;
+	}
+
 	public function update($postid, $title, $content) {
 		// $updated = $this->getTime();
 		// $arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
 		// DB::table($table)->where('id', $id)->update($arr);
-		$post = App\Models\Post::find($postid);
+		$post = Post::find($postid);
 		$post->$title = $title;
 		$post->$content = $content;
 		$post->save();
@@ -126,6 +155,6 @@ class PostController extends Controller
 
 	public function delete($postid) {
 		// DB::table($table)->where('id', $id)->delete();
-		App\Model\Post::destroy($postid);
+		Post::destroy($postid);
 	}
 }

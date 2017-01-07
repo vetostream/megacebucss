@@ -20,7 +20,7 @@
 		<p>
 			{{$post->content}}
 		</p>
-		<a href="{{url('toeditpost/$post->id')}}">Edit Post</a>
+		<a href="{{url('updatepost/$post->id')}}">Edit Post</a>
 	</div>
 	<hr>
 @endforeach

@@ -15,9 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/error404', function () {
+    return view('errors/404');
+});
+
 Route::get('/posts', 'PostController@index');
 Route::get('/insertpost', 'PostController@insertPost');
-Route::get('/updatepost', 'PostController@updatePost');
+Route::get('updatepost/{id}', ['uses' => 'PostController@updatePost']);
 Route::post('/getpost', 'PostController@getPost');
+Route::post('/editpost', 'PostController@editPost');
 
-Route::get('toeditpost/{id}', ['uses' => 'PostController@editPost']);
+

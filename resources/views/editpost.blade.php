@@ -10,11 +10,11 @@
 ?>
 @extends('layouts.app')
 
-@section('title', 'Create Post')
+@section('title', 'Edit Post')
 
 @section('body')
 <div class="container">
-	<form class="form-horizontal" method="post" action="{{ url('getpost') }}">
+	<form class="form-horizontal" method="post" action="{{ url('editpost') }}">
 		{{ csrf_field() }}
 		<div class="row form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 			<label for="title" class="control-label col-sm-4">Enter title: </label>
