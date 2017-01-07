@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/tagsdb', function () {	return view('welcome');	});
+Route::post('/tagsdb', 'HomeController@tagsdb');

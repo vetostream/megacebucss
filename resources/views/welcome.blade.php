@@ -78,6 +78,13 @@
                     Crowdsourcing Ideas and Research for Mega Cebu
                 </div>
             </div>
+
+        <form method="post" action="{{ url('/tagsdb') }}">
+        {{ csrf_field() }}
+        <input type="text" name="tags" id="tags" value=""/>
+        <input type="submit" name="submit" id="submiT" value="Submit"/>
+        </form>
+        
         </div>
     </body>
 </html>
