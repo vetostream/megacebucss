@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 
 //Authentication Routes
 Auth::routes();
@@ -31,3 +32,19 @@ Route::post('/research/store','ResearchController@store'); //store newly created
 Route::get('/research/edit/{id}','ResearchController@edit'); //show form to edit exhibited research
 Route::post('/research/update/{id}','ResearchController@update'); //update edited researches
 Route::get('/research/exterminate/{id}','ResearchController@destroy'); //destroy the resource of the id indicated.
+=======
+Route::get('/error404', function () {
+    return view('errors/404');
+});
+
+Route::get('/posts', 'PostController@index');
+Route::get('/myposts', 'PostController@showMyPosts');
+Route::get('/insertpost', 'PostController@insertPost');
+Route::get('updatepost/{id}', ['uses' => 'PostController@updatePost']);
+Route::get('deletepost/{id}', ['uses' => 'PostController@deletePost']);
+
+Route::post('/getpost', 'PostController@getPost');
+Route::post('/editpost', 'PostController@editPost');
+
+
+>>>>>>> 8f27395437b2c3a06d680c0c929fc6e2bd9c1ada
