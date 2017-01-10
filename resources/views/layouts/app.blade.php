@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,8 +85,7 @@
     <script src="/js/app.js"></script>
 </body>
 </html>
-=======
-<?php
+<!-- <?php
 /**
  * Author: Tom Abao
  *   Github: https://github.com/kormin
@@ -112,5 +110,4 @@
 <body>
 	@yield('body')
 </body>
-</html>
->>>>>>> 8f27395437b2c3a06d680c0c929fc6e2bd9c1ada
+</html> -->
