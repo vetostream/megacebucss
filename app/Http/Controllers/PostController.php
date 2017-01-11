@@ -30,6 +30,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -43,6 +44,7 @@ class PostController extends Controller
 	 */
 	public function __construct()
 	{
+		$this->middleware('auth');
 	}
 
 	/**
@@ -53,13 +55,14 @@ class PostController extends Controller
 	public function index()
 	{
 		$posts = Post::all();
-		$users = DB::table('users')->get();
-		// var_dump($posts);
-		return view('posts.showposts', ['posts' => $posts, 'users' => $users]);
+		// $users = DB::table('users')->get();
+		$userid = $this->getUserId();
+		// echo !is_null($posts);
+		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
 	}
 
 	public function getUserId() {
-		$userid = 1;
+		$userid = Auth::user()->id;
 		return $userid;
 	}
 
@@ -96,7 +99,7 @@ class PostController extends Controller
 	}
 
 	/**
-	 * Gets the post from form
+	 * Gets the post from form and inserts to posts table
 	 * @param Request $request
 	 * @return null
 	 */
@@ -114,9 +117,14 @@ class PostController extends Controller
 		], $messages);
 
 		$this->create($request->$input[0], $request->$input[1]);
-		// return redirect()->action('PostController@index');
+		return redirect()->action('PostController@index');
 	}
 
+	/**
+	 * Gets the post from form and edits to posts table
+	 * @param Request $request
+	 * @return null
+	 */
 	public function editPost(Request $request) {
 		$input = array('title', 'content', 'id');
 		if ($request->$input[0]=='') {

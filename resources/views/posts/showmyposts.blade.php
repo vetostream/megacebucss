@@ -8,11 +8,11 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'My Posts')
 
-@section('body')
+@section('content')
 <div class="container">
 @foreach($posts as $post)
 	<div>

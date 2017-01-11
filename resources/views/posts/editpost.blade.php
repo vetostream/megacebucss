@@ -8,11 +8,11 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'Edit Post')
 
-@section('body')
+@section('content')
 <div class="container">
 	<form class="form-horizontal" method="post" action="{{ url('/posts/edit') }}">
 		{{ csrf_field() }}

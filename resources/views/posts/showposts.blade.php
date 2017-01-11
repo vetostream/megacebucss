@@ -7,13 +7,12 @@
  * Created On: January 6, 2016
  * Additional Comments: 
  */
-$userid = 1;
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'Posts')
 
-@section('body')
+@section('content')
 <div class="container">
 <a href="{{url('/posts/insert')}}">Create Post</a>
 <a href="{{url('/posts/self')}}">My Posts</a>
