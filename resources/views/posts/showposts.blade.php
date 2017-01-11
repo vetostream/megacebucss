@@ -14,8 +14,8 @@
 
 @section('content')
 <div class="container">
-<a href="{{url('/posts/insert')}}">Create Post</a>
-<a href="{{url('/posts/self')}}">My Posts</a>
+	<a href="{{url('/posts/insert')}}">Create Post</a>
+	<a href="{{url('/posts/self')}}">My Posts</a>
 @foreach($posts as $post)
 	<div>
 		<h3>{{$post->title}}</h3>

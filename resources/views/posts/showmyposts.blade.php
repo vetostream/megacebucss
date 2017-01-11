@@ -14,6 +14,7 @@
 
 @section('content')
 <div class="container">
+	<a href="{{url('/posts/insert')}}">Create Post</a>
 @foreach($posts as $post)
 	<div>
 		<h3>{{$post->title}}</h3>

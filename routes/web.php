@@ -38,8 +38,8 @@ Route::get('/error404', function () {
 Route::get('/posts', 'PostController@index');
 Route::get('/posts/self', 'PostController@showMyPosts');
 Route::get('/posts/insert', 'PostController@insertPost');
-Route::get('/posts/update/{id}', ['uses' => 'PostController@updatePost']);
-Route::get('/posts/delete/{id}', ['uses' => 'PostController@deletePost']);
+Route::get('/posts/update/{id}', 'PostController@updatePost');
+Route::get('/posts/delete/{id}', 'PostController@deletePost');
 Route::post('/posts/get', 'PostController@getPost');
-Route::post('/posts/edit', 'PostController@editPost');
+Route::post('/posts/edit/{id}', 'PostController@editPost');
 
