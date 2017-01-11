@@ -10,16 +10,16 @@
 ?>
 @extends('layouts.korminapp')
 
-@section('title', 'Create Post')
+@section('title', 'Edit Post')
 
 @section('body')
 <div class="container">
-	<form class="form-horizontal" method="post" action="{{ url('getpost') }}">
+	<form class="form-horizontal" method="post" action="{{ url('/posts/edit') }}">
 		{{ csrf_field() }}
 		<div class="row form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 			<label for="title" class="control-label col-sm-4">Enter title: </label>
 			<div class="col-sm-8">
-				<input type="text" id="title" class="form-control" name="title">
+				<input type="text" id="title" class="form-control" name="title" placeholder="{{$title}}">
 				@if ($errors->has('title'))
 					<span class="help-block">
 						<strong>{{ $errors->first('title') }}</strong>
@@ -30,7 +30,7 @@
 		<div class="row form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 			<label for="content" class="control-label col-sm-4">Enter content: </label>
 			<div class="col-sm-8">
-				<input type="text" id="content" class="form-control" name="content">
+				<input type="text" id="content" class="form-control" name="content" placeholder="{{$content}}">
 				@if ($errors->has('content'))
 					<span class="help-block">
 						<strong>{{ $errors->first('content') }}</strong>

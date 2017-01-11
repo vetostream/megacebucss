@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //Authentication Routes
 Auth::routes();
 
@@ -37,10 +36,10 @@ Route::get('/error404', function () {
 });
 
 Route::get('/posts', 'PostController@index');
-Route::get('/myposts', 'PostController@showMyPosts');
-Route::get('/insertpost', 'PostController@insertPost');
-Route::get('updatepost/{id}', ['uses' => 'PostController@updatePost']);
-Route::get('deletepost/{id}', ['uses' => 'PostController@deletePost']);
+Route::get('/posts/self', 'PostController@showMyPosts');
+Route::get('/posts/insert', 'PostController@insertPost');
+Route::get('/posts/update/{id}', ['uses' => 'PostController@updatePost']);
+Route::get('/posts/delete/{id}', ['uses' => 'PostController@deletePost']);
+Route::post('/posts/get', 'PostController@getPost');
+Route::post('/posts/edit', 'PostController@editPost');
 
-Route::post('/getpost', 'PostController@getPost');
-Route::post('/editpost', 'PostController@editPost');

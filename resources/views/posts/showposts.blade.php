@@ -15,6 +15,8 @@ $userid = 1;
 
 @section('body')
 <div class="container">
+<a href="{{url('/posts/insert')}}">Create Post</a>
+<a href="{{url('/posts/self')}}">My Posts</a>
 @foreach($posts as $post)
 	<div>
 		<h3>{{$post->title}}</h3>
@@ -22,8 +24,8 @@ $userid = 1;
 			{{$post->content}}
 		</p>
 		@if ($userid == $post->user_id)
-		<a href="{{url('updatepost/'.$post->id)}}">Edit Post</a>
-		<a href="{{url('deletepost/'.$post->id)}}">Delete Post</a>
+		<a href="{{url('/posts/update/'.$post->id)}}">Edit Post</a>
+		<a href="{{url('/posts/delete/'.$post->id)}}">Delete Post</a>
 		@endif
 	</div>
 	<hr>
