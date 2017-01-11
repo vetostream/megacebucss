@@ -55,7 +55,7 @@ class PostController extends Controller
 		$posts = Post::all();
 		$users = DB::table('users')->get();
 		// var_dump($posts);
-		return view('showposts', ['posts' => $posts, 'users' => $users]);
+		return view('posts.showposts', ['posts' => $posts, 'users' => $users]);
 	}
 
 	public function getUserId() {
@@ -73,11 +73,11 @@ class PostController extends Controller
 		$posts = Post::where('user_id', $userid)->get();
 		$users = DB::table('users')->get();
 		// var_dump($posts);
-		return view('showmyposts', ['posts' => $posts, 'users' => $users]);
+		return view('posts.showmyposts', ['posts' => $posts, 'users' => $users]);
 	}
 
 	public function insertPost() {
-		return view('createpost');
+		return view('posts.createpost');
 	}
 
 	public function updatePost($postid) {
@@ -87,7 +87,7 @@ class PostController extends Controller
 			return view('errors/404');
 		}
 		// var_dump($post);
-		return view('editpost', $post);
+		return view('posts.editpost', $post);
 	}
 
 	public function deletePost($postid) {
