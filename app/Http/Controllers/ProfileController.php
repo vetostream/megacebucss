@@ -6,6 +6,33 @@
  * Description: 
  * Created On: January 11, 2016
  * Additional Comments: 
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `middle_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `mobile_no` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `birthdate` date NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_type_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+--
+-- Table structure for table `user_type`
+--
+
+CREATE TABLE `user_type` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
  */
 namespace App\Http\Controllers;
 
@@ -42,12 +69,18 @@ class ProfileController extends Controller
 	 * @return data
 	 */
 	public function userprofile() {
-		$data = array(
-			'firstname' => 'First Name',
-			'lastname' => 'Last Name',
-			'contactnum' => 1234567890
-		);
+		$data = array();
 		return $data;
+	}
+
+
+	/**
+	 * Gets array of user inputs
+	 * @param null
+	 * @return userInputs
+	 */
+	public function userInputs() {
+		return array();
 	}
 	
 	/**
@@ -56,23 +89,11 @@ class ProfileController extends Controller
 	 * @return null
 	 */
 	public function editprofile(Request $request) {
-		$input = array('firstname', 'lastname', 'contactnum');
+		$input = $this->userInputs();
+		// remove null values
+		$input = array_filter($input, 'strlen');
 
-		$messages = [
-			$input[0].'.max' => 'The First Name field may not be greater than 50 characters.',
-			$input[1].'.max'  => 'The Last Name field may not be greater than 50 characters.',
-			$input[2].'.max' => 'The Contact Number field may not be greater than 50 characters.'
-		];
-
-		$this->validate($request, [
-			$input[0] => 'max:50',
-			$input[1] => 'max:50',
-			$input[2] => 'max:50'
-		], $messages);
-
-		$edituser = array();
-
-		$this->update($edituser);
+		$this->update($input);
 
 		return redirect()->action('ProfileController@index');
 	}

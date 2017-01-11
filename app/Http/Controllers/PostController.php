@@ -149,6 +149,7 @@ class PostController extends Controller
 	public function editPost(Request $request, $id) {
 		$inputvals = $this->userInputs();
 		$input = array($inputvals[0] => $request->title, $inputvals[1] => $request->content);
+		// remove null values
 		$input = array_filter($input, 'strlen');
 		// var_dump($input);
 		$this->update($id, $input);
