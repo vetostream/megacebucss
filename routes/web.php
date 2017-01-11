@@ -14,3 +14,33 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//Authentication Routes
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index');
+
+
+//Research routes
+Route::get('/research','ResearchController@index'); //show list of exhibited researches
+Route::get('research/detail/{id}','ResearchController@show'); //show details of the chosen research by id
+Route::get('/research/create','ResearchController@create'); //show form for creating Research
+Route::post('/research/store','ResearchController@store'); //store newly created resource
+Route::get('/research/edit/{id}','ResearchController@edit'); //show form to edit exhibited research
+Route::post('/research/update/{id}','ResearchController@update'); //update edited researches
+Route::get('/research/exterminate/{id}','ResearchController@destroy'); //destroy the resource of the id indicated.
+
+Route::get('/error404', function () {
+    return view('errors/404');
+});
+
+Route::get('/posts', 'PostController@index');
+Route::get('/myposts', 'PostController@showMyPosts');
+Route::get('/insertpost', 'PostController@insertPost');
+Route::get('updatepost/{id}', ['uses' => 'PostController@updatePost']);
+Route::get('deletepost/{id}', ['uses' => 'PostController@deletePost']);
+
+Route::post('/getpost', 'PostController@getPost');
+Route::post('/editpost', 'PostController@editPost');
