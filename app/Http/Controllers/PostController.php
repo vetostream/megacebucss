@@ -120,7 +120,9 @@ class PostController extends Controller
 	public function editPost(Request $request) {
 		$input = array('title', 'content', 'id');
 		if ($request->$input[0]=='') {
-			$this->updateContent()
+			$this->updateContent($request->$input[2], $request->$input[1]);
+		}else if($request->$input[1]=='') {
+			$this->updateTitle($)
 		}
 	}
 
