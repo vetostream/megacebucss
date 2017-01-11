@@ -122,7 +122,7 @@ class PostController extends Controller
 		if ($request->$input[0]=='') {
 			$this->updateContent($request->$input[2], $request->$input[1]);
 		}else if($request->$input[1]=='') {
-			$this->updateTitle($)
+			// $this->updateTitle();
 		}
 	}
 
