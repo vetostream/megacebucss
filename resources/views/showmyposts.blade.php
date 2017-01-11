@@ -8,7 +8,7 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.app')
+@extends('layouts.korminapp')
 
 @section('title', 'My Posts')
 

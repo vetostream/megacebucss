@@ -9,7 +9,7 @@
  */
 $userid = 1;
 ?>
-@extends('layouts.app')
+@extends('layouts.korminapp')
 
 @section('title', 'Posts')
 
