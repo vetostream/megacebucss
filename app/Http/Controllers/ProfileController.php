@@ -60,7 +60,21 @@ class ProfileController extends Controller
 	 */
 	public function index() {
 		$data = $this->userprofile();
-		return view('profile', $data);
+		if (count($data) == 1) {
+			return view('profiles.profile', ['data' => $data]);
+		}else {
+			return view('errors/404');
+		}
+	}
+
+	/**
+	 * Gets the user id
+	 *
+	 * @return $userid
+	 */
+	public function getUserId() {
+		$userid = Auth::user()->id;
+		return $userid;
 	}
 
 	/**
@@ -69,8 +83,9 @@ class ProfileController extends Controller
 	 * @return data
 	 */
 	public function userprofile() {
-		$data = array();
-		return $data;
+		$id = $this->getUserId();
+		$userinfo = DB::table('users')->where('id', $id)->get();
+		return $userinfo;
 	}
 
 

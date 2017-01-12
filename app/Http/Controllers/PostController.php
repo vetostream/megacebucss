@@ -61,11 +61,21 @@ class PostController extends Controller
 		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
 	}
 
+	/**
+	 * Gets the user id
+	 *
+	 * @return $userid
+	 */
 	public function getUserId() {
 		$userid = Auth::user()->id;
 		return $userid;
 	}
 
+	/**
+	 * Gets the post id
+	 *
+	 * @return $postid
+	 */
 	public function getPostTypeId() {
 		$posttypeid = 1;
 		return $posttypeid;

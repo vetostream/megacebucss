@@ -50,3 +50,6 @@ Route::post('/posts/get', 'PostController@getPost');
 // Gets edit post form of id
 Route::post('/posts/edit/{id}', 'PostController@editPost');
 
+
+// Display profile
+Route::get('/profile', 'ProfileController@index');
