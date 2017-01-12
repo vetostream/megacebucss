@@ -100,15 +100,16 @@ class PostController extends Controller
 		}
 		$post = $this->readById($postid);
 		if ($post == null) {
-			return view('errors/404');
+			return view('errors.404');
 		}
-		return view('posts.editpost', $post);
+		var_dump($post);
+		// return view('posts.editpost', $post);
 
 		// try {
 		// 	$post = Post::findOrFail($postid);
 			// return view('posts.editpost', $post);
 		// } catch(Exception $e) {
-		// 	return view('errors/404');
+		// 	return view('errors.404');
 		// 	// abort(404,"Research ID not Found!");
 		// }
 	}

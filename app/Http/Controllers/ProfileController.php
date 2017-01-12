@@ -4,7 +4,7 @@
  * Github: https://github.com/kormin
  * Email: abaotom14@gmail.com
  * Description: 
- * Created On: January 11, 2016
+ * Created On: January 11, 2017
  * Additional Comments: 
 
 CREATE TABLE `users` (
@@ -59,11 +59,11 @@ class ProfileController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$data = $this->userprofile();
-		if (count($data) == 1) {
-			return view('profiles.profile', ['data' => $data]);
+		$userinfo = $this->readUserInfo();
+		if (count($userinfo) == 1) {
+			return view('profiles.profile', ['userinfo' => $userinfo]);
 		}else {
-			return view('errors/404');
+			return view('errors.404');
 		}
 	}
 
@@ -72,12 +72,13 @@ class ProfileController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
-		$post = $this->readById($id);
-		if ($post == null) {
-			return view('errors/404');
+	public function edit() {
+		$userinfo = $this->readUserInfo();
+		if (count($userinfo) == 1) {
+			return view('profiles.editprofile')->with('userinfo', $userinfo);
+		}else {
+			return view('errors.404');
 		}
-		return view('posts.editpost', $post);
 	}
 
 	/**
@@ -93,9 +94,9 @@ class ProfileController extends Controller
 	/**
 	 * Get User Information for Profile Display
 	 *
-	 * @return data
+	 * @return $userinfo
 	 */
-	public function userprofile() {
+	public function readUserInfo() {
 		$id = $this->getUserId();
 		$userinfo = DB::table('users')->where('id', $id)->get();
 		return $userinfo;
