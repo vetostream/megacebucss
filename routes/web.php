@@ -44,7 +44,7 @@ Route::get('/posts/insert', 'PostController@insertPost');
 // Display edit post of id
 Route::get('/posts/update/{postid}/{userid}', 'PostController@updatePost');
 // Display delete post of id
-Route::get('/posts/delete/{id}', 'PostController@deletePost');
+Route::get('/posts/delete/{postid}/{userid}', 'PostController@deletePost');
 // Gets add post form
 Route::post('/posts/get', 'PostController@getPost');
 // Gets edit post form of id

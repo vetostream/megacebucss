@@ -118,7 +118,10 @@ class PostController extends Controller
 	 * @param null
 	 * @return null
 	 */
-	public function deletePost($postid) {
+	public function deletePost($postid, $userid) {
+		if ($userid != $this->getUserId()) {
+			return view('errors.404');
+		}
 		$this->delete($postid);
 		return redirect()->action('PostController@index');
 	}
