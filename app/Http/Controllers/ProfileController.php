@@ -36,6 +36,7 @@ CREATE TABLE `user_type` (
  */
 namespace App\Http\Controllers;
 
+use App\Models\Users as User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +62,8 @@ class ProfileController extends Controller
 	public function index() {
 		$userinfo = $this->readUserInfo();
 		if (count($userinfo) == 1) {
-			return view('profiles.profile', ['userinfo' => $userinfo]);
+			// var_dump($userinfo);
+			return view('profiles.profile', $userinfo);
 		}else {
 			return view('errors.404');
 		}
@@ -75,7 +77,8 @@ class ProfileController extends Controller
 	public function edit() {
 		$userinfo = $this->readUserInfo();
 		if (count($userinfo) == 1) {
-			return view('profiles.editprofile')->with('userinfo', $userinfo);
+			// var_dump($userinfo);
+			return view('profiles.editprofile', $userinfo);
 		}else {
 			return view('errors.404');
 		}
@@ -92,39 +95,41 @@ class ProfileController extends Controller
 	}
 
 	/**
+	 * Gets array of user inputs
+	 * @param null
+	 * @return userInputs
+	 */
+	public function userInputs() {
+		return array('name', 'first_name', 'last_name', 'middle_name', 'mobile_no', 'birth_date');
+	}
+	
+	/**
+	 * Fetches Edit profile form
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function editCheck(Request $request) {
+		$inputvals = $this->userInputs();
+		// remove null values
+		$input = array(
+			$inputvals[0] => $request->name, $inputvals[1] => $request->first_name,
+			$inputvals[2] => $request->last_name, $inputvals[3] => $request->middle_name,
+			$inputvals[4] => $request->mobile_no, $inputvals[5] => $request->birth_date
+		);
+		$input = array_filter($input, 'strlen');
+		$this->update($input);
+		return redirect()->action('ProfileController@index');
+	}
+
+	/**
 	 * Get User Information for Profile Display
 	 *
 	 * @return $userinfo
 	 */
 	public function readUserInfo() {
 		$id = $this->getUserId();
-		$userinfo = DB::table('users')->where('id', $id)->get();
+		$userinfo = User::find($id);
 		return $userinfo;
-	}
-
-
-	/**
-	 * Gets array of user inputs
-	 * @param null
-	 * @return userInputs
-	 */
-	public function userInputs() {
-		return array();
-	}
-	
-	/**
-	 * Fetches Edit profile form
-	 *
-	 * @return null
-	 */
-	public function editprofile(Request $request) {
-		$input = $this->userInputs();
-		// remove null values
-		$input = array_filter($input, 'strlen');
-
-		$this->update($input);
-
-		return redirect()->action('ProfileController@index');
 	}
 
 	/**
@@ -133,5 +138,10 @@ class ProfileController extends Controller
 	 * @return null
 	 */
 	public function update($userinfo) {
+		$user = $this->readUserInfo();
+		foreach ($userinfo as $k => $v) {
+			$user->$k = $v;
+		}
+		$user->save();
 	}
 }

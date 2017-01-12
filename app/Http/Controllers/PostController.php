@@ -102,8 +102,8 @@ class PostController extends Controller
 		if ($post == null) {
 			return view('errors.404');
 		}
-		var_dump($post);
-		// return view('posts.editpost', $post);
+		// var_dump($post);
+		return view('posts.editpost', $post);
 
 		// try {
 		// 	$post = Post::findOrFail($postid);
