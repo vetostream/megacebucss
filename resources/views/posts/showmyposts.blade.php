@@ -8,20 +8,21 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'My Posts')
 
-@section('body')
+@section('content')
 <div class="container">
+	<a href="{{url('/posts/insert')}}">Create Post</a>
 @foreach($posts as $post)
 	<div>
 		<h3>{{$post->title}}</h3>
 		<p>
 			{{$post->content}}
 		</p>
-		<a href="{{url('/posts/update/'.$post->id)}}">Edit Post</a>
-		<a href="{{url('/posts/delete/'.$post->id)}}">Delete Post</a>
+		<a href="{{url('/posts/update/'.$post->id.'/'.$post->user_id)}}">Edit Post</a>
+		<a href="{{url('/posts/delete/'.$post->id.'/'.$post->user_id)}}">Delete Post</a>
 	</div>
 	<hr>
 @endforeach

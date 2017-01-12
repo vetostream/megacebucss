@@ -30,6 +30,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -43,6 +44,7 @@ class PostController extends Controller
 	 */
 	public function __construct()
 	{
+		$this->middleware('auth');
 	}
 
 	/**
@@ -53,16 +55,27 @@ class PostController extends Controller
 	public function index()
 	{
 		$posts = Post::all();
-		$users = DB::table('users')->get();
-		// var_dump($posts);
-		return view('posts.showposts', ['posts' => $posts, 'users' => $users]);
+		// $users = DB::table('users')->get();
+		$userid = $this->getUserId();
+		// echo !is_null($posts);
+		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
 	}
 
+	/**
+	 * Gets the user id
+	 *
+	 * @return $userid
+	 */
 	public function getUserId() {
-		$userid = 1;
+		$userid = Auth::user()->id;
 		return $userid;
 	}
 
+	/**
+	 * Gets the post id
+	 *
+	 * @return $postid
+	 */
 	public function getPostTypeId() {
 		$posttypeid = 1;
 		return $posttypeid;
@@ -71,37 +84,65 @@ class PostController extends Controller
 	public function showMyPosts() {
 		$userid = $this->getUserId();
 		$posts = Post::where('user_id', $userid)->get();
-		$users = DB::table('users')->get();
+		// $users = DB::table('users')->get();
 		// var_dump($posts);
-		return view('posts.showmyposts', ['posts' => $posts, 'users' => $users]);
+		return view('posts.showmyposts', ['posts' => $posts]);
 	}
 
 	public function insertPost() {
 		return view('posts.createpost');
 	}
 
-	public function updatePost($postid) {
+	public function updatePost($postid, $userid) {
 		// add check if user_id == user's id; if not, no edit allowed
+		if ($userid != $this->getUserId()) {
+			return view('errors.404');
+		}
 		$post = $this->readById($postid);
 		if ($post == null) {
-			return view('errors/404');
+			return view('errors.404');
 		}
 		// var_dump($post);
 		return view('posts.editpost', $post);
-	}
 
-	public function deletePost($postid) {
-		// add check if user_id == user's id; if not, no edit allowed
-		$this->delete($postid);
+		// try {
+		// 	$post = Post::findOrFail($postid);
+			// return view('posts.editpost', $post);
+		// } catch(Exception $e) {
+		// 	return view('errors.404');
+		// 	// abort(404,"Research ID not Found!");
+		// }
 	}
 
 	/**
-	 * Gets the post from form
+	 * Deletes post from table
+	 * @param null
+	 * @return null
+	 */
+	public function deletePost($postid, $userid) {
+		if ($userid != $this->getUserId()) {
+			return view('errors.404');
+		}
+		$this->delete($postid);
+		return redirect()->action('PostController@index');
+	}
+
+	/**
+	 * Gets array of user inputs
+	 * @param null
+	 * @return userInputs
+	 */
+	public function userInputs() {
+		return array('title', 'content');
+	}
+
+	/**
+	 * Gets the post from form and inserts to posts table
 	 * @param Request $request
 	 * @return null
 	 */
 	public function getPost(Request $request) {
-		$input = array('title', 'content');
+		$input = $this->userInputs();
 
 		$messages = [
 			$input[0].'.required' => 'Title field is required.',
@@ -114,16 +155,25 @@ class PostController extends Controller
 		], $messages);
 
 		$this->create($request->$input[0], $request->$input[1]);
-		// return redirect()->action('PostController@index');
+		return redirect()->action('PostController@index');
 	}
 
-	public function editPost(Request $request) {
-		$input = array('title', 'content', 'id');
-		if ($request->$input[0]=='') {
-			$this->updateContent($request->$input[2], $request->$input[1]);
-		}else if($request->$input[1]=='') {
-			// $this->updateTitle();
+	/**
+	 * Gets the post from form and edits to posts table
+	 * @param Request $request
+	 * @return null
+	 */
+	public function editPost(Request $request, $postid, $userid) {
+		if ($userid != $this->getUserId()) {
+			return view('errors.404');
 		}
+		$inputvals = $this->userInputs();
+		$input = array($inputvals[0] => $request->title, $inputvals[1] => $request->content);
+		// remove null values
+		$input = array_filter($input, 'strlen');
+		// var_dump($input);
+		$this->update($postid, $input);
+		return redirect()->action('PostController@index');
 	}
 
 	public function create($title, $content) {
@@ -155,14 +205,28 @@ class PostController extends Controller
 		return $post;
 	}
 
+	/**
+	 * Updates a post from postid
+	 * $postvals = ['tablename' => value, ...]
+	 * @param $postid, $postvals
+	 * @return null
+	 */
+	public function update($postid, $postvals) {
+		$post = $this->readById($postid);
+		foreach ($postvals as $k => $v) {
+			$post->$k = $v;
+		}
+		$post->save();
+	}
+
 	public function updateTitle($postid, $title) {
-		$post = Post::find($postid);
+		$post = $this->readById($postid);
 		$post->$title = $title;
 		$post->save();
 	}
 
 	public function updateContent($postid, $content) {
-		$post = Post::find($postid);
+		$post = $this->readById($postid);
 		$post->$content = $content;
 		$post->save();
 	}
@@ -171,7 +235,7 @@ class PostController extends Controller
 		// $updated = $this->getTime();
 		// $arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
 		// DB::table($table)->where('id', $vid)->update($arr);
-		$post = Post::find($postid);
+		$post = $this->readById($postid);
 		$post->$title = $title;
 		$post->$content = $content;
 		$post->save();

@@ -8,11 +8,11 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'Create Post')
 
-@section('body')
+@section('content')
 <div class="container">
 	<a href="{{url('/posts')}}">Back to Home</a>
 	<form class="form-horizontal" method="post" action="{{ url('/posts/get') }}">

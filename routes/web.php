@@ -35,11 +35,25 @@ Route::get('/error404', function () {
     return view('errors/404');
 });
 
+// Lists all posts
 Route::get('/posts', 'PostController@index');
+// Lists all user's posts
 Route::get('/posts/self', 'PostController@showMyPosts');
+// Add post to table
 Route::get('/posts/insert', 'PostController@insertPost');
-Route::get('/posts/update/{id}', ['uses' => 'PostController@updatePost']);
-Route::get('/posts/delete/{id}', ['uses' => 'PostController@deletePost']);
+// Display edit post of id
+Route::get('/posts/update/{postid}/{userid}', 'PostController@updatePost');
+// Display delete post of id
+Route::get('/posts/delete/{postid}/{userid}', 'PostController@deletePost');
+// Gets add post form
 Route::post('/posts/get', 'PostController@getPost');
-Route::post('/posts/edit', 'PostController@editPost');
+// Validate edit post form of id
+Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
 
+
+// Display profile
+Route::get('/profile', 'ProfileController@index');
+// Display edit profile of id
+Route::get('/profile/edit', 'ProfileController@edit');
+// Validate edit post form
+Route::post('/profile/editCheck', 'ProfileController@editCheck');

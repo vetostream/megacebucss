@@ -8,13 +8,13 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'Edit Post')
 
-@section('body')
+@section('content')
 <div class="container">
-	<form class="form-horizontal" method="post" action="{{ url('/posts/edit') }}">
+	<form class="form-horizontal" method="post" action="{{ url('/posts/edit/'.$id.'/'.$user_id) }}">
 		{{ csrf_field() }}
 		<div class="row form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 			<label for="title" class="control-label col-sm-4">Enter title: </label>

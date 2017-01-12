@@ -7,16 +7,15 @@
  * Created On: January 6, 2016
  * Additional Comments: 
  */
-$userid = 1;
 ?>
-@extends('layouts.korminapp')
+@extends('layouts.app')
 
 @section('title', 'Posts')
 
-@section('body')
+@section('content')
 <div class="container">
-<a href="{{url('/posts/insert')}}">Create Post</a>
-<a href="{{url('/posts/self')}}">My Posts</a>
+	<a href="{{url('/posts/insert')}}">Create Post</a>
+	<a href="{{url('/posts/self')}}">My Posts</a>
 @foreach($posts as $post)
 	<div>
 		<h3>{{$post->title}}</h3>
@@ -24,8 +23,8 @@ $userid = 1;
 			{{$post->content}}
 		</p>
 		@if ($userid == $post->user_id)
-		<a href="{{url('/posts/update/'.$post->id)}}">Edit Post</a>
-		<a href="{{url('/posts/delete/'.$post->id)}}">Delete Post</a>
+		<a href="{{url('/posts/update/'.$post->id.'/'.$post->user_id)}}">Edit Post</a>
+		<a href="{{url('/posts/delete/'.$post->id.'/'.$post->user_id)}}">Delete Post</a>
 		@endif
 	</div>
 	<hr>
