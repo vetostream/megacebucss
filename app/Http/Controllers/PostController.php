@@ -93,8 +93,11 @@ class PostController extends Controller
 		return view('posts.createpost');
 	}
 
-	public function updatePost($postid) {
+	public function updatePost($postid, $userid) {
 		// add check if user_id == user's id; if not, no edit allowed
+		if ($userid != $this->getUserId()) {
+			return view('errors.404');
+		}
 		$post = $this->readById($postid);
 		if ($post == null) {
 			return view('errors/404');
@@ -156,13 +159,16 @@ class PostController extends Controller
 	 * @param Request $request
 	 * @return null
 	 */
-	public function editPost(Request $request, $id) {
+	public function editPost(Request $request, $postid, $userid) {
+		if ($userid != $this->getUserId()) {
+			return view('errors.404');
+		}
 		$inputvals = $this->userInputs();
 		$input = array($inputvals[0] => $request->title, $inputvals[1] => $request->content);
 		// remove null values
 		$input = array_filter($input, 'strlen');
 		// var_dump($input);
-		$this->update($id, $input);
+		$this->update($postid, $input);
 		return redirect()->action('PostController@index');
 	}
 

@@ -16,6 +16,7 @@
 <div class="container">
 	<h1>User: {{$data[0]->first_name.' '.$data[0]->middle_name.' '.$data[0]->last_name}}</h1>
 	<a href="{{url('/posts/insert')}}">Create Post</a>
+	<a href="{{url('/profile/edit').'/'.$data[0]->id}}">Edit Profile</a>
 	<h1>Contact Info:</h1>
 	<h2>Email: {{$data[0]->email}}</h2>
 	<h2>Mobile Number: {{$data[0]->mobile_no}}</h2>

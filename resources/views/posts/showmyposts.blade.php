@@ -21,7 +21,7 @@
 		<p>
 			{{$post->content}}
 		</p>
-		<a href="{{url('/posts/update/'.$post->id)}}">Edit Post</a>
+		<a href="{{url('/posts/update/'.$post->id.'/'.$post->user_id)}}">Edit Post</a>
 		<a href="{{url('/posts/delete/'.$post->id)}}">Delete Post</a>
 	</div>
 	<hr>

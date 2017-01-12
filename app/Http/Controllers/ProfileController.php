@@ -68,6 +68,19 @@ class ProfileController extends Controller
 	}
 
 	/**
+	 * Show the Edit Profile view
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
+		$post = $this->readById($id);
+		if ($post == null) {
+			return view('errors/404');
+		}
+		return view('posts.editpost', $post);
+	}
+
+	/**
 	 * Gets the user id
 	 *
 	 * @return $userid

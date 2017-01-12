@@ -42,14 +42,16 @@ Route::get('/posts/self', 'PostController@showMyPosts');
 // Add post to table
 Route::get('/posts/insert', 'PostController@insertPost');
 // Display edit post of id
-Route::get('/posts/update/{id}', 'PostController@updatePost');
+Route::get('/posts/update/{postid}/{userid}', 'PostController@updatePost');
 // Display delete post of id
 Route::get('/posts/delete/{id}', 'PostController@deletePost');
 // Gets add post form
 Route::post('/posts/get', 'PostController@getPost');
 // Gets edit post form of id
-Route::post('/posts/edit/{id}', 'PostController@editPost');
+Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
 
 
 // Display profile
 Route::get('/profile', 'ProfileController@index');
+// Display edit profile of id
+Route::post('/posts/edit/{id}', 'PostController@edit');
