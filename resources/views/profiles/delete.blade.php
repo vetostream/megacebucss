@@ -15,7 +15,23 @@
 @section('content')
 <div class="container">
 	<h1>User: {{$first_name.' '.$middle_name.' '.$last_name}}</h1>
-	<a href="{{url('/profile/deleteOption/1')}}">Delete Account Only</a>
-	<a href="{{url('/profile/deleteOption/2')}}">Delete Account and Posts</a>
+	<form class="form-horizontal" role="form" method="POST" action="{{ url('/profile/deleteOption') }}">
+		{{ csrf_field() }}
+		<div class="form-group">
+			<input type="radio" name="option" id="delete1" value="1" checked>
+			<label for="delete1" class="col-md-4 control-label">Delete Account Only</label>
+		</div>
+		<div class="form-group">
+			<input type="radio" name="option" id="delete2" value="2">
+			<label for="delete2" class="col-md-4 control-label">Delete Account and Posts</label>
+		</div>
+		<div class="form-group">
+			<div class="col-md-6 col-md-offset-4">
+				<button type="submit" class="btn btn-primary">
+					Confirm
+				</button>
+			</div>
+		</div>
+	</form>
 </div>
 @endsection

@@ -62,8 +62,28 @@ class ProfileController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$userinfo = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$userinfo = $this->readUserInfo($userid);
 		if (count($userinfo) == 1) {
+			// var_dump($userinfo);
+			return view('profiles.profile', $userinfo);
+		}else {
+			return view('errors.404');
+		}
+	}
+
+	/**
+	 * Show the profile of user
+	 * @param $userid
+	 * @return \Illuminate\Http\Response
+	 */
+	public function visit($userid) {
+		$userinfo = $this->readUserInfo($userid);
+		if (count($userinfo) == 1) {
+			// if $userid is Logged in user's id, then redirect to user's profile
+			if ($userid == $this->getUserId()) {
+				return view('profiles.profile', $userinfo);
+			}
 			// var_dump($userinfo);
 			return view('profiles.profile', $userinfo);
 		}else {
@@ -77,7 +97,8 @@ class ProfileController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit() {
-		$userinfo = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$userinfo = $this->readUserInfo($userid);
 		if (count($userinfo) == 1) {
 			// var_dump($userinfo);
 			return view('profiles.editprofile', $userinfo);
@@ -92,7 +113,8 @@ class ProfileController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function deleteUser() {
-		$userinfo = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$userinfo = $this->readUserInfo($userid);
 		if (count($userinfo) == 1) {
 			return view('profiles.delete', $userinfo);
 		}else {
@@ -142,10 +164,10 @@ class ProfileController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function deleteOption(Request $request, $option) {
+	public function deleteOption(Request $request) {
 		$id = $this->getUserId();
 		Auth::logout();
-		switch ($option) {
+		switch ($request->option) {
 			case 1:
 				// Requires disabling foreign key constraints
 				// http://stackoverflow.com/questions/34298639/laravel-migrations-nice-way-of-disabling-foreign-key-checks
@@ -167,9 +189,8 @@ class ProfileController extends Controller
 	 *
 	 * @return $userinfo
 	 */
-	public function readUserInfo() {
-		$id = $this->getUserId();
-		$userinfo = User::find($id);
+	public function readUserInfo($userid) {
+		$userinfo = User::find($userid);
 		return $userinfo;
 	}
 
@@ -179,7 +200,8 @@ class ProfileController extends Controller
 	 * @return null
 	 */
 	public function update($userinfo) {
-		$user = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$user = $this->readUserInfo($userid);
 		foreach ($userinfo as $k => $v) {
 			$user->$k = $v;
 		}

@@ -60,4 +60,4 @@ Route::post('/profile/editCheck', 'ProfileController@editCheck');
 // Delete profile of id
 Route::get('/profile/delete', 'ProfileController@deleteUser');
 // Destroy the account or account and posts of the id 
-Route::get('/profile/deleteOption/{option}','ProfileController@deleteOption');
+Route::post('/profile/deleteOption','ProfileController@deleteOption');
