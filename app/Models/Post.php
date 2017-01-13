@@ -1,4 +1,27 @@
 <?php
+/**
+ * Author: Tom Abao
+ * Github: https://github.com/kormin
+ * Email: abaotom14@gmail.com
+ * Description: 
+ * Created On: December 12, 2016
+ * Additional Comments: 
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `post_type_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ */
 
 namespace App\Models;
 

@@ -34,9 +34,11 @@ CREATE TABLE `user_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Users as User;
+use App\Models\Post as Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -85,6 +87,20 @@ class ProfileController extends Controller
 	}
 
 	/**
+	 * Fetches Delete profile form
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function deleteUser() {
+		$userinfo = $this->readUserInfo();
+		if (count($userinfo) == 1) {
+			return view('profiles.delete', $userinfo);
+		}else {
+			return view('errors.404');
+		}
+	}
+
+	/**
 	 * Gets the user id
 	 *
 	 * @return $userid
@@ -122,6 +138,31 @@ class ProfileController extends Controller
 	}
 
 	/**
+	 * Fetches Delete profile form
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function deleteOption(Request $request, $option) {
+		$id = $this->getUserId();
+		Auth::logout();
+		switch ($option) {
+			case 1:
+				// Requires disabling foreign key constraints
+				// http://stackoverflow.com/questions/34298639/laravel-migrations-nice-way-of-disabling-foreign-key-checks
+				$this->delete($id);
+				break;
+			case 2:
+				$this->deletePosts($id);
+				$this->delete($id);
+				break;
+			default:
+				return view('errors.404');
+				break;
+		}
+		return view('welcome');
+	}
+
+	/**
 	 * Get User Information for Profile Display
 	 *
 	 * @return $userinfo
@@ -143,5 +184,23 @@ class ProfileController extends Controller
 			$user->$k = $v;
 		}
 		$user->save();
+	}
+
+	/**
+	 * Deletes user from db
+	 * @param $id
+	 * @return null
+	 */
+	public function delete($id) {
+		User::destroy($id);
+	}
+
+	/**
+	 * Deletes user's posts from db
+	 * @param $id
+	 * @return null
+	 */
+	public function deletePosts($id) {
+		$deletedRows = Post::where('user_id', $id)->delete();
 	}
 }

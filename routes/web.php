@@ -57,3 +57,7 @@ Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/edit', 'ProfileController@edit');
 // Validate edit post form
 Route::post('/profile/editCheck', 'ProfileController@editCheck');
+// Delete profile of id
+Route::get('/profile/delete', 'ProfileController@deleteUser');
+// Destroy the account or account and posts of the id 
+Route::get('/profile/deleteOption/{option}','ProfileController@deleteOption');
