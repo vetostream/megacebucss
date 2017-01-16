@@ -85,7 +85,7 @@ class ProfileController extends Controller
 				return view('profiles.profile', $userinfo);
 			}
 			// var_dump($userinfo);
-			return view('profiles.profile', $userinfo);
+			return view('profiles.viewprofile', $userinfo);
 		}else {
 			return view('errors.404');
 		}

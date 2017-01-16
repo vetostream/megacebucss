@@ -55,6 +55,8 @@ Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
 
 // Display profile
 Route::get('/profile', 'ProfileController@index');
+// Display profile via id
+Route::get('/profile/profileid/{userid}', 'ProfileController@visit');
 // Display edit profile of id
 Route::get('/profile/edit', 'ProfileController@edit');
 // Validate edit post form
