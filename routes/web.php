@@ -37,6 +37,8 @@ Route::get('/error404', function () {
 
 // Lists all posts
 Route::get('/posts', 'PostController@index');
+// Lists one post via id
+Route::get('/posts/postid/{postid}', 'PostController@showPost');
 // Lists all user's posts
 Route::get('/posts/self', 'PostController@showMyPosts');
 // Add post to table
