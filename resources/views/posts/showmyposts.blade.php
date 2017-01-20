@@ -17,8 +17,8 @@
 	<a href="{{url('/posts/insert')}}">Create Post</a>
 @foreach($posts as $post)
 	<div>
-		<h3>{{$post->title}}</h3>
-		<p>
+		<h3>Title: "{{$post->title}}"</h3>
+		<p>Content: 
 			{{$post->content}}
 		</p>
 		<a href="{{url('/posts/update/'.$post->id.'/'.$post->user_id)}}">Edit Post</a>

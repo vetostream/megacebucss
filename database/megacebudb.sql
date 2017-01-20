@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2017 at 04:57 AM
+-- Generation Time: Jan 16, 2017 at 02:19 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.24
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -58,7 +58,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2016_12_18_191120_create_tags_table', 1),
 (8, '2016_12_18_191355_create_postdtl_table', 1),
 (9, '2016_12_18_191857_add_post_type_in_posts', 1),
-(10, '2016_12_18_192506_add_new_fields_for_users', 1);
+(10, '2016_12_18_192506_add_new_fields_for_users', 1),
+(11, '2017_01_07_065346_create_researches_table', 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +112,20 @@ CREATE TABLE `posts` (
 CREATE TABLE `post_type` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `researches`
+--
+
+CREATE TABLE `researches` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `research_abstract` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -203,6 +218,12 @@ ALTER TABLE `post_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `researches`
+--
+ALTER TABLE `researches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tags`
 --
 ALTER TABLE `tags`
@@ -236,7 +257,7 @@ ALTER TABLE `institutions`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `postdtl`
 --
@@ -251,6 +272,11 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `post_type`
 --
 ALTER TABLE `post_type`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `researches`
+--
+ALTER TABLE `researches`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tags`

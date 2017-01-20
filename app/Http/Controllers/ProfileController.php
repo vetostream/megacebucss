@@ -34,9 +34,11 @@ CREATE TABLE `user_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Users as User;
+use App\Models\Post as Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -60,10 +62,30 @@ class ProfileController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$userinfo = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$userinfo = $this->readUserInfo($userid);
 		if (count($userinfo) == 1) {
 			// var_dump($userinfo);
 			return view('profiles.profile', $userinfo);
+		}else {
+			return view('errors.404');
+		}
+	}
+
+	/**
+	 * Show the profile of user
+	 * @param $userid
+	 * @return \Illuminate\Http\Response
+	 */
+	public function visit($userid) {
+		$userinfo = $this->readUserInfo($userid);
+		if (count($userinfo) == 1) {
+			// if $userid is Logged in user's id, then redirect to user's profile
+			if ($userid == $this->getUserId()) {
+				return view('profiles.profile', $userinfo);
+			}
+			// var_dump($userinfo);
+			return view('profiles.viewprofile', $userinfo);
 		}else {
 			return view('errors.404');
 		}
@@ -75,10 +97,26 @@ class ProfileController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit() {
-		$userinfo = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$userinfo = $this->readUserInfo($userid);
 		if (count($userinfo) == 1) {
 			// var_dump($userinfo);
 			return view('profiles.editprofile', $userinfo);
+		}else {
+			return view('errors.404');
+		}
+	}
+
+	/**
+	 * Fetches Delete profile form
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function deleteUser() {
+		$userid = $this->getUserId();
+		$userinfo = $this->readUserInfo($userid);
+		if (count($userinfo) == 1) {
+			return view('profiles.delete', $userinfo);
 		}else {
 			return view('errors.404');
 		}
@@ -122,13 +160,37 @@ class ProfileController extends Controller
 	}
 
 	/**
+	 * Fetches Delete profile form
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function deleteOption(Request $request) {
+		$id = $this->getUserId();
+		Auth::logout();
+		switch ($request->option) {
+			case 1:
+				// Requires disabling foreign key constraints
+				// http://stackoverflow.com/questions/34298639/laravel-migrations-nice-way-of-disabling-foreign-key-checks
+				$this->delete($id);
+				break;
+			case 2:
+				$this->deletePosts($id);
+				$this->delete($id);
+				break;
+			default:
+				return view('errors.404');
+				break;
+		}
+		return view('welcome');
+	}
+
+	/**
 	 * Get User Information for Profile Display
 	 *
 	 * @return $userinfo
 	 */
-	public function readUserInfo() {
-		$id = $this->getUserId();
-		$userinfo = User::find($id);
+	public function readUserInfo($userid) {
+		$userinfo = User::find($userid);
 		return $userinfo;
 	}
 
@@ -138,10 +200,29 @@ class ProfileController extends Controller
 	 * @return null
 	 */
 	public function update($userinfo) {
-		$user = $this->readUserInfo();
+		$userid = $this->getUserId();
+		$user = $this->readUserInfo($userid);
 		foreach ($userinfo as $k => $v) {
 			$user->$k = $v;
 		}
 		$user->save();
+	}
+
+	/**
+	 * Deletes user from db
+	 * @param $id
+	 * @return null
+	 */
+	public function delete($id) {
+		User::destroy($id);
+	}
+
+	/**
+	 * Deletes user's posts from db
+	 * @param $id
+	 * @return null
+	 */
+	public function deletePosts($id) {
+		$deletedRows = Post::where('user_id', $id)->delete();
 	}
 }
