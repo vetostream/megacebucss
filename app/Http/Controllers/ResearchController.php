@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Research;
+use App\Funds;
 use App\Http\Requests\StoreResearch;
 
 
@@ -54,6 +55,7 @@ class ResearchController extends Controller
 
         $research->title = $request->input('title');
         $research->research_abstract = $request->input('research_abstract');
+        $research->user_id = $request->user()->id;
         $path = $request->file('document_file_name')->storeAs('researches', $request->user()->id);
         $research->document_file_name = $path;
         $research->save();
@@ -67,12 +69,19 @@ class ResearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
+
         try 
         {
             $research = Research::findOrFail($id);
-            return view('research.detail')->with('research', $research);
+            $redr = view('research.detail')->with('research', $research);
+
+            if($research->user_id != $request->user()->id){
+                $redr = view('research.abstract')->with('research', $research);
+            }
+
+            return $redr;
         }
         catch(\Exception $e)
         {
@@ -120,12 +129,10 @@ class ResearchController extends Controller
         }
     }
 
-    // public function upload(Request $request){
+    // public function fund(Request $request,$id){
+    //     $fund = new Funds;
 
-
-    //     return $path;
     // }
-
 
     /**
      * Remove the specified resource from storage.
