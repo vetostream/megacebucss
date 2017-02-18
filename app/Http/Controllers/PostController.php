@@ -54,11 +54,24 @@ class PostController extends Controller
 	 */
 	public function index()
 	{
-		$posts = Post::all();
-		// $users = DB::table('users')->get();
+		// $posts = Post::all();
+		$posts = $this->read();
+		// var_dump($posts[0]);
 		$userid = $this->getUserId();
+		// $name = $this->readUserName($userid);
 		// echo !is_null($posts);
 		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
+	}
+
+	/**
+	 * Show the individual post
+	 * @param $postid
+	 * @return \Illuminate\Http\Response
+	 */
+	public function showPost($postid) {
+		$post = $this->readUserPost($postid);
+		$userid = $this->getUserId();
+		return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
 	}
 
 	/**
@@ -83,7 +96,7 @@ class PostController extends Controller
 
 	public function showMyPosts() {
 		$userid = $this->getUserId();
-		$posts = Post::where('user_id', $userid)->get();
+		$posts = $this->readByUserId($userid);
 		// $users = DB::table('users')->get();
 		// var_dump($posts);
 		return view('posts.showmyposts', ['posts' => $posts]);
@@ -98,7 +111,7 @@ class PostController extends Controller
 		if ($userid != $this->getUserId()) {
 			return view('errors.404');
 		}
-		$post = $this->readById($postid);
+		$post = $this->readByPostId($postid);
 		if ($post == null) {
 			return view('errors.404');
 		}
@@ -193,16 +206,32 @@ class PostController extends Controller
 		$post->save();
 	}
 
-	public function read() {
-		$allres = DB::table($table)->get();
-		return $allres;
+	public function readUserName($userid) {
+		$uname = DB::table('users')->where('id', $userid)->value('name');
+		return $uname;
 	}
 
-	public function readById($postid) {
+	public function read() {
+		// SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id`
+		$res = DB::select("SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id`");
+		return $res;
+	}
+
+	public function readUserPost($postid) {
+		$res = DB::select("SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id` WHERE `posts`.`id` = :id", ['id' => $postid]);
+		return $res;
+	}
+
+	public function readByPostId($postid) {
 		// $post = DB::table()->where('picname', $picname)->first();
 		// $post = App\Models\Post::find($postid);
 		$post = Post::find($postid);
 		return $post;
+	}
+
+	public function readByUserId($userid) {
+		$posts = Post::where('user_id', $userid)->get();
+		return $posts;
 	}
 
 	/**
@@ -212,7 +241,7 @@ class PostController extends Controller
 	 * @return null
 	 */
 	public function update($postid, $postvals) {
-		$post = $this->readById($postid);
+		$post = $this->readByPostId($postid);
 		foreach ($postvals as $k => $v) {
 			$post->$k = $v;
 		}
@@ -220,13 +249,13 @@ class PostController extends Controller
 	}
 
 	public function updateTitle($postid, $title) {
-		$post = $this->readById($postid);
+		$post = $this->readByPostId($postid);
 		$post->$title = $title;
 		$post->save();
 	}
 
 	public function updateContent($postid, $content) {
-		$post = $this->readById($postid);
+		$post = $this->readByPostId($postid);
 		$post->$content = $content;
 		$post->save();
 	}
@@ -235,7 +264,7 @@ class PostController extends Controller
 		// $updated = $this->getTime();
 		// $arr = ['title' => $title, 'content' => $content, 'updated_at' => $updated];
 		// DB::table($table)->where('id', $vid)->update($arr);
-		$post = $this->readById($postid);
+		$post = $this->readByPostId($postid);
 		$post->$title = $title;
 		$post->$content = $content;
 		$post->save();
