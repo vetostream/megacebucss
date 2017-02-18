@@ -15,10 +15,10 @@ class ResearchController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class ResearchController extends Controller
     public function index()
     {
         //get all research
-        $researches = Research::all();
+        $researches = Research::all(); //SELECT * FROM RESEARCHES WHERE ID > 0;
         return view('research.index')->with('researches', $researches);
     }
 
@@ -54,6 +54,8 @@ class ResearchController extends Controller
 
         $research->title = $request->input('title');
         $research->research_abstract = $request->input('research_abstract');
+        $path = $request->file('document_file_name')->storeAs('researches', $request->user()->id);
+        $research->document_file_name = $path;
         $research->save();
 
         return redirect('/research');
@@ -117,6 +119,13 @@ class ResearchController extends Controller
             abort(404, $e);
         }
     }
+
+    // public function upload(Request $request){
+
+
+    //     return $path;
+    // }
+
 
     /**
      * Remove the specified resource from storage.

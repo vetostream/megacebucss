@@ -37,21 +37,20 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>             
 
-                        <div class="form-group{{ $errors->has('research_abstract') ? ' has-error' : '' }}">
-                            <label for="research-abstract" class="col-md-4 control-label">Research Abstract</label>
+                        <div class="form-group{{ $errors->has('document_file_name') ? ' has-error' : '' }}">
+                            <label for="document-file-name" class="col-md-4 control-label">File</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="3" id="research_abstract" name="research_abstract" value="{{ old('research_abstract') }}"></textarea>
-
-                                @if ($errors->has('research_abstract'))
+                                <input type="file" id="document-file-name" name="document_file_name">
+                                @if ($errors->has('document_file_name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('research_abstract') }}</strong>
+                                        <strong>{{ $errors->first('document_file_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>                        
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
