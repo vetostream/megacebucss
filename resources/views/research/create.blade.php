@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Exhibit Research</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('research/store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('research/store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
 
@@ -23,6 +23,20 @@
                                     </span>
                                 @endif
                             </div>                        
+                        </div>
+
+                        <div class="form-group{{ $errors->has('research_abstract') ? ' has-error' : '' }}">
+                            <label for="research-abstract" class="col-md-4 control-label">Research Abstract</label>
+
+                            <div class="col-md-6">
+                                <textarea class="form-control" rows="3" id="research_abstract" name="research_abstract" value="{{ old('research_abstract') }}"></textarea>
+
+                                @if ($errors->has('research_abstract'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('research_abstract') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('research_abstract') ? ' has-error' : '' }}">
