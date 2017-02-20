@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Research extends Model
 {
-	/**
-	 * The table associated with the model.
-	 *
-	 * @var string
-	 */
+    //
+    protected $table = 'researches';
+    //public $timestamps = false;
 
-	protected $table = 'researches';
+        protected $fillable = [
+        'title','research_abstract','document_file_name','user_id'
+    ];
 
-	/**
-	 * The attributes that are mass assignable
-	 *
-	 * @var array
-	 */
+    public function Tag()
+    {
+        return $this->belongsToMany('App\Tag', 'researchdtl', 'research_id', 'tag_id');
+    }
 
-	protected $fillable = [''];
 }
