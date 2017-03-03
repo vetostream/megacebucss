@@ -26,7 +26,6 @@ Route::post('/tagsdb', 'HomeController@tagsdb');
 Route::get('/tagsdbResearch', function () { return view('welcome'); });
 Route::post('/tagsdbResearch', 'HomeController@tagsdbResearch');
 
-=======
 
 //Research routes
 Route::get('/research','ResearchController@index'); //show list of exhibited researches
