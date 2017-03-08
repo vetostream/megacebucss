@@ -14,8 +14,13 @@ class Tag extends Model
         'tag_name'
     ];
 
-    public function Post()
+    public function Post()//switched 3rd and 4th parameters
     {
-        return $this->belongsToMany('App\Post', 'postdtl', 'post_id', 'tag_id');
+        return $this->belongsToMany('App\Post', 'postdtl', 'tag_id', 'post_id');
+    }
+
+    public function Research()
+    {
+        return $this->belongsToMany('App\Research', 'researchdtl', 'tag_id', 'research_id');
     }
 }

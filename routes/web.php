@@ -25,6 +25,14 @@ Route::get('/tagsdb', function () {	return view('welcome');	});
 Route::post('/tagsdb', 'HomeController@tagsdb');
 Route::get('/tagsdbResearch', function () { return view('welcome'); });
 Route::post('/tagsdbResearch', 'HomeController@tagsdbResearch');
+Route::get('/reportPostdb', function () {
+    return view('welcome');
+});
+Route::get('/reportPostdb/{postid}/{userid}', 'HomeController@reportPostdb');
+Route::get('/unreport', function () {
+    return view('welcome');
+});
+Route::get('/unreport/{postid}/{userid}', 'HomeController@unreport');
 
 =======
 
