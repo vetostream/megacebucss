@@ -34,8 +34,6 @@ Route::get('/unreport', function () {
 });
 Route::get('/unreport/{postid}/{userid}', 'HomeController@unreport');
 
-=======
-
 //Research routes
 Route::get('/research','ResearchController@index'); //show list of exhibited researches
 Route::get('research/detail/{id}','ResearchController@show'); //show details of the chosen research by id
