@@ -19,7 +19,9 @@
 @foreach($posts as $post)
 	<div>
 		<h3>Title: "{{$post->title}}"</h3>
-		<h4>Author: {{$post->name}}</h4>
+		<h4>Author: 
+		<a href="{{url('/profile/profileid/'.$post->user_id)}}">{{$post->name}}</a>
+		</h4>
 		<p>Content: 
 			{{$post->content}}
 		</p>
