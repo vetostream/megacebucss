@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use  App\Models\Post;
 use App\Tag;
+use App\Research;
 
 class HomeController extends Controller
 {
@@ -38,7 +39,7 @@ class HomeController extends Controller
             <input type="submit" name="submit" id="submiT" value="Submit"/>
         </form>*/
 
-    $post = Post::find(2);//!!this should be edited to find an appropriate post and not just find 2 all the time.
+    $post = Post::find(3);//!!this should be edited to find an appropriate post and not just find 2 all the time.
     if(Tag::count()!=0)
        $post->Tag()->detach();//removes all previous tags
 
