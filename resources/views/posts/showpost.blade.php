@@ -18,7 +18,9 @@
 	<a href="{{url('/posts/self')}}">My Posts</a>
 	<div>
 		<h3>Title: "{{$post[0]->title}}"</h3>
-		<h4>Author: {{$post[0]->name}}</h4>
+		<h4>Author: 
+		<a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{$post[0]->name}}</a>
+		</h4>
 		<p>Content: 
 			{{$post[0]->content}}
 		</p>
