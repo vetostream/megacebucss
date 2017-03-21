@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Research;
 use App\Funds;
+use App\User;
 use App\Http\Requests\StoreResearch;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ResearchController extends Controller
 {
@@ -64,6 +67,25 @@ class ResearchController extends Controller
     }
 
     /**
+     * Gets the user id
+     * Author: Tom Abao
+     * @return $userid
+     */
+    public function getUserId() {
+        $userid = Auth::user()->id;
+        return $userid;
+    }
+    /**
+     * Get User Information for Profile Display
+     * Author: Tom Abao
+     * @return $userinfo
+     */
+    public function readUserInfo($userid) {
+        $userinfo = User::find($userid);
+        return $userinfo;
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -71,14 +93,25 @@ class ResearchController extends Controller
      */
     public function show($id, Request $request)
     {
-
         try 
         {
             $research = Research::findOrFail($id);
+
+            $user = User::where('id', '=', $research->user_id)->get();
+            $funds = Funds::where('research_id', '=', $id)->get();
+            
+            $fund_total = 0;
+            foreach($funds as $fun)
+            {
+                $fund_total += $fun->amount_given;
+            }
+            $research->fund_total = $fund_total;
+            $research->user = $user;
+
             $redr = view('research.detail')->with('research', $research);
 
             if($research->user_id != $request->user()->id){
-                $redr = view('research.abstract')->with('research', $research);
+                $redr = view('research.abstract')->with('research', $research)->with('user', $request->user());
             }
 
             return $redr;
@@ -151,5 +184,30 @@ class ResearchController extends Controller
         catch(\Exception $e){
             abort(404, $e);
         }
+    }
+
+    /*******************************************************************************************************
+        F             U             N             D             I             N             G
+     *******************************************************************************************************/
+    public function fund(Request $request, $research_id, $funder_id)
+    {
+        $fund = new Funds;
+
+        $fund->amount_given = $request->input('amount');
+        $fund->funder_id    = $funder_id;
+        $fund->research_id  = $research_id;
+
+        $fund->save();
+
+        return redirect("research/detail/$research_id");
+    }
+
+    public function fundHistory(Request $request, $id)
+    {
+        // $history = Funds::where('research_id', '=', $id)->get();
+
+        $history = DB::table('funds')->join('users', 'funds.funder_id', '=', 'users.id')->where('research_id', '=', $id)->get();
+
+        return view('research/fund_history')->with('history', $history);
     }
 }

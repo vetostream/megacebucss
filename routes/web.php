@@ -26,6 +26,17 @@ Route::post('/tagsdb', 'HomeController@tagsdb');
 Route::get('/tagsdbResearch', function () { return view('welcome'); });
 Route::post('/tagsdbResearch', 'HomeController@tagsdbResearch');
 
+// Route::get('/reportPostdb', function () {
+//     return view('welcome');
+// });
+
+Route::get('/reportPostdb/{postid}/{userid}', 'HomeController@reportPostdb');
+
+// Route::get('/unreport', function () {
+//     return view('welcome');
+// });
+
+Route::get('/unreport/{postid}/{userid}', 'HomeController@unreport');
 
 //Research routes
 Route::get('/research','ResearchController@index'); //show list of exhibited researches
@@ -35,6 +46,11 @@ Route::post('/research/store','ResearchController@store'); //store newly created
 Route::get('/research/edit/{id}','ResearchController@edit'); //show form to edit exhibited research
 Route::post('/research/update/{id}','ResearchController@update'); //update edited researches
 Route::get('/research/exterminate/{id}','ResearchController@destroy'); //destroy the resource of the id indicated.
+
+// Fund research
+Route::post('/research/fund/{research_id}/{funder_id}', 'ResearchController@fund');
+// View fund history
+Route::get('/research/fund/history/{id}', 'ResearchController@fundHistory');
 
 Route::get('/error404', function () {
     return view('errors/404');

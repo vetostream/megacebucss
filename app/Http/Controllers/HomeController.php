@@ -147,4 +147,46 @@ class HomeController extends Controller
             return ['value'=>'No Result Found','id'=>''];
     }
 
+    public function reportPostdb($postid, $userid) {//following the conventions in the post controller
+            //assuming this function is called from the showpost.blade.php view: <a href="{{ action('HomeController@reportPostdb',['postid' => $post[0]->id, 'userid' => $post[0]->user_id]) }}">Report Post</a>
+            //to test this, try <a href="{{ action('HomeController@reportPostdb',['postid' => 1, 'userid' => 1]) }}">Report Post</a>
+            $post = Post::find($postid);
+            $user = User::find($userid);
+            $report = Report::where('post_id','=', $postid)->first();
+
+            //if post has no reports, then create the post, else increment the number of reports.
+            if(Report::count()==0 || !$report->exists())
+            {
+                $reportitem = Report::create([
+                    'post_id' => $post->id,
+                    'number_of_reps' => 1,
+                ]);
+            $reportitem->User()->attach($user->id);// Attach user-report pair to pivot table
+            }
+            else if(!$user->Report->contains($report->id))
+            {
+                $reportitem = Report::where('post_id','=', $post->id)->first();
+                $reportitem->number_of_reps = $reportitem->number_of_reps + 1;
+                $reportitem->save();
+            $reportitem->User()->attach($user->id);// Attach user-report pair to pivot table
+            }
+
+        return redirect('index');
+    }
+
+    public function unreport($postid, $userid){
+            $reportitem = Report::where('post_id','=', $postid)->first();
+
+            $reportitem->User()->detach($userid);
+            $reportitem->number_of_reps = $reportitem->number_of_reps - 1;
+            $reportitem->save();
+            if($reportitem->number_of_reps < 1)
+            {
+                //delete it
+                $reportitem->delete();
+            }
+
+            return redirect('index');
+    }
+    
 }
