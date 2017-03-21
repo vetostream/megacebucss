@@ -20,5 +20,5 @@ class Funds extends Model
 	 * @var array
 	 */
 
-	protected $fillable = [''];
+	protected $fillable = ['funder_id', 'research_id', 'amount_given'];
 }
