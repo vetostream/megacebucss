@@ -8,17 +8,27 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('title', 'Profile')
 
 @section('content')
 <div class="container">
-	<h1>User: {{$first_name.' '.$middle_name.' '.$last_name}}</h1>
-	<h1>Contact Info:</h1>
-	<h2>Email: {{$email}}</h2>
-	<h2>Mobile Number: {{$mobile_no}}</h2>
-	<h1>Personal Info:</h1>
-	<h2>Birthdate: {{$birthdate}}</h2>
+	<div class="col s12 m7">
+		<h2 class="header">{{$first_name.' '.$middle_name.' '.$last_name}}</h2>
+		<div class="card horizontal">
+			<div class="card-stacked">
+				<img src="{{ URL::asset('/images/usericoncolr.png') }}" class="responsive-img">
+			</div>
+			<div class="card-stacked">
+				<div class="card-content">
+					<h5 class="header">Personal Info:</h5>
+					<p>Email: {{$email}}</p>
+					<p>Mobile Number: {{$mobile_no}}</p>
+					<p>Birthdate: {{$birthdate}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
