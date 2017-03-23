@@ -1,67 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('content')
 <div class="container">
+    @if ($errors->has('email'))
+        <div class="col s6 m6 l6 center-align error-block">
+            <p>{{ $errors->first('email') }}</p>
+        </div>
+    @endif
+    @if ($errors->has('password'))
+        <div class="col s6 m6 l6 center-align error-block">
+            <p>{{ $errors->first('password') }}</p>
+        </div>
+    @endif    
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        <div class="col s12 m12 l12">
+                    <form class="col s12 m12 l12" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6 l6{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <input id="email" type="email" class="validate" name="email" value="{{ old('email') }}" required autofocus>
+                                <label for="email">Email</label>
+                            </div>                            
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6 l6{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" class="validate" name="password" required autofocus>
+                            </div>                            
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="row">
+                            <div class="col s12 m6 l6">
+                                <p>
+                                  <input type="checkbox" id="rem" name="remember" />
+                                  <label for="rem">Remember Me</label>
+                                </p>                                
+                            </div>                        
                         </div>
 
+                        <div class="row">
+                            <div class="col s12 m6 l6">
+                              <button class="btn waves-effect waves-light" type="submit" name="action">LOGIN
+                              </button>                              
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l6">
+                                <a class="waves-effect waves-light btn">Forgot Password?</a>
+                            </div>                            
+                        </div>
+<!-- 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>

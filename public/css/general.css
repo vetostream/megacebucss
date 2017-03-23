@@ -1,0 +1,63 @@
+.container {
+	padding-top: 110px;
+}
+
+/*.card {
+	z-index: -1;
+}
+*/
+.nav-wrapper {	
+	background-color: #235678; 
+	padding: 0px 150px 0px 150px;
+}
+
+.card .card-image img {
+	z-index: -1;
+}
+
+nav {
+	height: 100px;
+}
+
+.error-block {
+	color: red;
+}
+
+#brand-pic {
+	height: 90px;
+}
+
+.brand-logo {
+	padding-top: 5px !important;
+}
+
+.cardpanel-research {
+	padding: 15px 15px 15px 15px;
+}
+
+nav ul li{
+	height: 100px !important;
+}
+
+li a {
+	line-height: 100px;
+}
+
+.search-btn {
+	line-height: 50px !important;
+}
+
+/*.add-post {
+	height: 100%;
+	width: 100%;
+	border: 1px dashed #000;
+}
+*/
+/*.input-field input[type=search] {
+	margin-top: 15px;
+}
+
+.input-field input[type=search]:focus {
+	background-color: transparent;
+	color: #fff;
+}*/

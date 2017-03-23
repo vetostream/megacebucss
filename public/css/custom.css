@@ -1,0 +1,160 @@
+/*
+	Reported Posts Manager
+	Research Projects Manager
+*/
+
+.nav-wrapper {	
+	background-color: #235678; 
+}
+.custom-blue { 
+	color: #235678;
+}
+
+.tabs .tab a,
+.tabs .tab a.active {
+	color: #235678 !important;
+}
+
+.tabs .tab a:hover {
+	color: #347fb2 !important;
+}
+
+.tabs .tab a:hover.accept {
+	color: #2e7d32   !important;
+}
+.tabs .tab a:hover.reject {
+	color: #b71c1c  !important;
+}
+.tabs .indicator {
+	background-color: #3b8dc4;
+}
+
+img.usericon {
+	
+	width: 32px;
+	height: 32px;
+}
+
+.vertical_align{
+	vertical-align: middle !important;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
+	color: #235678 !important;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover{
+	color: #347fb2 !important;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover.accept{
+	color: #2e7d32   !important;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover.reject,
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover.block{
+	color: #b71c1c  !important;
+}
+
+small{
+	font-size: 60%;
+}
+
+nav ul a.active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/*
+	About
+*/
+
+.header {
+	color: #ee6e73;
+}
+.justify-align {
+	text-align: justify;
+}
+.banner-about {
+	background-color: #f9fafb;
+}
+
+/*
+	Categories
+*/
+
+.mini-chip {
+	height: 25px;
+	font-size: 12px;
+	line-height: 25px;
+}
+.chip.mini-chip.more {
+	background-color: #eceff1;
+}
+.chip.mini-chip {
+    margin-right: 0;
+}
+.card .card-action {
+	padding: 10px;
+}
+.fixed-action-btn {
+	right: 0px;
+	bottom: 0px;
+}
+.fixed-action-btn.horizontal.dboard-like {
+  padding: 0;
+}
+.fixed-action-btn.horizontal.dboard-like ul {
+	text-align: center;
+	right: 0;
+	padding-top: 30%;
+	width: 100%;
+}
+.fixed-action-btn.horizontal.dboard-like ul li {
+  margin: 0;
+}
+.row.dboard {
+	margin-bottom: 0;
+}
+.dboard-head {
+	padding-top: 50px;
+}
+.card-content.categories {
+	padding: 5px 20px 15px 20px;
+}
+.category-heading {
+	margin-bottom: 35px;
+}
+.card .card-image .card-title.category-bg {
+	background-color: #000;
+	color: #000;
+	opacity: 0.3;
+	width: 100%;
+	padding: 10px;
+}
+.card .card-image .card-title.category-name {
+	color: #fff;
+	padding: 10px;
+}
+
+/*
+	Funders List & Fund Requests
+*/
+
+.row-unpadded {
+  margin-bottom: auto;
+  padding-bottom: 0;
+}
+
+.card-unpadded {
+  margin-bottom: 0;
+}
+
+/*
+	Post M1, M2
+*/
+
+#post-title { }	
+#post-date { color: #9e9e9e;}
+#post-progress p { text-align: center; font-weight: bold;}
+#post-content { padding: 0px; }		
+#post-content div p { text-align: justify; }
+#post-tags { } 
+#post-options { }	
+.badge { float: none;}		

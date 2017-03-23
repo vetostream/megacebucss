@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title></title>
+
+    <!-- Styles -->
+    <link href="/css/materialize.min.css" rel="stylesheet">
+    <link href="/css/general.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+            <a href="#" class="brand-logo center"><img src="/images/logo.png" id="brand-pic"/></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                @if (Auth::guest())
+                    <li><a href="{{ url('login') }}">Login</a></li>
+                    <li><a href="{{ url('register') }}">Register</a></li>
+                @else
+                    <li><a href="{{ url('posts') }}">Ideas</a></li>
+                    <li><a href="{{ url('research') }}">Research</a></li>
+                    <li><a href="{{ url('about') }}">About</a></li>
+                    <li><a href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+<!--                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                            </li>
+                        </ul>
+                    </li> -->
+                @endif
+                </ul>
+                <ul class="right">
+                <li>
+                  <form>
+                    <div class="input-field">
+                      <input id="search" type="search" required>
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form> 
+                  </li>                 
+                </ul>
+        </nav>   
+
+        @yield('content')
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript">
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 300 // Creates a dropdown of 15 years to control year
+      });
+
+      $('.chips').material_chip();
+      $('.chips-initial').material_chip({
+        data: [{
+          tag: 'Apple',
+        }, {
+          tag: 'Microsoft',
+        }, {
+          tag: 'Google',
+        }],
+      });
+      $('.chips-placeholder').material_chip({
+        placeholder: 'Enter a tag',
+        secondaryPlaceholder: '+Tag',
+      });
+
+      var chip = {
+        tag: 'chip content',
+        image: '', //optional
+        id: 1, //optional
+      };
+
+      $('.chips').on('chip.add', function(e, chip){
+        // you have the added chip here
+      });
+
+      $('.chips').on('chip.delete', function(e, chip){
+        // you have the deleted chip here
+      });
+
+      $('.chips').on('chip.select', function(e, chip){
+        // you have the selected chip here
+      });
+
+      $('.chips-initial').material_chip('data');      
+    </script>
+</body>
+</html>
