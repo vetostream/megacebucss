@@ -28,7 +28,7 @@
 
 		<!-- PARALLAX -->
 		<div class="parallax-container">
-			<div class="parallax"><img src="images/04.jpg"></div>
+			<div class="parallax"><img src="{{ URL::asset('images/04.jpg') }}"></div>
 		</div>
 		<div class="section white">
 			<div class="row container">
@@ -41,7 +41,7 @@
 
 
 		<div class="parallax-container">
-			<div class="parallax"><img src="images/05.png"></div>
+			<div class="parallax"><img src="{{ URL::asset('images/05.png') }}"></div>
 		</div>
 		<div class="section white">
 			<div class="row container">
@@ -53,7 +53,7 @@
 		</div>
 
 		<div class="parallax-container">
-			<div class="parallax"><img src="./images/06.png"></div>
+			<div class="parallax"><img src="{{ URL::asset('/images/06.png') }}"></div>
 		</div>
 
 		<div class="section white">
@@ -135,8 +135,8 @@
       
 
 </body>
-	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/materialize.min.js"></script>
+	<script type="text/javascript" src="{{ URL::asset('/js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('/js/materialize.min.js') }}"></script>
 	<script type="text/javascript">
 		 $(document).ready(function(){
 		    $('.modal').modal();

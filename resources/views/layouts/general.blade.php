@@ -11,9 +11,9 @@
     <title></title>
 
     <!-- Styles -->
-    <link href="/css/materialize.min.css" rel="stylesheet">
-    <link href="/css/general.css" rel="stylesheet">
-    <link href="/css/custom.css" rel="stylesheet">
+    <link href="{{ URL::asset('/css/materialize.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/general.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/custom.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
 
     <!-- Scripts -->
@@ -27,7 +27,7 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
-            <a href="#" class="brand-logo center"><img src="/images/logo.png" id="brand-pic"/></a>
+            <a href="#" class="brand-logo center"><img src="{{ URL::asset('/images/logo.png') }}" id="brand-pic"/></a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                 @if (Auth::guest())
                     <li><a href="{{ url('login') }}">Login</a></li>
@@ -71,13 +71,12 @@
                   </li>                 
                 </ul>
         </nav>   
-
-        @yield('content')
     </div>
+    @yield('content')
 
     <!-- Scripts -->
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('/js/materialize.min.js') }}"></script>
     <script type="text/javascript">
       $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
