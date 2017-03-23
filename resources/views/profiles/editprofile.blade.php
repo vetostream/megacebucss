@@ -8,7 +8,7 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('title', 'Edit Profile')
 

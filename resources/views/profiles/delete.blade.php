@@ -8,19 +8,19 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('title', 'Profile')
 
 @section('content')
 <div class="container">
-	<h1>User: {{$first_name.' '.$middle_name.' '.$last_name}}</h1>
+	<h2 class="header">{{$first_name.' '.$middle_name.' '.$last_name}}</h2>
 	<form class="form-horizontal" role="form" method="POST" action="{{ url('/profile/deleteOption') }}">
 		{{ csrf_field() }}
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<input type="radio" name="option" id="delete1" value="1" checked>
 			<label for="delete1" class="col-md-4 control-label">Delete Account Only</label>
-		</div>
+		</div> -->
 		<div class="form-group">
 			<input type="radio" name="option" id="delete2" value="2">
 			<label for="delete2" class="col-md-4 control-label">Delete Account and Posts</label>

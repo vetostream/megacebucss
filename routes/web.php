@@ -56,15 +56,15 @@ Route::get('/error404', function () {
     return view('errors/404');
 });
 
-// Lists all posts
+// Lists all posts, view = posts.showposts
 Route::get('/posts', 'PostController@index');
-// Lists one post via id
+// Lists one post via id, view = posts.showpost
 Route::get('/posts/postid/{postid}', 'PostController@showPost');
-// Lists all user's posts
+// Lists all user's posts, view = posts.showmyposts
 Route::get('/posts/self', 'PostController@showMyPosts');
-// Add post to table
+// Add post to table, view = posts.createpost
 Route::get('/posts/insert', 'PostController@insertPost');
-// Display edit post of id
+// Display edit post of id, view = posts.editpost
 Route::get('/posts/update/{postid}/{userid}', 'PostController@updatePost');
 // Display delete post of id
 Route::get('/posts/delete/{postid}/{userid}', 'PostController@deletePost');
@@ -74,15 +74,15 @@ Route::post('/posts/get', 'PostController@getPost');
 Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
 
 
-// Display profile
+// Display profile, view = profiles.profile
 Route::get('/profile', 'ProfileController@index');
-// Display profile via id
+// Display profile via id, view = profiles.viewprofile
 Route::get('/profile/profileid/{userid}', 'ProfileController@visit');
-// Display edit profile of id
+// Display edit profile of id, view = profiles.editprofile
 Route::get('/profile/edit', 'ProfileController@edit');
 // Validate edit post form
 Route::post('/profile/editCheck', 'ProfileController@editCheck');
-// Delete profile of id
+// Delete profile of id, view = profiles.delete
 Route::get('/profile/delete', 'ProfileController@deleteUser');
 // Destroy the account or account and posts of the id 
 Route::post('/profile/deleteOption','ProfileController@deleteOption');
