@@ -29,7 +29,11 @@
         <div class="col s12 m4 l4">
             <div class="card-panel" style="height: 340px;">
                 <ul>
-                    <li style="text-align: center; padding:100px 100px 100px 100px;"><a class="btn-floating red"><i class="material-icons">note_add</i></a></li>
+                    <li style="text-align: center; padding:100px 100px 100px 100px;">
+                        <a class="btn-floating red" href="{{ url('/posts/insert') }}">
+                            <i class="material-icons">note_add</i>
+                        </a>
+                    </li>
                 </ul>                
             </div>
         </div>
@@ -49,7 +53,7 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <p class="justify-align">{{$post->content}} <a href="#">Read more</a></p>
+                    <p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
                 </div>
                 <div class="card-action">
                     <div class="chip mini-chip">lake</div>

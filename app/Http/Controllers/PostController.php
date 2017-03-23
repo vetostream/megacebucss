@@ -56,11 +56,11 @@ class PostController extends Controller
 	{
 		// $posts = Post::all();
 		$posts = $this->read();
-		// var_dump($posts[0]);
 		$userid = $this->getUserId();
 		// $name = $this->readUserName($userid);
 		// echo !is_null($posts);
 		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
+		// $page = $posts->simplePaginate(1);
 	}
 
 	/**
