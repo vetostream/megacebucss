@@ -30,7 +30,7 @@
 				<div class="card-content">
 					<span class="card-title">{{ $post[0]->title }}</span>
 					<h5 class="header">Author: 
-					<a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{$post[0]->name}}</a>
+					<a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a>
 					</h5>
 					<p>{{ $post[0]->content }}</p>
 				</div>

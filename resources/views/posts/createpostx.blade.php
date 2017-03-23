@@ -8,13 +8,13 @@
  * Additional Comments: 
  */
 ?>
-@extends('layouts.app')
+@extends('layouts.general')
 
 @section('title', 'Create Post')
 
 @section('content')
 <div class="container">
-	<a href="{{url('/posts')}}">Back to Home</a>
+	<!-- <a href="{{url('/posts')}}">Back to Home</a> -->
 	<form class="form-horizontal" method="post" action="{{ url('/posts/get') }}">
 		{{ csrf_field() }}
 		<div class="row form-group{{ $errors->has('title') ? ' has-error' : '' }}">
