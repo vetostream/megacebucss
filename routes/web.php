@@ -20,6 +20,7 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index');
+Route::get('/about', function() { return view ('about'); });
 
 Route::get('/tagsdb', function () {	return view('welcome');	});
 Route::post('/tagsdb', 'HomeController@tagsdb');

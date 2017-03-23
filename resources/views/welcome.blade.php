@@ -34,7 +34,7 @@
 			<div class="row container">
 				<h2 class="header">About Project Cebu</h2>
 				<p class="grey-text text-darken-3 lighten-3">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis dui facilisis, posuere neque et, vestibulum dui. Donec aliquet in neque venenatis euismod. Donec tempor consectetur nunc ac elementum. Duis enim metus, ultrices in neque eget, aliquam posuere ante. Suspendisse ante nulla, tempor ac lobortis in, sodales nec massa.
+				Ideas. We have plenty of them. There are good ideas and there are bad ideas. Nevertheless, we need ideas as they are the very foundation with which our society is built. As such, this system crowdsources ideas for the benefit of the Philippines from its citizens. 
 				</p>
 			</div>
 		</div>
@@ -47,7 +47,7 @@
 			<div class="row container">
 				<h2 class="header">Crowdsourcing and Project Funding</h2>
 				<p class="grey-text text-darken-3 lighten-3">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis dui facilisis, posuere neque et, vestibulum dui. Donec aliquet in neque venenatis euismod. Donec tempor consectetur nunc ac elementum. Duis enim metus, ultrices in neque eget, aliquam posuere ante. Suspendisse ante nulla, tempor ac lobortis in, sodales nec massa.
+				The target audience for this system are OFWs, professors, students, and investors. We have chosen to specify OFWs as one of our target audience as they have a distinct advantage of living in a country that has a better economy than the Philippines. They will provide insight into possible projects that can be implemented in the Philippines from the development they have seen in their country. This system will be used by students to gain project ideas for their thesis or research study. This will also be used by investors who are willing to invest in these ideas.
 				</p>
 			</div>
 		</div>
