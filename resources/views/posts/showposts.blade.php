@@ -54,8 +54,10 @@
 				<div class="card-image">
 					<div class="fixed-action-btn horizontal dboard-like" style="position: relative">
 						<a class="" style="width: relative">
-							<img src="images/sample-1.jpg">
-							<span class="card-title">{{$post->title}}</span>
+							<!-- <img src="images/sample-1.jpg"> -->
+							<!-- <img src="{{ url('postimages/'.$post->document_file_name) }}"> -->
+							<img src="{{ url('storage/'.$post->document_file_name) }}">
+							<span class="card-title">{{ $post->title }}</span>
 						</a>
 						<ul>
 							<li><a class="btn-floating red"><i class="material-icons">thumb_up</i></a></li>
@@ -63,7 +65,7 @@
 					</div>
 				</div>
 				<div class="card-content">
-					<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
+					<p class="justify-align">{{ $post->content }} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
 				</div>
 				<div class="card-action">
 					<div class="chip mini-chip">lake</div>
