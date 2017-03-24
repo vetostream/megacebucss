@@ -35,6 +35,19 @@ class Post extends Model
      * @var string
      */
     protected $table = 'posts';
+
+    /* ~Zafra Invasion~ */    
+        protected $fillable = [
+        'postinfo','title','content','user_id','post_type_id'
+    ];
+
+    public function Tag()
+    {
+        return $this->belongsToMany('App\Tag', 'postdtl', 'post_id', 'tag_id');
+    }
+    /*                  */
+
+
     /**
      * Indicates if the model should be timestamped.
      *

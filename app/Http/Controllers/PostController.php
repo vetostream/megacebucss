@@ -34,6 +34,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Tag;
 
 
 class PostController extends Controller
@@ -170,7 +171,41 @@ class PostController extends Controller
 			$input[1] => 'required'
 		], $messages);
 
-		$this->create($request->$input[0], $request->$input[1]);
+		//$this->create($request->$input[0], $request->$input[1]);
+		$newpost = Post::create([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'user_id' => Auth::user()->id,
+                    'post_type_id' => 1,
+                ]);
+
+		//--beyond this point is zafra country
+		$lastpostid = $newpost->id;
+
+	    $post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
+	    if(Tag::count()!=0)
+	       $post->Tag()->detach();//removes all previous tags
+
+		$tagslist = explode(";",$request->tags,6);
+		unset($tagslist[0]);
+		array_values($tagslist);
+	    foreach ($tagslist as $tag)//adds new tags to connections. if tag does not exist, it is added, otherwise tag is retrieved
+	        {
+	            if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
+	            {
+	                $tagitem = Tag::create([
+	                    'tag_name' => $tag,
+	                ]);
+	            }
+	            else
+	            {
+	                $tagitem = Tag::where('tag_name','=', $tag)->first();
+	            }
+	            
+	            $post->Tag()->attach($tagitem->id);//attach to connector table
+	        }
+	    //--
+		
 		return redirect()->action('PostController@index');
 	}
 

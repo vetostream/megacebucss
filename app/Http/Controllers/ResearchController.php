@@ -11,6 +11,8 @@ use App\Http\Requests\StoreResearch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use App\Tag;
+
 class ResearchController extends Controller
 {
 
@@ -59,9 +61,42 @@ class ResearchController extends Controller
         $research->title = $request->input('title');
         $research->research_abstract = $request->input('research_abstract');
         $research->user_id = $request->user()->id;
-        $path = $request->file('document_file_name')->storeAs('researches', $request->user()->id);
-        $research->document_file_name = $path;
+        $research->document_file_name = "";
+        if ( !is_null($request->file('document_file_name'))) 
+        {
+            $path = $request->file('document_file_name')->storeAs('researches', $request->user()->id);
+            $research->document_file_name = $path;
+        }
         $research->save();
+
+        //--beyond this point is zafra country
+        $lastpostid = $research->id;
+
+        $research = Research::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
+        //if research is a type of post, look for post where post_type is [research]
+        if(Tag::count()!=0)
+           $research->Tag()->detach();//removes all previous tags
+
+        $tagslist = explode(";",$request->tags,6);
+        unset($tagslist[0]);
+        array_values($tagslist);
+        foreach ($tagslist as $tag)//adds new tags to connections. if tag does not exist, it is added, otherwise tag is retrieved
+            {
+                if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
+                {
+                    $tagitem = Tag::create([
+                        'tag_name' => $tag,
+                    ]);
+                }
+                else
+                {
+                    $tagitem = Tag::where('tag_name','=', $tag)->first();
+                }
+                
+                $research->Tag()->attach($tagitem->id);//attach to connector table
+            }
+        //--
+
 
         return redirect('/research');
     }

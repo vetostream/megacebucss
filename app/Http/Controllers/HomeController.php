@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use  App\Models\Post;
 use App\Tag;
 use App\Research;
+use App\Report;
+use App\User;
 
 class HomeController extends Controller
 {

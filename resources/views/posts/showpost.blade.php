@@ -44,6 +44,7 @@
 				<div class="card-action">
 					<a href="{{url('/posts/update/'.$post[0]->id.'/'.$post[0]->user_id)}}">Edit Post</a>
 					<a href="{{url('/posts/delete/'.$post[0]->id.'/'.$post[0]->user_id)}}">Delete Post</a>
+					<a href="{{url('/posts/reportPostdb/'.$post[0]->id.'/'.$post[0]->user_id)}}">Report Post</a>
 				</div>
 				@endif
 			</div>
