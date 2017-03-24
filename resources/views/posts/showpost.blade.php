@@ -34,6 +34,12 @@
 					</h5>
 					<p>{{ $post[0]->content }}</p>
 				</div>
+				<div class="card-action">
+					<div class="chip mini-chip">lake</div>
+					<div class="chip mini-chip">mountains</div>
+					<div class="chip mini-chip">nature</div>
+					<div class="chip mini-chip more">+3 more</div>
+				</div>
 				@if ($userid == $post[0]->user_id)
 				<div class="card-action">
 					<a href="{{url('/posts/update/'.$post[0]->id.'/'.$post[0]->user_id)}}">Edit Post</a>

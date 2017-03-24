@@ -30,7 +30,7 @@
         <div class="col s12 m12 l6">
           	<div class="card hoverable">
 	            <div class="cardpanel-research">
-		            <a href="#" class="black-text">
+		            <a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text">
 		            <span class="card-title">{{$research->title}}</span>
 		          		<p class="justify-align">
 		          			{{$research->research_abstract}}       		

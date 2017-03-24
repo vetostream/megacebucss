@@ -19,8 +19,7 @@
         
     <!-- ROW1 -->       
 <!--     <div class="row dboard"> -->
-    <?php $count = 1;$length = count($posts)+1;$addpostcard=0; ?>
-    @foreach($posts as $post)
+    <?php $count = 1; $length = count($posts)+1; $addpostcard=0; ?>
 
     @if ($count === 1 | $count%3 === 0)
     <div class="row">
@@ -39,6 +38,7 @@
         </div>
         <?php $addpostcard = 1; ?>
     @else
+    @foreach($posts as $post)
         <div class="col s12 m4 l4">
             <div class="card">
                 <div class="card-image">
@@ -63,12 +63,12 @@
                 </div>
             </div>
         </div>
+    @endforeach
     @endif
     @if ($count%3 === 0 | $count+1 === $length)
     </div>
     @endif
     <?php $count++; ?>
-    @endforeach
 <!--     </div>     -->    
     <!-- ROW3 --> 
 
