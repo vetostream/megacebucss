@@ -19,7 +19,7 @@
 		<div class="card horizontal">
 			<!-- card-image -->
 			<div class="card-stacked">
-				<img src="{{ URL::asset('/images/usericoncolr.png') }}" class="responsive-img">
+				<img src="{{ asset('/images/usericoncolr.png') }}" class="responsive-img">
 			</div>
 			<div class="card-stacked">
 				<div class="card-content">
