@@ -1,27 +1,16 @@
-<?php
-/**
- * Author: Tom Abao
- *   Github: https://github.com/kormin
- *   Email: abaotom14@gmail.com
- * Description: 
- * Created On: January 12, 2017
- * Additional Comments: 
- */
-?>
 @extends('layouts.general')
 
 @section('title', 'Profile')
 
 @section('content')
 <div class="container">
-	<div class="col s12">
-		<h2 class="header">{{$first_name.' '.$middle_name.' '.$last_name}}</h2>
-		<div class="card horizontal">
-			<!-- card-image -->
-			<div class="card-stacked">
-				<img src="{{ asset('/images/usericoncolr.png') }}" class="responsive-img">
-			</div>
-			<div class="card-stacked">
+	<div class="row">
+	  <div class="col s12 m12 l12">
+	    <div class="card horizontal">
+	      <div class="card-image">
+	        <img src="{{ asset('/images/avatar.jpg') }}" class="responsive-img">
+	      </div>
+	      <div class="card-stacked">
 				<div class="card-content">
 					<h5 class="header">Personal Info:</h5>
 					<p>Email: {{$email}}</p>
@@ -36,9 +25,25 @@
 					<a href="{{url('/profile/edit')}}">Edit Profile</a>
 					<a href="{{url('/profile/delete')}}">Delete Profile</a>
 				</div>
-			</div>
-		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="row nav-prof">
+	    <div class="col s12 l12 m12">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a href="#test1">Ideas</a></li>
+	        <li class="tab col s3"><a class="active" href="#test2">Researches</a></li>
+	        <li class="tab col s3"><a href="#test4">Funders</a></li>
+	      </ul>
+	    </div>
+	</div>
+
+	<div class="row">
+	    <div id="test1" class="col s12">Test 1</div>
+	    <div id="test2" class="col s12">Test 2</div>
+	    <div id="test4" class="col s12">Test 4</div>			
 	</div>
 </div>
 @endsection
-
