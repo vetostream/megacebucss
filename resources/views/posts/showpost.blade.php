@@ -46,6 +46,7 @@
 					<a href="{{url('/posts/delete/'.$post[0]->id.'/'.$post[0]->user_id)}}">Delete Post</a>
 				</div>
 				@endif
+							<a href="{{ url('/postimgs/'.$post[0]->document_file_name) }}"></a>
 			</div>
 		</div>
 	</div>

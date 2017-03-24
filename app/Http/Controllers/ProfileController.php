@@ -66,7 +66,10 @@ class ProfileController extends Controller
 		$userinfo = $this->readUserInfo($userid);
 		if (count($userinfo) == 1) {
 			// var_dump($userinfo);
-			return view('profiles.profile', $userinfo);
+			$posts = app('App\Http\Controllers\PostController')->getMyPosts();
+			// var_dump($posts);
+			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts]);
+			// return view('profiles.profile', $userinfo);
 		}else {
 			return view('errors.404');
 		}
