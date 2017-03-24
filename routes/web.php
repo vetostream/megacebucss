@@ -47,6 +47,7 @@ Route::post('/research/store','ResearchController@store'); //store newly created
 Route::get('/research/edit/{id}','ResearchController@edit'); //show form to edit exhibited research
 Route::post('/research/update/{id}','ResearchController@update'); //update edited researches
 Route::get('/research/exterminate/{id}','ResearchController@destroy'); //destroy the resource of the id indicated.
+Route::get('/research/download','ResearchController@showManus'); //destroy the resource of the id indicated.
 
 // Fund research
 Route::post('/research/fund/{research_id}/{funder_id}', 'ResearchController@fund');

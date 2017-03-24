@@ -98,6 +98,12 @@ class PostController extends Controller
 		return $posttypeid;
 	}
 
+	public function getMyPosts() {
+		$userid = $this->getUserId();
+		$posts = $this->readByUserId($userid);
+		return $posts;
+	}
+
 	public function showMyPosts() {
 		$userid = $this->getUserId();
 		$posts = $this->readByUserId($userid);
@@ -150,7 +156,7 @@ class PostController extends Controller
 	 * @return userInputs
 	 */
 	public function userInputs() {
-		return array('title', 'content');
+		return array('title', 'content', 'postimg');
 	}
 
 	/**
@@ -171,12 +177,24 @@ class PostController extends Controller
 			$input[1] => 'required'
 		], $messages);
 
+//<<<<<<< HEAD
 		//$this->create($request->$input[0], $request->$input[1]);
+//=======
+        $path = $request->file($input[2])->store('public');
+		$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
+		$this->create($request->$input[0], $request->$input[1], $picname);
+		// echo $postid;
+        // $path = $request->postimg->store('postimages');
+        // $path = $request->file('postimg')->storeAs('postimages', 'testing');
+        // $path = $request->file($input[2])->storeAs('postimages', $postid);
+  //       $this->insertImagePath($path);
+//>>>>>>> 5575b841081da055b4fb2719598b1eafab861ad3
 		$newpost = Post::create([
                     'title' => $request->title,
                     'content' => $request->content,
                     'user_id' => Auth::user()->id,
                     'post_type_id' => 1,
+                    //'' => $picname, From Zafra: "Does the database support a picture?"
                 ]);
 
 		//--beyond this point is zafra country
@@ -227,9 +245,9 @@ class PostController extends Controller
 		return redirect()->action('PostController@index');
 	}
 
-	public function create($title, $content) {
+	public function create($title, $content, $path) {
 		$userid = $this->getUserId();
-		$posttypeid = $this->getPostTypeId();
+		// $posttypeid = $this->getPostTypeId();
 		// $arr = ['title' => $title, 'content' => $content, 
 		// 'created_at' => $created, 'updated_at' => $updated,
 		// 'user_id' => $userid, 'post_type_id' => $posttypeid];
@@ -240,7 +258,15 @@ class PostController extends Controller
 		$post->title = $title;
 		$post->content = $content;
 		$post->user_id = $userid;
-		$post->post_type_id = $posttypeid;
+		$post->document_file_name = $path;
+		// $post->post_type_id = $posttypeid;
+		$post->save();
+		// return $post->id;
+	}
+
+	public function insertImagePath($path) {
+		$post = $this->readByPostId($postid);
+		$post->document_file_name = $path;
 		$post->save();
 	}
 
@@ -251,7 +277,7 @@ class PostController extends Controller
 
 	public function read() {
 		// SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id`
-		$res = DB::select("SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id`");
+		$res = DB::select("SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`document_file_name`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id`");
 		return $res;
 	}
 

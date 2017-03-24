@@ -12,7 +12,7 @@
 		  <span class="card-title">Create Post</span>
 		  <hr>
 		  <div class="row">
-			<form class="col s12" method="post" action="{{ url('/posts/get') }}" id="createpostform" name="createpostform">
+			<form class="col s12" method="post" action="{{ url('/posts/get') }}" enctype="multipart/form-data" id="createpostform" name="createpostform">
 			{{ csrf_field() }}
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -36,6 +36,17 @@
 					</div>
 					<!-- zafra edit -->
 					<input type="hidden" id="tags" name="tags" value="">
+				</div>
+				<div class="row">
+					<div class="file-field input-field {{ $errors->has('postimg') ? ' has-error' : '' }}">
+					  <div class="btn">
+						<span>File</span>
+						<input type="file" id="postimg" name="postimg">
+					  </div>
+					  <div class="file-path-wrapper">
+						<input class="file-path validate" type="text" placeholder="Upload file">
+					  </div>
+					</div>
 				</div>
 		  </div>
 		</div>

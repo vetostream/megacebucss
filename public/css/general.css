@@ -1,18 +1,19 @@
 .container {
-	padding-top: 110px;
+	padding-top: 50px;
+	padding-bottom: 100px;
 }
 
-/*.card {
+.card {
 	z-index: -1;
 }
-*/
+
 .nav-wrapper {	
 	background-color: #235678; 
 	padding: 0px 150px 0px 150px;
 }
 
 .card .card-image img {
-	z-index: -1;
+/*	z-index: -1;*/
 }
 
 nav {
@@ -39,7 +40,7 @@ nav ul li{
 	height: 100px !important;
 }
 
-li a {
+#nav-mobile li a {
 	line-height: 100px;
 }
 
@@ -61,3 +62,7 @@ li a {
 	background-color: transparent;
 	color: #fff;
 }*/
+
+.nav-prof {
+	padding: 0px 220px 0px 350px !important;
+}
