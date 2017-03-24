@@ -6,7 +6,10 @@
  * Description: 
  * Created On: December 12, 2016
  * Additional Comments: 
-
+getPostTypeId() currently static
+Values Columns:
+post_type
+user_type
 --
 -- Table structure for table `posts`
 --
@@ -191,7 +194,7 @@ class PostController extends Controller
 
 	public function create($title, $content) {
 		$userid = $this->getUserId();
-		// $posttypeid = $this->getPostTypeId();
+		$posttypeid = $this->getPostTypeId();
 		// $arr = ['title' => $title, 'content' => $content, 
 		// 'created_at' => $created, 'updated_at' => $updated,
 		// 'user_id' => $userid, 'post_type_id' => $posttypeid];
@@ -202,7 +205,7 @@ class PostController extends Controller
 		$post->title = $title;
 		$post->content = $content;
 		$post->user_id = $userid;
-		// $post->post_type_id = $posttypeid;
+		$post->post_type_id = $posttypeid;
 		$post->save();
 	}
 
