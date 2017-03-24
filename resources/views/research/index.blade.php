@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-	<h3 class="center-align dboard-head">Researches</h3>
+	<h5 class="center-align">Research Board</h5>
 
 	<!-- SEARCH BAR -->
-    <div class="row dboard">
+<!--     <div class="row dboard">
         <div class="col s6 m6 l6">
           <div class="row">
             <div class="input-field col s12">
@@ -15,10 +15,10 @@
             </div>
           </div>
         </div>    
-<!--         <div class="col s6 m6 l6">
+        <div class="col s6 m6 l6">
             <h3 class="left-align">Ideas</h3>            
-        </div> -->
-    </div>
+        </div>
+    </div> -->
 
 	<!-- ROW 1 -->
 	<?php $count=1; $length=count($researches);?>
@@ -53,7 +53,7 @@
 	<!-- ROW 3 -->
 
     <!-- PAGINATION STARTS HERE -->
-    <div class="row">
+<!--     <div class="row">
 	    <ul class="pagination center-align">
 			<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
 			<li class="active"><a href="#!">1</a></li>
@@ -63,7 +63,7 @@
 			<li class="waves-effect"><a href="#!">5</a></li>
 			<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
 		</ul>
-	</div>
+	</div> -->
 	<!-- PAGINATION ENDS HERE -->
 
 </div>

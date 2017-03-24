@@ -12,14 +12,10 @@
 	      </div>
 	      <div class="card-stacked">
 				<div class="card-content">
-					<h5 class="header">Personal Info:</h5>
-					<p>Email: {{$email}}</p>
-					<p>Mobile Number: {{$mobile_no}}</p>
-					<p>Birthdate: {{$birthdate}}</p>
-				</div>
-				<div class="card-action">
-					<a href="{{url('/posts/insert')}}">Create Post</a>
-					<a href="{{url('/posts/self')}}">My Posts</a>
+					<h3>Name Goes Here</h3>
+					<h6>{{$email}}</h6>
+					<h6>{{$mobile_no}}</h6>
+					<h6>{{$birthdate}}</h6>
 				</div>
 				<div class="card-action">
 					<a href="{{url('/profile/edit')}}">Edit Profile</a>

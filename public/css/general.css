@@ -40,10 +40,10 @@ nav ul li{
 	height: 100px !important;
 }
 
-/*li a {
+#nav-mobile li a {
 	line-height: 100px;
 }
-*/
+
 .search-btn {
 	line-height: 50px !important;
 }
@@ -64,5 +64,5 @@ nav ul li{
 }*/
 
 .nav-prof {
-	padding: 0px 0px 0px 200px !important;
+	padding: 0px 220px 0px 350px !important;
 }
