@@ -14,7 +14,7 @@
 
 @section('content')
 <div class="container">
-	<div class="col s12 m7">
+	<div class="col s12">
 		<h2 class="header">{{$first_name.' '.$middle_name.' '.$last_name}}</h2>
 		<div class="card horizontal">
 			<!-- card-image -->
