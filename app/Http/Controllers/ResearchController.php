@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use App\Research;
 use App\Funds;
 use App\User;
 use App\Http\Requests\StoreResearch;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +61,10 @@ class ResearchController extends Controller
         $research->title = $request->input('title');
         $research->research_abstract = $request->input('research_abstract');
         $research->user_id = $request->user()->id;
-        $path = $request->file('document_file_name')->storeAs('researches', $request->user()->id);
+        $user_id = $request->user()->id;
+        $title = trim($request->input('title'));
+        $file_name_str = "$user_id-"."$title";
+        $path = $request->file('document_file_name')->storeAs('researches',$file_name_str);
         $research->document_file_name = $path;
         $research->save();
 
@@ -74,6 +79,24 @@ class ResearchController extends Controller
     public function getUserId() {
         $userid = Auth::user()->id;
         return $userid;
+    }
+
+    public function showManus(Request $request){
+        $file_name = $request->input('file_name');
+        $path = storage_path("app\\".$file_name);
+
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+        ]);        
+        // $file = Storage::disk('local')->get($request->input('file_name'));
+
+        // $url = Storage::url($file);
+
+        // var_dump($url);
+        // // return response()->file($file,['Content-Type'=>'application/pdf']);
+        // return Response::make(file_get_contents($file), 200, [
+        //     'Content-Type' => 'application/pdf'
+        // ]);        
     }
     /**
      * Get User Information for Profile Display
