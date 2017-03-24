@@ -97,6 +97,12 @@ class PostController extends Controller
 		return $posttypeid;
 	}
 
+	public function getMyPosts() {
+		$userid = $this->getUserId();
+		$posts = $this->readByUserId($userid);
+		return $posts;
+	}
+
 	public function showMyPosts() {
 		$userid = $this->getUserId();
 		$posts = $this->readByUserId($userid);
