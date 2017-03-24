@@ -30,6 +30,9 @@
 				</div>
 				<div class="card-action">
 					<a href="{{url('/posts/insert')}}">Create Post</a>
+					<a href="{{url('/posts/self')}}">My Posts</a>
+				</div>
+				<div class="card-action">
 					<a href="{{url('/profile/edit')}}">Edit Profile</a>
 					<a href="{{url('/profile/delete')}}">Delete Profile</a>
 				</div>

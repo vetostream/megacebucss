@@ -1,3 +1,13 @@
+<?php
+/**
+ * Author: Tom Abao
+ *   Github: https://github.com/kormin
+ *   Email: abaotom14@gmail.com
+ * Description: 
+ * Created On: January 6, 2017
+ * Additional Comments: 
+ */
+?>
 @extends('layouts.general')
 
 @section('content')

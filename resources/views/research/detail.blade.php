@@ -1,3 +1,14 @@
+<?php
+/**
+ * Author: 
+ * Revised by: Tom Abao
+ *   Github: https://github.com/kormin
+ *   Email: abaotom14@gmail.com
+ * Description: 
+ * Created On: March 24, 2017
+ * Additional Comments: 
+ */
+?>
 @extends('layouts.general')
 
 @section('content')
@@ -13,7 +24,7 @@
 					<p>{{ $research->research_abstract }}</p>
 					<span>Funds: P {{ $research->fund_total }}.00 </span>
 					<br>
-					<a href="{{ url('research/fund/history') }}/{{ $research->id }}">Fund history</a>
+					<a href="{{ url('research/fund/history') }}/{{ $research->id }}" target="_blank">Fund history</a>
 				</div>
 				<div class="card-action">
 					<div class="chip mini-chip">lake</div>
