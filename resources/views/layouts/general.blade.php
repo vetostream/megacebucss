@@ -145,7 +145,11 @@
 				// you have the selected chip here
 			});
 
-			$('.chips-initial').material_chip('data');      
+			$('.chips-initial').material_chip('data'); //get json data of chips.
+
+		  $(document).ready(function(){
+		    $('ul.tabs').tabs('select_tab', 'tab_id');
+		  });			
 		</script>
 </body>
 </html>
