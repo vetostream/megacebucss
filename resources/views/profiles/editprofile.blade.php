@@ -63,7 +63,7 @@
 				<div class="form-group">
 					<label for="birth-date" class="col-md-4 control-label">Birthdate</label>
 					<div class="col-md-6">
-						<input id="birth-date" type="date" class="form-control" name="birth_date" placeholder="" >
+						<input id="birth-date" type="date" class="datepicker" name="birthdate" placeholder="" >
 					</div>
 				</div>
 

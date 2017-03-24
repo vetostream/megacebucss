@@ -110,6 +110,7 @@
 				selectYears: 300, // Creates a dropdown of 15 years to control year
 				format: 'yyyy-mm-dd'
 			});
+		    $('.parallax').parallax();
 
 			$('.chips').material_chip();
 			$('.chips-initial').material_chip({

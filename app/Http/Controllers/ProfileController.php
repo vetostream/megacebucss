@@ -138,7 +138,7 @@ class ProfileController extends Controller
 	 * @return userInputs
 	 */
 	public function userInputs() {
-		return array('name', 'first_name', 'last_name', 'middle_name', 'mobile_no', 'birth_date');
+		return array('name', 'first_name', 'last_name', 'middle_name', 'mobile_no', 'birthdate');
 	}
 	
 	/**
@@ -152,7 +152,7 @@ class ProfileController extends Controller
 		$input = array(
 			$inputvals[0] => $request->name, $inputvals[1] => $request->first_name,
 			$inputvals[2] => $request->last_name, $inputvals[3] => $request->middle_name,
-			$inputvals[4] => $request->mobile_no, $inputvals[5] => $request->birth_date
+			$inputvals[4] => $request->mobile_no, $inputvals[5] => $request->birthdate
 		);
 		$input = array_filter($input, 'strlen');
 		$this->update($input);

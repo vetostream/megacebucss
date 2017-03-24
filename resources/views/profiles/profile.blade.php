@@ -14,12 +14,12 @@
 
 @section('content')
 <div class="container">
-	<div class="col s12 m7">
+	<div class="col s12">
 		<h2 class="header">{{$first_name.' '.$middle_name.' '.$last_name}}</h2>
 		<div class="card horizontal">
 			<!-- card-image -->
 			<div class="card-stacked">
-				<img src="{{ URL::asset('/images/usericoncolr.png') }}" class="responsive-img">
+				<img src="{{ asset('/images/usericoncolr.png') }}" class="responsive-img">
 			</div>
 			<div class="card-stacked">
 				<div class="card-content">
@@ -30,6 +30,9 @@
 				</div>
 				<div class="card-action">
 					<a href="{{url('/posts/insert')}}">Create Post</a>
+					<a href="{{url('/posts/self')}}">My Posts</a>
+				</div>
+				<div class="card-action">
 					<a href="{{url('/profile/edit')}}">Edit Profile</a>
 					<a href="{{url('/profile/delete')}}">Delete Profile</a>
 				</div>

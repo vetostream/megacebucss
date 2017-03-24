@@ -18,7 +18,7 @@
 		<h2 class="header">{{$first_name.' '.$middle_name.' '.$last_name}}</h2>
 		<div class="card horizontal">
 			<div class="card-stacked">
-				<img src="{{ URL::asset('/images/usericoncolr.png') }}" class="responsive-img">
+				<img src="{{ asset('/images/usericoncolr.png') }}" class="responsive-img">
 			</div>
 			<div class="card-stacked">
 				<div class="card-content">
