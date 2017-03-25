@@ -45,6 +45,7 @@
  			<ul>
  				<li><a href="#Ideas" id="a-ideas"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>Your Ideas</a></li>
  				<li><a href="#Research" id="a-research"><i class="fa fa-book" aria-hidden="true"></i>Your Researches</a></li>
+ 				<!-- <li><a href="{{ url('/profile') }}" id="a-top"><i class="fa " aria-hidden="true"></i>Top</a></li> -->
  			</ul>
  		</div>
  		</header>	
@@ -80,6 +81,7 @@
 					</div>
 				</div>
 			@endforeach
+			<a href="{{ url('/profile') }}" class="waves-effect waves-light btn"><i class="material-icons">Top</i></a>
 		</div>
 
 		<div class="row research-profile">
@@ -89,7 +91,9 @@
 						<div class="card-image">
 							<div class="fixed-action-btn horizontal dboard-like" style="position: relative">
 								<a class="" style="width: relative">
+									@if ($post->document_file_name == true):
 									<img src="{{ url('storage/'.$post->document_file_name) }}">
+									@endif
 									<span class="card-title">{{$post->title}}</span>
 								</a>
 								<ul>
@@ -109,7 +113,8 @@
 					</div>
 				</div>
 			@endforeach
-		</div>						
+			<a href="{{ url('/profile') }}" class="waves-effect waves-light btn"><i class="material-icons">Top</i></a>
+		</div>
 	</div>
 </div>
 @endsection

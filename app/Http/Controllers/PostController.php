@@ -180,15 +180,12 @@ class PostController extends Controller
 			$input[2] => 'image'
 		], $messages);
 
-//<<<<<<< HEAD
-		//$this->create($request->$input[0], $request->$input[1]);
-//=======
 		$picname = null;
 		if ($request->hasFile($input[2])) {
 			$path = $request->file($input[2])->store('public');
 			$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
 		}
-		$post = $this->create($request->$input[0], $request->$input[1], $picname);
+		$lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
 		// echo $postid;
 		// $path = $request->postimg->store('postimages');
 		// $path = $request->file('postimg')->storeAs('postimages', 'testing');
@@ -206,7 +203,7 @@ class PostController extends Controller
 		// //--beyond this point is zafra country
 		// $lastpostid = $newpost->id;
 
-		// $post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
+		$post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
 
 		if(Tag::count()!=0)
 			$post->Tag()->detach();//removes all previous tags
@@ -233,7 +230,7 @@ class PostController extends Controller
 			}
 		//--
 		
-		// return redirect()->action('PostController@index');
+		return redirect()->action('PostController@index');
 	}
 
 	/**
