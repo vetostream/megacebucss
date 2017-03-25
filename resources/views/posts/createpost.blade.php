@@ -40,18 +40,23 @@
 				<div class="row">
 					<div class="file-field input-field {{ $errors->has('postimg') ? ' has-error' : '' }}">
 					  <div class="btn">
-						<span>File</span>
+						<span>Image</span>
 						<input type="file" id="postimg" name="postimg">
 					  </div>
 					  <div class="file-path-wrapper">
 						<input class="file-path validate" type="text" placeholder="Upload file">
 					  </div>
+					@if ($errors->has('postimg'))
+						<span class="help-block">
+							<strong>{{ $errors->first('postimg') }}</strong>
+						</span>
+					@endif
 					</div>
 				</div>
 		  </div>
 		</div>
 		<div class="card-action">
-			<button class="btn waves-effect waves-light blue darken-3" type="submit" id="submit" name="action">Post
+			<button class="btn waves-effect waves-light blue darken-3 submit-post" type="submit" id="submit" name="submitpost">Post
 				<i class="material-icons right">send</i>
 			</button>
 			<!-- <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons right">send</i>Post</a> -->
@@ -63,8 +68,12 @@
   </div>
   </div>
   <!-- FORM END -->
+
+@endsection
+
+@section('scripts')
   <!-- zafra edit -->
-  <script src="{{ asset('/js/jquery.min.js') }}"></script>
+  <!-- <script src="{{ asset('/js/jquery.min.js') }}"></script> -->
   <script>
   	$( document ).on("click", "form[name='createpostform']",function(e){
   		e.preventDefault();
@@ -77,5 +86,5 @@
   		$("form[name='createpostform']").submit();
   	});
   </script>
-
 @endsection
+

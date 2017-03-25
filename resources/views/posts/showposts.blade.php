@@ -56,7 +56,9 @@
 						<a class="" style="width: relative">
 							<!-- <img src="images/sample-1.jpg"> -->
 							<!-- <img src="{{ url('postimages/'.$post->document_file_name) }}"> -->
+							@if ($post->document_file_name == true):
 							<img src="{{ url('storage/'.$post->document_file_name) }}">
+							@endif
 							<span class="card-title">{{ $post->title }}</span>
 						</a>
 						<ul>
