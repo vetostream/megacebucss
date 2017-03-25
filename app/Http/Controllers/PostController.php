@@ -186,12 +186,12 @@ class PostController extends Controller
 			$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
 		}
 		$lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
-		// echo $postid;
+		// echo "Last Post id:".$lastpostid;
 		// $path = $request->postimg->store('postimages');
 		// $path = $request->file('postimg')->storeAs('postimages', 'testing');
 		// $path = $request->file($input[2])->storeAs('postimages', $postid);
   //       $this->insertImagePath($path);
-//>>>>>>> 5575b841081da055b4fb2719598b1eafab861ad3
+
 		// $newpost = Post::create([
 		// 			'title' => $request->title,
 		// 			'content' => $request->content,
@@ -203,32 +203,35 @@ class PostController extends Controller
 		// //--beyond this point is zafra country
 		// $lastpostid = $newpost->id;
 
-		$post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
+		$post = $this->readByPostId($lastpostid);
+		// $post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
 
-		if(Tag::count()!=0)
+		if(Tag::count()!=0) {
 			$post->Tag()->detach();//removes all previous tags
+			// echo "tag count != 0";
+		}
 
-		$tagslist = explode(";",$request->tags,6);
-		var_dump($request->tags);
-		var_dump($tagslist);
+		$tagslist = explode(";",$request->tags);
+		// $tagslist = explode(";",$request->tags,6);
+		// var_dump($request->tags);
+		// var_dump($tagslist);
 		unset($tagslist[0]);
 		array_values($tagslist);
 		foreach ($tagslist as $tag)//adds new tags to connections. if tag does not exist, it is added, otherwise tag is retrieved
+		{
+			if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
 			{
-				if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
-				{
-					$tagitem = Tag::create([
-						'tag_name' => $tag,
-					]);
-				}
-				else
-				{
-					$tagitem = Tag::where('tag_name','=', $tag)->first();
-				}
-				
-				$post->Tag()->attach($tagitem->id);//attach to connector table
+				$tagitem = Tag::create([
+					'tag_name' => $tag,
+				]);
 			}
-		//--
+			else
+			{
+				$tagitem = Tag::where('tag_name','=', $tag)->first();
+			}
+
+			$post->Tag()->attach($tagitem->id);//attach to connector table
+		}
 		
 		return redirect()->action('PostController@index');
 	}
@@ -288,7 +291,7 @@ class PostController extends Controller
 	}
 
 	public function readUserPost($postid) {
-		$res = DB::select("SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id` WHERE `posts`.`id` = :id", ['id' => $postid]);
+		$res = DB::select("SELECT `posts`.`id`,`posts`.`title`,`posts`.`content`,`posts`.`user_id`,`posts`.`document_file_name`,`users`.`name` FROM `users` JOIN `posts` ON `users`.`id` = `posts`.`user_id` WHERE `posts`.`id` = :id", ['id' => $postid]);
 		return $res;
 	}
 

@@ -56,7 +56,7 @@
 		  </div>
 		</div>
 		<div class="card-action">
-			<button class="btn waves-effect waves-light blue darken-3 submit-post" type="submit" id="submit" name="submitpost">Post
+			<button class="btn waves-effect waves-light blue darken-3 submit-post" type="submit" id="action" name="action">Post
 				<i class="material-icons right">send</i>
 			</button>
 			<!-- <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons right">send</i>Post</a> -->
@@ -75,7 +75,8 @@
   <!-- zafra edit -->
   <!-- <script src="{{ asset('/js/jquery.min.js') }}"></script> -->
   <script>
-  	$( document ).on("click", "form[name='createpostform']",function(e){
+  	// $( document ).on("click", "form[name='createpostform']",function(e){
+  	$( document ).on("click", "button[name='action']",function(e){
   		e.preventDefault();
   		$fulltags="";
   		$jsontags = $("#createpostchips").material_chip('data');

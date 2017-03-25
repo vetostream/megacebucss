@@ -37,8 +37,9 @@ class Post extends Model
     protected $table = 'posts';
 
     /* ~Zafra Invasion~ */    
-        protected $fillable = [
-        'postinfo','title','content','user_id','post_type_id'
+    protected $fillable = [
+      'title','content','user_id'
+      // 'postinfo','title','content','user_id','post_type_id'
     ];
 
     public function Tag()
