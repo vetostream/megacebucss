@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+
+<div class="card-panel">
     @if ($errors->has('name'))
         <div class="col s6 m6 l6 center-align error-block">
             <p>{{ $errors->first('name') }}</p>
@@ -84,6 +86,8 @@
                 </div>
             </div>
 
-        </form>
+        </form>    
+</div>
+
 </div>
 @endsection

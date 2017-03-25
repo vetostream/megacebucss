@@ -15,7 +15,7 @@
 		  <div id="post-progressstatus" style="position: absolute; width: 10%; height: 100%; background-color: #00c853;">
 		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">10%</div>
 		  </div>
-		</div>
+		</div>		
 	</div>
 	
 	<div class="row" id="post-content">
@@ -102,8 +102,9 @@
 	<div class="row" id="post-tags">
 		<div class="col s12">
 				Tagged under: 
-					<a href="#tag-infrastructure"><span class="chip">Infrastructure</span></a>
-					<a href="#tag-roadworks"><span class="chip">Road works</span></a>
+					@foreach($research->Tag as $tag)
+					<a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
+					@endforeach
 			</div>
 	</div>
 
@@ -111,7 +112,7 @@
 		<!-- desktop -->
 		<div class="row right-align hide-on-med-and-down" id="post-options">
 			<div class="col s12">    				
-				<a href="#post-edit" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Edit</a>
+				<a href="{{ url('research/edit') }}/{{ $research->id }}" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Edit</a>
 				<a href="#post-delete" class="red waves-effect waves-light btn"><i class="material-icons left">delete</i>Delete</a>
 			</div>
 		</div>
@@ -122,7 +123,7 @@
 			      <i class="material-icons">menu</i>
 			    </a>
 			    <ul>
-			      <li><a href="#post-edit" class="btn-floating yellow darken-3"><i class="material-icons">mode_edit</i></a></li>			      
+			      <li><a href="{{ url('research/edit') }}/{{ $research->id }}" class="btn-floating yellow darken-3"><i class="material-icons">mode_edit</i></a></li>			      
 			      <li><a href="#post-delete" class="btn-floating red"><i class="material-icons">delete</i></a></li>
 			    </ul>
 			  </div>
@@ -142,7 +143,7 @@
      </div>
 </div>
 <!-- request post -->
-<div id="post-request" class="modal">
+<!-- <div id="post-request" class="modal">
 	<div class="modal-content">
 		<h4>Request claim</h4>
 		<p>A request for a claim to this post will be sent to <a href="#">user0805</a>.</p>			
@@ -151,10 +152,10 @@
             <a href="#!" class="blue modal-action modal-close waves-effect waves-lgiht btn-flat" style="color: #fff;">Request Claim</a>
         </div>
 	</div>
-</div>
+</div> -->
 
 <!-- report post -->
-<div id="post-report" class="modal">
+<!-- <div id="post-report" class="modal">
 	<div class="modal-content">
 		<h4>Report post</h4>				
 		 <div class="row">
@@ -174,5 +175,5 @@
 		    </form>
 		  </div>
 	</div>
-</div>
+</div> -->
 @endsection

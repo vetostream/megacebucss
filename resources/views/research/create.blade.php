@@ -27,6 +27,12 @@
 					</div>
 				</div>
 				<div class="row">
+					<div class="input-field col s12 {{ $errors->has('fund_goal') ? ' has-error' : '' }}">
+					  <input id="fund-goal" type="number" class="validate" name="fund_goal" required>
+					  <label for="fund-goal">Estimated cost</label>
+					</div>
+				</div>				
+				<div class="row">
 					<div class="input-field col s12">
 						<div class="chips chips-initial" id = "createresearchchips">
 							Tags
@@ -41,7 +47,7 @@
 					<div class="file-field input-field {{ $errors->has('document_file_name') ? ' has-error' : '' }}">
 					  <div class="btn">
 						<span>File</span>
-						<input type="file" id="document-file-name" name="document_file_name">
+						<input type="file" id="document-file-name" name="document_file_name" required>
 					  </div>
 					  <div class="file-path-wrapper">
 						<input class="file-path validate" type="text" placeholder="Upload file">

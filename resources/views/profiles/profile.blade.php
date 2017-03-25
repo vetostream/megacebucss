@@ -7,7 +7,7 @@
 
 ?>
 <div class="container">
-	<div class="row">
+	<div class="row header-profile">
 	  <div class="col s12 m12 l12">
 		<div class="card horizontal">
 		  <div class="card-image">
@@ -28,7 +28,7 @@
 		</div>
 	  </div>
 	</div>
-
+<!-- 
 	<div class="row nav-prof">
 		<div class="col s12 l12 m12">
 		  <ul class="tabs">
@@ -38,10 +38,20 @@
 		  </ul>
 		</div>
 	</div>
+ -->
+ 	<div class="row">
+ 		<header>
+ 		<div class="col s12 l12 m12 nav-prof">
+ 			<ul>
+ 				<li><a href="#Ideas" id="a-ideas"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>Your Ideas</a></li>
+ 				<li><a href="#Research" id="a-research"><i class="fa fa-book" aria-hidden="true"></i>Your Researches</a></li>
+ 			</ul>
+ 		</div>
+ 		</header>	
+ 	</div>
 
-	<div class="row">
-		<div id="test1" class="col s12">
-		<div class="row">
+	<div class="row board-profile">
+		<div class="row ideas-profile">
 			@foreach($posts as $post)
 				<div class="col s12 m4 l4">
 					<div class="card">
@@ -71,9 +81,35 @@
 				</div>
 			@endforeach
 		</div>
-		</div>
-		<div id="test2" class="col s12">Test 2</div>
-		<div id="test4" class="col s12">Test 4</div>			
+
+		<div class="row research-profile">
+			@foreach($posts as $post)
+				<div class="col s12 m4 l4">
+					<div class="card">
+						<div class="card-image">
+							<div class="fixed-action-btn horizontal dboard-like" style="position: relative">
+								<a class="" style="width: relative">
+									<img src="{{ url('storage/'.$post->document_file_name) }}">
+									<span class="card-title">{{$post->title}}</span>
+								</a>
+								<ul>
+									<li><a class="btn-floating red"><i class="material-icons">thumb_up</i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-content">
+							<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
+						</div>
+						<div class="card-action">
+							<div class="chip mini-chip">lake</div>
+							<div class="chip mini-chip">mountains</div>
+							<div class="chip mini-chip">nature</div>
+							<div class="chip mini-chip more">+3 more</div>
+						</div>
+					</div>
+				</div>
+			@endforeach
+		</div>						
 	</div>
 </div>
 @endsection
