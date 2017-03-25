@@ -170,61 +170,70 @@ class PostController extends Controller
 		$messages = [
 			$input[0].'.required' => 'Title field is required.',
 			$input[1].'.required' => 'Content field is required.',
+			$input[2].'.image' => 'File must be an image.',
+			// $input[2].'.required' => 'No image chosen.'
 		];
 
 		$this->validate($request, [
 			$input[0] => 'required',
-			$input[1] => 'required'
+			$input[1] => 'required',
+			$input[2] => 'image'
 		], $messages);
 
 //<<<<<<< HEAD
 		//$this->create($request->$input[0], $request->$input[1]);
 //=======
-        $path = $request->file($input[2])->store('public');
-		$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
-		$this->create($request->$input[0], $request->$input[1], $picname);
+		$picname = null;
+		if ($request->hasFile($input[2])) {
+			$path = $request->file($input[2])->store('public');
+			$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
+		}
+		$post = $this->create($request->$input[0], $request->$input[1], $picname);
 		// echo $postid;
-        // $path = $request->postimg->store('postimages');
-        // $path = $request->file('postimg')->storeAs('postimages', 'testing');
-        // $path = $request->file($input[2])->storeAs('postimages', $postid);
+		// $path = $request->postimg->store('postimages');
+		// $path = $request->file('postimg')->storeAs('postimages', 'testing');
+		// $path = $request->file($input[2])->storeAs('postimages', $postid);
   //       $this->insertImagePath($path);
 //>>>>>>> 5575b841081da055b4fb2719598b1eafab861ad3
-		$newpost = Post::create([
-                    'title' => $request->title,
-                    'content' => $request->content,
-                    'user_id' => Auth::user()->id,
-                    'post_type_id' => 1,
-                    //'' => $picname, From Zafra: "Does the database support a picture?"
-                ]);
+		// $newpost = Post::create([
+		// 			'title' => $request->title,
+		// 			'content' => $request->content,
+		// 			'user_id' => Auth::user()->id,
+		// 			// 'post_type_id' => 1,
+		// 			//'' => $picname, From Zafra: "Does the database support a picture?"
+		// 		]);
 
-		//--beyond this point is zafra country
-		$lastpostid = $newpost->id;
+		// //--beyond this point is zafra country
+		// $lastpostid = $newpost->id;
 
-	    $post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
-	    if(Tag::count()!=0)
-	       $post->Tag()->detach();//removes all previous tags
+		// $post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
+
+		if(Tag::count()!=0)
+			$post->Tag()->detach();//removes all previous tags
 
 		$tagslist = explode(";",$request->tags,6);
+		var_dump($request->tags);
+		var_dump($tagslist);
 		unset($tagslist[0]);
 		array_values($tagslist);
-	    foreach ($tagslist as $tag)//adds new tags to connections. if tag does not exist, it is added, otherwise tag is retrieved
-	        {
-	            if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
-	            {
-	                $tagitem = Tag::create([
-	                    'tag_name' => $tag,
-	                ]);
-	            }
-	            else
-	            {
-	                $tagitem = Tag::where('tag_name','=', $tag)->first();
-	            }
-	            
-	            $post->Tag()->attach($tagitem->id);//attach to connector table
-	        }
-	    //--
+		foreach ($tagslist as $tag)//adds new tags to connections. if tag does not exist, it is added, otherwise tag is retrieved
+			{
+				if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
+				{
+					$tagitem = Tag::create([
+						'tag_name' => $tag,
+					]);
+				}
+				else
+				{
+					$tagitem = Tag::where('tag_name','=', $tag)->first();
+				}
+				
+				$post->Tag()->attach($tagitem->id);//attach to connector table
+			}
+		//--
 		
-		return redirect()->action('PostController@index');
+		// return redirect()->action('PostController@index');
 	}
 
 	/**
@@ -261,7 +270,7 @@ class PostController extends Controller
 		$post->document_file_name = $path;
 		// $post->post_type_id = $posttypeid;
 		$post->save();
-		// return $post->id;
+		return $post->id;
 	}
 
 	public function insertImagePath($path) {
