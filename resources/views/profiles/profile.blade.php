@@ -22,7 +22,8 @@
 				</div>
 				<div class="card-action">
 					<a href="{{url('/profile/edit')}}">Edit Profile</a>
-					<a href="{{url('/profile/delete')}}">Delete Profile</a>
+					<a href="{{url('/profile/delete')}}">Delete Account</a>
+					<a href="{{url('/research/create')}}">Exhibit Research</a>
 				</div>
 		  </div>
 		</div>
