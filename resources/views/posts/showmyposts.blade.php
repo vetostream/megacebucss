@@ -32,7 +32,10 @@
 				<div class="card-image">
 					<div class="fixed-action-btn horizontal dboard-like" style="position: relative">
 						<a class="" style="width: relative">
-							<img src="{{ url('images/sample-1.jpg') }}">
+							<!-- <img src="{{ url('images/sample-1.jpg') }}"> -->
+							@if ($post->document_file_name == true):
+							<img src="{{ url('storage/'.$post->document_file_name) }}">
+							@endif
 							<span class="card-title">{{$post->title}}</span>
 						</a>
 						<ul>

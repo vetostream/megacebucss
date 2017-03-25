@@ -28,10 +28,14 @@
 		<div class="col s12">
 			<div class="card">
 				<div class="card-content">
+					@if ($post[0]->document_file_name == true)
+					<img src="{{ url('storage/'.$post[0]->document_file_name) }}">
+					@endif
 					<span class="card-title">{{ $post[0]->title }}</span>
 					<h5 class="header">Author: 
 					<a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a>
 					</h5>
+					<!-- <p>Post id: {{ $post[0]->id }}</p> -->
 					<p>{{ $post[0]->content }}</p>
 				</div>
 				<div class="card-action">
@@ -47,7 +51,6 @@
 					<a href="{{url('/posts/reportPostdb/'.$post[0]->id.'/'.$post[0]->user_id)}}">Report Post</a>
 				</div>
 				@endif
-							<a href="{{ url('/postimgs/'.$post[0]->document_file_name) }}"></a>
 			</div>
 		</div>
 	</div>
