@@ -12,7 +12,7 @@
 		  <span class="card-title">Create Post</span>
 		  <hr>
 		  <div class="row">
-			<form class="col s12" method="post" action="{{ url('/posts/get') }}" enctype="multipart/form-data">
+			<form class="col s12" method="post" action="{{ url('/posts/get') }}" enctype="multipart/form-data" id="createpostform" name="createpostform">
 			{{ csrf_field() }}
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -28,12 +28,14 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<div class="chips chips-initial">
+						<div class="chips chips-initial" id="createpostchips">
 							Tags
 							<i class="close material-icons">close</i>
 						</div>
 						<label for="post_tags">Tags</label>
 					</div>
+					<!-- zafra edit -->
+					<input type="hidden" id="tags" name="tags" value="">
 				</div>
 				<div class="row">
 					<div class="file-field input-field {{ $errors->has('postimg') ? ' has-error' : '' }}">
@@ -61,4 +63,19 @@
   </div>
   </div>
   <!-- FORM END -->
+  <!-- zafra edit -->
+  <script src="{{ asset('/js/jquery.min.js') }}"></script>
+  <script>
+  	$( document ).on("click", "form[name='createpostform']",function(e){
+  		e.preventDefault();
+  		$fulltags="";
+  		$jsontags = $("#createpostchips").material_chip('data');
+  		$.each($jsontags, function(key,value){
+  			$fulltags += ";" + value.tag;
+  		});
+  		$("#tags").val( $fulltags );
+  		$("form[name='createpostform']").submit();
+  	});
+  </script>
+
 @endsection

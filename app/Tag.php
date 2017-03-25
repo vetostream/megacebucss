@@ -16,7 +16,8 @@ class Tag extends Model
 
     public function Post()//switched 3rd and 4th parameters
     {
-        return $this->belongsToMany('App\Post', 'postdtl', 'tag_id', 'post_id');
+        //Take note of the path to the post model
+        return $this->belongsToMany('App\Models\Post', 'postdtl', 'tag_id', 'post_id');
     }
 
     public function Research()

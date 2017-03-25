@@ -34,6 +34,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Tag;
 
 
 class PostController extends Controller
@@ -176,6 +177,9 @@ class PostController extends Controller
 			$input[1] => 'required'
 		], $messages);
 
+//<<<<<<< HEAD
+		//$this->create($request->$input[0], $request->$input[1]);
+//=======
         $path = $request->file($input[2])->store('public');
 		$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
 		$this->create($request->$input[0], $request->$input[1], $picname);
@@ -184,6 +188,42 @@ class PostController extends Controller
         // $path = $request->file('postimg')->storeAs('postimages', 'testing');
         // $path = $request->file($input[2])->storeAs('postimages', $postid);
   //       $this->insertImagePath($path);
+//>>>>>>> 5575b841081da055b4fb2719598b1eafab861ad3
+		$newpost = Post::create([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'user_id' => Auth::user()->id,
+                    'post_type_id' => 1,
+                    //'' => $picname, From Zafra: "Does the database support a picture?"
+                ]);
+
+		//--beyond this point is zafra country
+		$lastpostid = $newpost->id;
+
+	    $post = Post::find($lastpostid);//this should find an appropriate post and not just find 1 all the time.
+	    if(Tag::count()!=0)
+	       $post->Tag()->detach();//removes all previous tags
+
+		$tagslist = explode(";",$request->tags,6);
+		unset($tagslist[0]);
+		array_values($tagslist);
+	    foreach ($tagslist as $tag)//adds new tags to connections. if tag does not exist, it is added, otherwise tag is retrieved
+	        {
+	            if(Tag::count()==0 || !Tag::where('tag_name','=', $tag)->exists())
+	            {
+	                $tagitem = Tag::create([
+	                    'tag_name' => $tag,
+	                ]);
+	            }
+	            else
+	            {
+	                $tagitem = Tag::where('tag_name','=', $tag)->first();
+	            }
+	            
+	            $post->Tag()->attach($tagitem->id);//attach to connector table
+	        }
+	    //--
+		
 		return redirect()->action('PostController@index');
 	}
 
