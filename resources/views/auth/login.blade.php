@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+
+    <div class="card-panel">
     @if ($errors->has('email'))
         <div class="col s6 m6 l6 center-align error-block">
             <p>{{ $errors->first('email') }}</p>
@@ -12,8 +14,7 @@
             <p>{{ $errors->first('password') }}</p>
         </div>
     @endif    
-    <div class="row">
-        <div class="col s12 m12 l12">
+        <div class="col s12 m12 l12 offset-s6">
                     <form class="col s12 m12 l12" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
@@ -64,6 +65,6 @@
                         </div> -->
                     </form>
         </div>
-    </div>
+    </div>    
 </div>
 @endsection

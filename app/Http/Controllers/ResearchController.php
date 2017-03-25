@@ -63,17 +63,17 @@ class ResearchController extends Controller
         $research->title = $request->input('title');
         $research->research_abstract = $request->input('research_abstract');
         $research->user_id = $request->user()->id;
+        $research->fund_goal = $request->input('fund_goal');
         $user_id = $request->user()->id;
         $title = trim($request->input('title'));
         $file_name_str = "$user_id-"."$title";
-        $path = $request->file('document_file_name')->storeAs('researches',$file_name_str);
-        $research->document_file_name = $path;
-        /*$research->document_file_name = "";
-        if ( !is_null($request->file('document_file_name'))) 
+
+        $research->document_file_name = "";
+        if (!is_null($request->file('document_file_name'))) 
         {
-            $path = $request->file('document_file_name')->storeAs('researches', $request->user()->id);
+            $path = $request->file('document_file_name')->storeAs('researches',$file_name_str);
             $research->document_file_name = $path;
-        }*/
+        }
 
         $research->save();
 
