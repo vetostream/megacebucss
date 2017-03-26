@@ -82,7 +82,6 @@
 				</a>
 			</div>
 			@endforeach
-			<a href="{{ url('/profile') }}" class="waves-effect waves-light btn"><i class="material-icons">Top</i></a>
 		</div>
 
 		<div class="row research-profile dboard">
@@ -105,7 +104,6 @@
 				</a>
 			</div>
 			@endforeach
-			<a href="{{ url('/profile') }}" class="waves-effect waves-light btn"><i class="material-icons">Top</i></a>
 		</div>
 	</div>
 </div>
