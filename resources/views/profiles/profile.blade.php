@@ -60,30 +60,23 @@
 				<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
 				<div class="card hoverable">
 					<div class="card-content">
-						<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="" style="width: relative"> -->
-							@if ($post->document_file_name == true)
-							<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
-							@endif
-						<!-- </a> -->
-						<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text"> -->
+						@if ($post->document_file_name == true)
+						<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
+						@endif
 						<span class="card-title">{{$post->title}}</span>
 						<p class="justify-align">{{$post->content}}</p>
-						<!-- </a> -->
 					</div>
-<!-- 					<div class="card-content">
-						<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
-					</div> -->
-		@if(isset($tagnames[$post->id]))
+					@if(isset($tagnames[$post->id]))
 					<div class="card-action">
-			@foreach($tagnames as $key => $value)
-				@foreach($value as $v)
+					@foreach($tagnames as $key => $value)
+					@foreach($value as $v)
 					@if($key == $post->id)
 						<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
 					@endif
-				@endforeach
-			@endforeach
+					@endforeach
+					@endforeach
 					</div>
-		@endif
+					@endif
 				</div>
 				</a>
 			</div>
@@ -92,15 +85,7 @@
 		</div>
 
 		<div class="row research-profile dboard">
-		<?php 
-		// var_dump($researches->id);
-		$len = count($researches);
-		 ?>
 			@foreach($researches as $research)
-			<?php 
-			// var_dump($i);
-			// var_dump($research);
-			 ?>
 			<div class="col s12 m12 l6">
 				<a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text">
 				<div class="card hoverable">
