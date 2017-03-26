@@ -27,60 +27,54 @@
 		</div>    
 	</div> -->
 		
-	<!-- ROW1 -->       
-<!--     <div class="row dboard"> -->
+	<!-- ROW1 -->
 	<div class="row">
 		<div class="col s12 m4 l4">
-			<div class="card-panel" style="height: 340px;">
+			<div class="card-panel" style="height: 200px;">
 				<ul>
-					<li style="text-align: center; padding:100px 100px 100px 100px;">
+					<li style="text-align: center; padding:50px 50px 0px 50px;">
 						<a class="btn-floating red" href="{{ url('/posts/insert') }}">
 							<i class="material-icons">note_add</i>
 						</a>
 					</li>
 				</ul>
+				<div class="card-content" style="text-align: center;">
+					Create Idea
+				</div>
 			</div>
 		</div>
-	@foreach($posts as $post)
-			<!-- <div class="col s12 m12 l6"> -->
-			<div class="col s12 m4 l4">
-				<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
-				<div class="card hoverable">
-					<div class="card-content">
-						<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="" style="width: relative"> -->
-							@if ($post->document_file_name == true)
-							<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
-							@endif
-						<!-- </a> -->
-						<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text"> -->
-						<span class="card-title">{{$post->title}}</span>
-						<p class="justify-align">{{$post->content}}</p>
-						<!-- </a> -->
-					</div>
-<!-- 					<div class="card-content">
-						<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
-					</div> -->
-		@if(isset($tagnames[$post->id]))
-					<div class="card-action">
-					<?php 
-						// @foreach($post->Tag as $tag)
-						// <a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
-						// @endforeach
-					// var_dump($tagnames);
+		@foreach($posts as $post)
+		<div class="col s12 m4 l4">
+			<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
+			<div class="card hoverable">
+				<div class="card-content">
+					@if ($post->document_file_name == true)
+					<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
+					@endif
+					<span class="card-title">{{$post->title}}</span>
+					<?php
+					$str = $post->content;
+					if (strlen($str) > 10) {
+						$str = substr($str, 0, 10) . "..."; 
+					}
 					?>
+					<p class="justify-align">{{ $str }}</p>
+				</div>
+			@if(isset($tagnames[$post->id]))
+				<div class="card-action">
 			@foreach($tagnames as $key => $value)
 				@foreach($value as $v)
 					@if($key == $post->id)
-						<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
+					<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
 					@endif
 				@endforeach
 			@endforeach
-					</div>
-		@endif
 				</div>
-				</a>
+			@endif
 			</div>
-	@endforeach
+			</a>
+		</div>
+		@endforeach
 	</div>
 <!--     </div>     -->
 	<!-- ROW3 --> 
