@@ -62,8 +62,32 @@ class PostController extends Controller
 		$posts = $this->read();
 		$userid = $this->getUserId();
 		// $name = $this->readUserName($userid);
-		// echo !is_null($posts);
-		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
+		$tagnames = $this->readAllTags();
+		// var_dump($posts[0]);
+		// var_dump($tagnames[0]);
+		$plen = count($posts);
+		$taglen = count($tagnames);
+		$ptags = array();
+		for ($ip=0; $ip < $plen; $ip++) { 
+			for ($i=0; $i < $taglen; $i++) {
+				if ($tagnames[$i]->post_id == $posts[$ip]->id) {
+					// echo $tagnames[$i]->post_id.'<br>';
+					$ptags[$posts[$ip]->id] = $this->readTagByPostId($posts[$ip]->id);
+				}
+			}
+		}
+		// foreach ($ptags as $i => $v) {
+		// 	foreach ($v as $i1 => $v1) {
+		// 		if ($i == 27) {
+		// 			var_dump($v1[0]->tag_name);
+		// 		}
+				
+		// 	}
+		// }
+		// var_dump($ptags);
+		// var_dump($ptags[27]);
+		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid, 'tagnames' => $ptags]);
+		// return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
 		// $page = $posts->simplePaginate(1);
 	}
 
@@ -75,7 +99,10 @@ class PostController extends Controller
 	public function showPost($postid) {
 		$post = $this->readUserPost($postid);
 		$userid = $this->getUserId();
-		return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
+		$tagnames = $this->readTagByPostId($postid);
+		// var_dump($tagnames[0]);
+		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames]);
+		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
 	}
 
 	/**
@@ -305,6 +332,26 @@ class PostController extends Controller
 	public function readByUserId($userid) {
 		$posts = Post::where('user_id', $userid)->get();
 		return $posts;
+	}
+
+	public function readAllTags() {
+		$tagids = DB::table('postdtl')->get();
+		// var_dump($tagids);
+		return $tagids;
+	}
+
+	public function readTagByPostId($postid) {
+		$tagids = DB::table('postdtl')->where('post_id', $postid)->get();
+		$i=0;
+		$arrlen = count($tagids);
+		$tagnames = array();
+		for ($i=0; $i<$arrlen; $i++) {
+			// echo $tagids[$i]->tag_id;
+			$tagnames[$i] = DB::table('tags')->where('id', $tagids[$i]->tag_id)->get();
+		}
+		// var_dump($tagids);
+		// var_dump($tagnames[0]);
+		return $tagnames;
 	}
 
 	/**
