@@ -39,18 +39,17 @@
 					<p>{{ $post[0]->content }}</p>
 				</div>
 				<div class="card-action">
-					<div class="chip mini-chip">lake</div>
-					<div class="chip mini-chip">mountains</div>
-					<div class="chip mini-chip">nature</div>
-					<div class="chip mini-chip more">+3 more</div>
+				@foreach($tagnames as $tagname)
+					<div class="chip mini-chip">{{ $tagname[0]->tag_name }}</div>
+				@endforeach
 				</div>
-				@if ($userid == $post[0]->user_id)
 				<div class="card-action">
+				@if ($userid == $post[0]->user_id)
 					<a href="{{url('/posts/update/'.$post[0]->id.'/'.$post[0]->user_id)}}">Edit Post</a>
 					<a href="{{url('/posts/delete/'.$post[0]->id.'/'.$post[0]->user_id)}}">Delete Post</a>
+				@endif
 					<a href="{{url('/posts/reportPostdb/'.$post[0]->id.'/'.$post[0]->user_id)}}">Report Post</a>
 				</div>
-				@endif
 			</div>
 		</div>
 	</div>
