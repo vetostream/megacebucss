@@ -75,12 +75,6 @@
 					</div> -->
 		@if(isset($tagnames[$post->id]))
 					<div class="card-action">
-					<?php 
-						// @foreach($post->Tag as $tag)
-						// <a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
-						// @endforeach
-					// var_dump($tagnames);
-					?>
 			@foreach($tagnames as $key => $value)
 				@foreach($value as $v)
 					@if($key == $post->id)
@@ -99,8 +93,32 @@
 
 		<div class="row research-profile dboard">
 		<?php 
-		// var_dump($researches);
+		// var_dump($researches->id);
+		$len = count($researches);
 		 ?>
+			@foreach($researches as $research)
+			<?php 
+			// var_dump($i);
+			// var_dump($research);
+			 ?>
+			<div class="col s12 m12 l6">
+				<a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text">
+				<div class="card hoverable">
+					<div class="cardpanel-research">
+						<span class="card-title">{{$research->title}}</span>
+							<p class="justify-align">
+								{{$research->research_abstract}}
+							</p>
+					</div>
+					<div class="card-action">
+						@foreach($research->Tag as $tag)
+						<div class="chip mini-chip">{{$tag->tag_name}}</div>
+						@endforeach
+					</div>
+				</div>
+				</a>
+			</div>
+			@endforeach
 			<a href="{{ url('/profile') }}" class="waves-effect waves-light btn"><i class="material-icons">Top</i></a>
 		</div>
 	</div>

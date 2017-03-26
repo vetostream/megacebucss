@@ -69,7 +69,7 @@ class ProfileController extends Controller
 			// var_dump($userinfo);
 			$posts = app('App\Http\Controllers\PostController')->getMyPosts();
 			$ptags = app('App\Http\Controllers\PostController')->getTagsAllPosts($posts);
-        	$researches = Research::find($userid); 
+        	$researches = Research::where('user_id', $userid)->get(); 
 			// var_dump($posts);
 			// var_dump($researches);
 			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts, 'tagnames' => $ptags, 'researches' => $researches]);
