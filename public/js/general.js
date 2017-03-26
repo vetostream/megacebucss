@@ -18,3 +18,13 @@ $( document ).on('click','#a-profile',function(){
 	$(".ideas-profile").hide();
 	$(".header-profile").show("slow");
 });
+
+// $( document ).on('click','button[name="post-comment"]',function(e){
+// 	e.preventDefault();
+// 	$form = $("form[name='comment-form']");
+	
+// 	$data = $form.serialize();
+// 	console.log("Data serialized: " + $data);
+
+// 	$form.submit();
+// });

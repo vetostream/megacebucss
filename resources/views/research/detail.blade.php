@@ -35,11 +35,45 @@
 		    
 		    <li>
 		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
-		      <div class="collapsible-body">
-		      
-		      
+		      <div class="collapsible-body">		      		
 			      <div class="row">
-
+			      @if(empty($comments))
+		            <div class="col s12 m12 l12">
+		            	<p>No comments yet.</p>
+				    </div>
+			      @else
+				      @foreach($comments as $c)
+				            <div class="col s12 m12 l12">
+						        <div class="card-panel grey lighten-5 z-depth-1">
+						          <div class="row valign-wrapper">
+						            <div class="col s2">
+						              <img src="{{ asset('images/usericon.png') }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+						            </div>
+						            <div class="col s10">
+						              <span class="black-text">
+						              	<p><b>{{ $c->name }}</b> says:<br>{{$c->content}}</p>
+	<!-- 					                <p>{{$c->content}}</p> -->
+						              </span>
+						            </div>
+						          </div>
+						        </div>
+						    </div>
+					  @endforeach
+					@endif
+			      	<div class="col s12 m12 l12">
+					    <form class="col s12 m12 l12" name="comment-form" method="POST" action="{{ url('research/postcomment') }}">
+					    {{ csrf_field() }}
+					        <div class="input-field col s12 m12 l12">
+					          <input type="text" name="research_id" value="{{ $research->id }}" hidden="true">
+					          <textarea id="textarea1" class="materialize-textarea" name="comment_content"></textarea>
+					          <label for="textarea1">Leave a comment</label>
+					        </div>
+			      		<div class="col s12 m12 l12">
+				      		<button class="btn waves-effect waves-light" type="submit" name="post-comment">Submit<i class="material-icons right">send</i></button>
+				      	</div>				        
+					    </form>			      		
+			      	</div>
+	
 			      </div>
 		      </div>
 		    </li>

@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Report', 'reportsdtl', 'user_id', 'report_id');
     }
+
+    public function ResearchComment(){
+        return $this->hasMany('App\ResearchComment');
+    }
+
 }

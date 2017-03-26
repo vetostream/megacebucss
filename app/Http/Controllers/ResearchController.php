@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use App\Research;
 use App\Funds;
 use App\User;
+use App\ResearchComment;
 use App\Http\Requests\StoreResearch;
 use Illuminate\Support\Facades\Storage;
 
@@ -141,6 +142,7 @@ class ResearchController extends Controller
 
             $user = User::where('id', '=', $research->user_id)->get();
             $funds = Funds::where('research_id', '=', $id)->get();
+            $comments = DB::table('researchcom')->join('users', 'researchcom.user_comment', '=', 'users.id')->where('research_id', '=', $id)->get();
             
             $fund_total = 0;
             foreach($funds as $fun)
@@ -150,7 +152,7 @@ class ResearchController extends Controller
             $research->fund_total = $fund_total;
             $research->user = $user;
 
-            $redr = view('research.detail')->with('research', $research);
+            $redr = view('research.detail')->with('research', $research)->with('comments',$comments);
 
             if($research->user_id != $request->user()->id){
                 $redr = view('research.abstract')->with('research', $research)->with('user', $request->user());
@@ -252,4 +254,16 @@ class ResearchController extends Controller
 
         return view('research/fund_history')->with('history', $history);
     }
+
+    public function storeComments(Request $request){
+        $research_id = $request->input("research_id");
+        $research_comment = new ResearchComment;
+        $research_comment->content = $request->input("comment_content");
+        $research_comment->research_id = $research_id;
+        $research_comment->user_comment = $request->user()->id;
+        $research_comment->save();
+
+        return redirect("research/detail/$research_id");
+    }
+
 }

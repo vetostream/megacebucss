@@ -23,4 +23,8 @@ class Research extends Model
         return $this->belongsToMany('App\Funds', 'funds', 'research_id','funder_id');
     }
 
+    public function ResearchComment(){
+        return $this->hasMany('App\ResearchComment');
+    }
+
 }
