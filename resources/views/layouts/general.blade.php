@@ -39,6 +39,11 @@
 										<li><a href="{{ url('research') }}">Research</a></li>
 										<li><a href="{{ url('profile') }}">Profile</a></li>
 										<li><a href="{{ url('about') }}">About</a></li>
+										
+										@if (Auth::user()->user_type_id == 4)
+										<li><a href="{{ url('adminpower') }}">Administrator</a></li>
+										@endif
+
 										<li><a href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
@@ -117,7 +122,7 @@
 			 $(document).ready(function(){
 			    $('.modal').modal();
 			  });
-			  
+
 		    $('.parallax').parallax();
 
 			$('.chips').material_chip();
