@@ -1,8 +1,8 @@
 @extends('layouts.general')
 
 @section('content')
-<div class="container">
-
+<div class="container" style="padding-top: 100px;">
+<p>Please correctly fill up the form</p>
 <div class="card-panel">
     @if ($errors->has('name'))
         <div class="col s6 m6 l6 center-align error-block">

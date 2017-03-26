@@ -19,7 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'PostController@index');
 Route::get('/about', function() { return view ('about'); });
 
 Route::get('/tagsdb', function () {	return view('welcome');	});

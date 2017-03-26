@@ -10,10 +10,10 @@
 	</div>
 
 	<div class="row" id="post-progress">
-		<p>Funding progress: PHP <span id="post-progressamount">10,000.00</span> received</p>
+		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> received</p>
 		<div id="post-progressbar" style="position: relative; width: 100%; height: 30px; background-color: #bdbdbd">
-		  <div id="post-progressstatus" style="position: absolute; width: 10%; height: 100%; background-color: #00c853;">
-		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">10%</div>
+		  <div id="post-progressstatus" style="position: absolute; width:{{ $research->fund_percent }} %; height: 100%; background-color: #00c853;">
+		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">{{ $research->fund_percent }}%</div>
 		  </div>
 		</div>		
 	</div>
@@ -100,9 +100,9 @@
 		<!-- desktop -->
 		<div class="row right-align hide-on-med-and-down" id="post-options">
 			<div class="col s12">
-				@if($research->document_file_name !== "")
+<!-- 				@if($research->document_file_name !== "")
 				<a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" target="_blank" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Download Manuscript</a>
-				@endif
+				@endif -->
 				<a href="{{ url('research/edit') }}/{{ $research->id }}" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Edit</a>
 				<a href="#post-delete" class="red waves-effect waves-light btn"><i class="material-icons left">delete</i>Delete</a>
 			</div>
@@ -114,9 +114,9 @@
 			      <i class="material-icons">menu</i>
 			    </a>
 			    <ul>
-			    @if($research->document_file_name !== "")
+<!-- 			    @if($research->document_file_name !== "")
 			    <li><a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" class="btn-floating yellow darken-3" target="_blank"><i class="material-icons">mode_edit</i></a></li>
-			    @endif
+			    @endif -->
 			      <li><a href="{{ url('research/edit') }}/{{ $research->id }}" class="btn-floating yellow darken-3"><i class="material-icons">mode_edit</i></a></li>			      
 			      <li><a href="#post-delete" class="btn-floating red"><i class="material-icons">delete</i></a></li>
 			    </ul>

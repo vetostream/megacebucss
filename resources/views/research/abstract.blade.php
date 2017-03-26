@@ -10,10 +10,10 @@
 	</div>
 
 	<div class="row" id="post-progress">
-		<p>Funding progress: PHP <span id="post-progressamount">10,000.00</span> received</p>
+		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> received | Goal <span>PHP {{ $research->fund_goal }}</span></p>
 		<div id="post-progressbar" style="position: relative; width: 100%; height: 30px; background-color: #bdbdbd">
-		  <div id="post-progressstatus" style="position: absolute; width: 10%; height: 100%; background-color: #00c853;">
-		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">10%</div>
+		  <div id="post-progressstatus" style="position: absolute; width:{{ $research->fund_percent }}%; height: 100%; background-color: #00c853;">
+		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">{{ $research->fund_percent }} %</div>
 		  </div>
 		</div>		
 	</div>
@@ -165,16 +165,17 @@
 			<div class="modal-content">
 				<h4>Propose fund amount</h4>				
 				 <div class="row">
-				    <form class="col s12">
+				    <form class="col s12" action="{{ url('research/fund') }}/{{ $research->id }}/{{ $user->id }}" method="POST" name="fund-form">
+				    {{ csrf_field() }}
 				       <div class="row">
 				        <div class="input-field col s12">				          
-				          <input id="post-fund-text" type="number" step="0.01">
+				          <input id="post-fund-text" name='amount' type='number' min='500.00' step='100.00' required>
 				          <label for="post-fund-text">Input amount</label>
 				        </div>
 				      </div>
 				      <div class="row">
 				        <div class="input-field col s12">
-				          	<a href="#!" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Fund</a>
+				          	<a href="#!" class="red modal-action modal-close waves-effect waves-light btn-flat" id="fund-research" style="color: #fff;">Fund</a>
 	            			<a href="#!" class="modal-action modal-close waves-effect waves-lgiht btn-flat" >Cancel</a>
 				        </div>
 				      </div>				     

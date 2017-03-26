@@ -19,6 +19,10 @@ $( document ).on('click','#a-profile',function(){
 	$(".header-profile").show("slow");
 });
 
+$( document ).on('click','#fund-research',function(){
+	$("form[name='fund-form'").submit();
+});
+
 // $( document ).on('click','button[name="post-comment"]',function(e){
 // 	e.preventDefault();
 // 	$form = $("form[name='comment-form']");

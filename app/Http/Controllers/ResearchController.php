@@ -145,11 +145,15 @@ class ResearchController extends Controller
             $comments = DB::table('researchcom')->join('users', 'researchcom.user_comment', '=', 'users.id')->where('research_id', '=', $id)->get();
             
             $fund_total = 0;
+
             foreach($funds as $fun)
             {
                 $fund_total += $fun->amount_given;
             }
+
             $research->fund_total = $fund_total;
+            $research->fund_percent = ($fund_total/$research->fund_goal) * 100;
+
             $research->user = $user;
 
             $redr = view('research.detail')->with('research', $research)->with('comments',$comments);
