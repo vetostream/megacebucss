@@ -15,7 +15,7 @@
 		  <div id="post-progressstatus" style="position: absolute; width: 10%; height: 100%; background-color: #00c853;">
 		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">10%</div>
 		  </div>
-		</div>
+		</div>		
 	</div>
 	
 	<div class="row" id="post-content">
@@ -23,6 +23,7 @@
 			<div class="col s12">		
 
   			<ul class="collapsible" data-collapsible="accordion">
+		    
 		    <li>
 		      <div class="collapsible-header active"><i class="material-icons">filter_drama</i>Abstract</div>
 		      <div class="collapsible-body">
@@ -31,65 +32,52 @@
 		      </p>
 		      </div>
 		    </li>
-<!-- 		    <li>
-		      <div class="collapsible-header"><i class="material-icons">place</i>Details</div>
-		      <div class="collapsible-body">
-
 		    
-		      <p>
-		      	The full text of the research idea goes here. <br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat posuere elit eget ultricies. Morbi porta luctus laoreet. Nullam vitae vehicula quam. Praesent faucibus ultricies est accumsan pharetra. Aenean a arcu sed purus gravida cursus. Nunc sed tellus sollicitudin, blandit eros eu, pharetra elit. Nulla quis libero tincidunt, commodo massa vitae, sodales nisl. Ut iaculis lacinia eros.
-
-		      	<br/> <br/>
-
-				In egestas fermentum finibus. Quisque et ornare magna, in tristique turpis. Cras tristique sem nec elit mattis, quis fringilla sem dignissim. Etiam ac ex non arcu finibus placerat. Praesent sagittis eget ex quis mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc ac maximus massa. Vivamus consequat sapien vel risus elementum, quis finibus nibh convallis. Aliquam iaculis ligula congue pellentesque placerat. Phasellus leo justo, luctus id eros id, auctor venenatis orci.
-		      </p>
-
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
+		      <div class="collapsible-body">		      		
+			      <div class="row">
+			      @if(empty($comments))
+		            <div class="col s12 m12 l12">
+		            	<p>No comments yet.</p>
+				    </div>
+			      @else
+				      @foreach($comments as $c)
+				            <div class="col s12 m12 l12">
+						        <div class="card-panel grey lighten-5 z-depth-1">
+						          <div class="row valign-wrapper">
+						            <div class="col s2">
+						              <img src="{{ asset('images/usericon.png') }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+						            </div>
+						            <div class="col s10">
+						              <span class="black-text">
+						              	<p><b>{{ $c->name }}</b> says:<br>{{$c->content}}</p>
+	<!-- 					                <p>{{$c->content}}</p> -->
+						              </span>
+						            </div>
+						          </div>
+						        </div>
+						    </div>
+					  @endforeach
+					@endif
+			      	<div class="col s12 m12 l12">
+					    <form class="col s12 m12 l12" name="comment-form" method="POST" action="{{ url('research/postcomment') }}">
+					    {{ csrf_field() }}
+					        <div class="input-field col s12 m12 l12">
+					          <input type="text" name="research_id" value="{{ $research->id }}" hidden="true">
+					          <textarea id="textarea1" class="materialize-textarea" name="comment_content"></textarea>
+					          <label for="textarea1">Leave a comment</label>
+					        </div>
+			      		<div class="col s12 m12 l12">
+				      		<button class="btn waves-effect waves-light" type="submit" name="post-comment">Submit<i class="material-icons right">send</i></button>
+				      	</div>				        
+					    </form>			      		
+			      	</div>
+	
+			      </div>
 		      </div>
 		    </li>
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Breakdown of resource costs</div>
-		      <div class="collapsible-body">
-		      
-		      
-		      <div class="row">
-		      	<div class="col s10 offset-s1">
-		      	<table class="bordered responsive-table" id="post-breakdown">
-		        <thead>
-		          <tr>
-		              <th data-field="id">Resource Name</th>
-		              <th data-field="name">Item Price (PHP)</th>
-		              <th data-field="price">Quantity</th>
-		          </tr>
-		        </thead>
 
-		        <tbody>
-		          <tr>
-		            <td>Gravel</td>
-		            <td>75.00</td>
-		            <td>1200 kg</td>
-		          </tr>
-		          <tr>
-		            <td>Steel Plates</td>
-		            <td>250.00</td>
-		            <td>100 units</td>
-		          </tr>
-		          <tr>
-		            <td>Carbon fiber</td>
-		            <td>500.00</td>
-		            <td>60 units</td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      		
-		      	</div>
-		      </div>
-
-		      	
-		      
-		      
-
-		      </div>
-		    </li> -->
 		  	</ul>		
 	        	
 				
@@ -102,16 +90,21 @@
 	<div class="row" id="post-tags">
 		<div class="col s12">
 				Tagged under: 
-					<a href="#tag-infrastructure"><span class="chip">Infrastructure</span></a>
-					<a href="#tag-roadworks"><span class="chip">Road works</span></a>
+					@foreach($research->Tag as $tag)
+					<a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
+					@endforeach
 			</div>
 	</div>
 
 	<!-- CREATOR, ADMIN OPTIONS -->
 		<!-- desktop -->
 		<div class="row right-align hide-on-med-and-down" id="post-options">
-			<div class="col s12">    				
-				<a href="#post-edit" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">loyalty</i>Fund</a>
+			<div class="col s12">
+				@if($research->document_file_name !== "")
+				<a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" target="_blank" class="green darken-3 waves-effect waves-light btn"><i class="material-icons left">library_books</i>Download Manuscript</a>
+				@endif
+				<a href="#post-fund" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">loyalty</i>Fund</a>
+				<a href="#post-report" class="red waves-effect waves-light btn"><i class="material-icons left">report_problem</i>Report</a>				
 			</div>
 		</div>
 		<!-- mobile -->
@@ -121,56 +114,72 @@
 			      <i class="material-icons">menu</i>
 			    </a>
 			    <ul>
-			      <li><a href="#post-edit" class="btn-floating yellow darken-3"><i class="material-icons">loyalty</i></a></li>
+			    @if($research->document_file_name !== "")
+			    <li><a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" class="btn-floating green darken-3" target="_blank"><i class="material-icons">library_books</i></a></li>
+			    @endif		      
+		      <li><a href="#post-fund" class="btn-floating yellow darken-3"><i class="material-icons">loyalty</i></a></li>				      
+		      <li><a href="#post-report" class="btn-floating red"><i class="material-icons">report_problem</i></a></li>			    
 			    </ul>
 			  </div>
 
 </div>
 
-<!-- MODALS -->	
-<!-- delete post -->
-<div id="post-delete" class="modal">
-	<div class="modal-content">
-		<h4>Delete post</h4>
-		<p>Are you sure you want to delete this post? This cannot be undone.</p>				 
-	</div>
-	<div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Yes, Delete</a>
-        <a href="#!" class="blue modal-action modal-close waves-effect waves-lgiht btn-flat" style="color: #fff;">No, go back</a>
-     </div>
-</div>
-<!-- request post -->
-<div id="post-request" class="modal">
-	<div class="modal-content">
-		<h4>Request claim</h4>
-		<p>A request for a claim to this post will be sent to <a href="#">user0805</a>.</p>			
-		<div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
-            <a href="#!" class="blue modal-action modal-close waves-effect waves-lgiht btn-flat" style="color: #fff;">Request Claim</a>
-        </div>
-	</div>
-</div>
 
 <!-- report post -->
-<div id="post-report" class="modal">
-	<div class="modal-content">
-		<h4>Report post</h4>				
-		 <div class="row">
-		    <form class="col s12">
-		       <div class="row">
-		        <div class="input-field col s12">
-		          <textarea id="post-report-text" class="materialize-textarea"></textarea>
-		          <label for="post-report-text">Comments</label>
+		<div id="post-request" class="modal">
+			<div class="modal-content">
+				<h4>Request claim</h4>
+				<p>A request for a claim to this post will be sent to <a href="#">user0805</a>.</p>			
+				<div class="modal-footer">
+		            <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+		            <a href="#!" class="blue modal-action modal-close waves-effect waves-lgiht btn-flat" style="color: #fff;">Request Claim</a>
 		        </div>
-		      </div>
-		      <div class="row">
-		        <div class="input-field col s12">
-		          	<a href="#!" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Report Post</a>
-        			<a href="#!" class="modal-action modal-close waves-effect waves-lgiht btn-flat" >Cancel</a>
-		        </div>
-		      </div>				     
-		    </form>
-		  </div>
-	</div>
-</div>
+			</div>
+		</div>
+
+		<!-- report post -->
+		<div id="post-report" class="modal">
+			<div class="modal-content">
+				<h4>Report post</h4>				
+				 <div class="row">
+				    <form class="col s12">
+				       <div class="row">
+				        <div class="input-field col s12">
+				          <textarea id="post-report-text" class="materialize-textarea"></textarea>
+				          <label for="post-report-text">Comments</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          	<a href="#!" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Report Post</a>
+	            			<a href="#!" class="modal-action modal-close waves-effect waves-lgiht btn-flat" >Cancel</a>
+				        </div>
+				      </div>				     
+				    </form>
+				  </div>
+			</div>
+		</div>
+
+		<!-- fund post -->
+		<div id="post-fund" class="modal">
+			<div class="modal-content">
+				<h4>Propose fund amount</h4>				
+				 <div class="row">
+				    <form class="col s12">
+				       <div class="row">
+				        <div class="input-field col s12">				          
+				          <input id="post-fund-text" type="number" step="0.01">
+				          <label for="post-fund-text">Input amount</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          	<a href="#!" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Fund</a>
+	            			<a href="#!" class="modal-action modal-close waves-effect waves-lgiht btn-flat" >Cancel</a>
+				        </div>
+				      </div>				     
+				    </form>
+				  </div>
+			</div>
+		</div>
 @endsection

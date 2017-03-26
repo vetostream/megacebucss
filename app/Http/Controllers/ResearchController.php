@@ -155,7 +155,7 @@ class ResearchController extends Controller
             $redr = view('research.detail')->with('research', $research)->with('comments',$comments);
 
             if($research->user_id != $request->user()->id){
-                $redr = view('research.abstract')->with('research', $research)->with('user', $request->user());
+                $redr = view('research.abstract')->with('research', $research)->with('user', $request->user())->with('comments',$comments);
             }
 
             return $redr;
