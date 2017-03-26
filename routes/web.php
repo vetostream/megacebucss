@@ -75,6 +75,7 @@ Route::get('/posts/delete/{postid}/{userid}', 'PostController@deletePost');
 Route::post('/posts/get', 'PostController@getPost');
 // Validate edit post form of id
 Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
+Route::post('/posts/postcomment', 'PostController@insertPostComment');
 
 
 // Display profile, view = profiles.profile

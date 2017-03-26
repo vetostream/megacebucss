@@ -29,6 +29,7 @@ CREATE TABLE `posts` (
 namespace App\Http\Controllers;
 
 use App\Models\Post as Post;
+use App\Models\PostComment as PostComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
@@ -77,9 +78,10 @@ class PostController extends Controller
 		$post = $this->readUserPost($postid);
 		$userid = $this->getUserId();
 		$tagnames = $this->readTagByPostId($postid);
+		$comments = DB::table('postscom')->join('users', 'postscom.user_comment', '=', 'users.id')->where('post_id', '=', $postid)->get();
 		// var_dump($tagnames);
 		// echo !is_null($tagnames);
-		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames]);
+		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames, 'comments' => $comments]);
 		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
 	}
 
@@ -286,6 +288,17 @@ class PostController extends Controller
 		// var_dump($input);
 		$this->update($postid, $input);
 		return redirect()->action('PostController@index');
+	}
+
+	public function insertPostComment(Request $request) {
+        $post_id = $request->input("post_id");
+        $post_comment = new PostComment;
+        $post_comment->content = $request->input("comment_content");
+        $post_comment->post_id = $post_id;
+        $post_comment->user_comment = $this->getUserId();
+        $post_comment->save();
+
+        return redirect("posts/postid/$post_id");
 	}
 
 	public function create($title, $content, $path) {
