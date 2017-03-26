@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="container">
-	<h3 class="center-align dboard-head">Ideas</h3>
+	<h3 class="center-align">Ideas</h3>
 
   <!-- SEARCH BAR -->
 <!--     <div class="row dboard">
@@ -28,37 +28,17 @@
 	</div> -->
 		
 	<!-- ROW1 -->
-	<div class="row">
-		<div class="col s12 m4 l4">
-			<div class="card-panel" style="height: 200px;">
-				<ul>
-					<li style="text-align: center; padding:50px 50px 0px 50px;">
-						<a class="btn-floating red" href="{{ url('/posts/insert') }}">
-							<i class="material-icons">note_add</i>
-						</a>
-					</li>
-				</ul>
-				<div class="card-content" style="text-align: center;">
-					Create Idea
-				</div>
-			</div>
-		</div>
+	<div class="pinterest-col">
 		@foreach($posts as $post)
 		<div class="col s12 m4 l4">
 			<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
-			<div class="card hoverable">
+			<div class="card hoverable pin">
 				<div class="card-content">
 					@if ($post->document_file_name == true)
 					<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
 					@endif
 					<span class="card-title">{{$post->title}}</span>
-					<?php
-					$str = $post->content;
-					if (strlen($str) > 10) {
-						$str = substr($str, 0, 10) . "..."; 
-					}
-					?>
-					<p class="justify-align">{{ $str }}</p>
+					<p class="justify-align">{{ $post->content }}</p>
 				</div>
 			@if(isset($tagnames[$post->id]))
 				<div class="card-action">

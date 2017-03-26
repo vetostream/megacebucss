@@ -60,7 +60,6 @@
 														</li>
 												</ul>
 										</li> -->
-								@endif
 								</ul>
 								<ul class="right">
 								<li>
@@ -73,6 +72,7 @@
 									</form> 
 									</li>                 
 								</ul>
+								@endif
 				</nav>   
 		</div>
 		@yield('content')

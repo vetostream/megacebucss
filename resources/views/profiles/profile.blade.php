@@ -3,9 +3,6 @@
 @section('title', 'Profile')
 
 @section('content')
-<?php 
-
-?>
 <div class="container">
 	<div class="row header-profile">
 	  <div class="col s12 m12 l12">
@@ -23,6 +20,7 @@
 				<div class="card-action">
 					<a href="{{url('/profile/edit')}}">Edit Profile</a>
 					<a href="{{url('/profile/delete')}}">Delete Account</a>
+					<a href="{{url('/posts/insert')}}">Share Idea</a>
 					<a href="{{url('/research/create')}}">Exhibit Research</a>
 				</div>
 		  </div>
@@ -53,13 +51,13 @@
 		</header>	
 	</div>
 
-	<div class="row board-profile">
-		<div class="row ideas-profile dboard">
+	<div class="board-profile">
+		<div class="ideas-profile pinterest-col">
 			@foreach($posts as $post)
 			<!-- <div class="col s12 m12 l6"> -->
 			<div class="col s12 m4 l4">
 				<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
-				<div class="card hoverable">
+				<div class="card hoverable pin">
 					<div class="card-content">
 						@if ($post->document_file_name == true)
 						<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
@@ -84,11 +82,11 @@
 			@endforeach
 		</div>
 
-		<div class="row research-profile dboard">
+		<div class="research-profile pinterest-col">
 			@foreach($researches as $research)
 			<div class="col s12 m12 l6">
 				<a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text">
-				<div class="card hoverable">
+				<div class="card hoverable pin">
 					<div class="cardpanel-research">
 						<span class="card-title">{{$research->title}}</span>
 							<p class="justify-align">

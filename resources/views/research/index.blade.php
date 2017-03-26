@@ -21,11 +21,11 @@
 	</div> -->
 
 	<!-- ROW 1 -->
-	<div class="row">
+	<div class="pinterest-col">
 	@foreach($researches as $research)
 		<div class="col s12 m6 l6 no-pads">
 			<a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text">
-			<div class="card hoverable">
+			<div class="card hoverable pin">
 				<div class="cardpanel-research">
 					<!-- <a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text"> -->
 					<span class="card-title">{{$research->title}}</span>
