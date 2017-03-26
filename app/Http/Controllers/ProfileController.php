@@ -39,6 +39,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Users as User;
 use App\Models\Post as Post;
+use App\Research;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -67,8 +68,11 @@ class ProfileController extends Controller
 		if (count($userinfo) == 1) {
 			// var_dump($userinfo);
 			$posts = app('App\Http\Controllers\PostController')->getMyPosts();
+			$ptags = app('App\Http\Controllers\PostController')->getTagsAllPosts($posts);
+        	$researches = Research::where('user_id', $userid)->get(); 
 			// var_dump($posts);
-			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts]);
+			// var_dump($researches);
+			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts, 'tagnames' => $ptags, 'researches' => $researches]);
 			// return view('profiles.profile', $userinfo);
 		}else {
 			return view('errors.404');

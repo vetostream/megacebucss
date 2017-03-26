@@ -62,6 +62,38 @@ class PostController extends Controller
 		$posts = $this->read();
 		$userid = $this->getUserId();
 		// $name = $this->readUserName($userid);
+		$ptags = $this->getTagsAllPosts($posts);
+		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid, 'tagnames' => $ptags]);
+		// return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
+		// $page = $posts->simplePaginate(1);
+	}
+
+	/**
+	 * Show the individual post
+	 * @param $postid
+	 * @return \Illuminate\Http\Response
+	 */
+	public function showPost($postid) {
+		$post = $this->readUserPost($postid);
+		$userid = $this->getUserId();
+		$tagnames = $this->readTagByPostId($postid);
+		// var_dump($tagnames);
+		// echo !is_null($tagnames);
+		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames]);
+		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
+	}
+
+	/**
+	 * Gets the user id
+	 *
+	 * @return $userid
+	 */
+	public function getUserId() {
+		$userid = Auth::user()->id;
+		return $userid;
+	}
+
+	public function getTagsAllPosts($posts) {
 		$tagnames = $this->readAllTags();
 		// var_dump($posts[0]);
 		// var_dump($tagnames[0]);
@@ -86,33 +118,7 @@ class PostController extends Controller
 		// }
 		// var_dump($ptags);
 		// var_dump($ptags[27]);
-		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid, 'tagnames' => $ptags]);
-		// return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
-		// $page = $posts->simplePaginate(1);
-	}
-
-	/**
-	 * Show the individual post
-	 * @param $postid
-	 * @return \Illuminate\Http\Response
-	 */
-	public function showPost($postid) {
-		$post = $this->readUserPost($postid);
-		$userid = $this->getUserId();
-		$tagnames = $this->readTagByPostId($postid);
-		// var_dump($tagnames[0]);
-		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames]);
-		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
-	}
-
-	/**
-	 * Gets the user id
-	 *
-	 * @return $userid
-	 */
-	public function getUserId() {
-		$userid = Auth::user()->id;
-		return $userid;
+		return $ptags;
 	}
 
 	/**
@@ -134,9 +140,10 @@ class PostController extends Controller
 	public function showMyPosts() {
 		$userid = $this->getUserId();
 		$posts = $this->readByUserId($userid);
+		$ptags = $this->getTagsAllPosts($posts);
 		// $users = DB::table('users')->get();
 		// var_dump($posts);
-		return view('posts.showmyposts', ['posts' => $posts]);
+		return view('posts.showmyposts', ['posts' => $posts, 'tagnames' => $ptags]);
 	}
 
 	public function insertPost() {

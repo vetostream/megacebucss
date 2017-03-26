@@ -26,35 +26,40 @@
 				</ul>
 			</div>
 		</div>
-	@foreach($posts as $post)
+		@foreach($posts as $post)
+		<!-- <div class="col s12 m12 l6"> -->
 		<div class="col s12 m4 l4">
-			<div class="card">
-				<div class="card-image">
-					<div class="fixed-action-btn horizontal dboard-like" style="position: relative">
-						<a class="" style="width: relative">
-							<!-- <img src="{{ url('images/sample-1.jpg') }}"> -->
-							@if ($post->document_file_name == true):
-							<img src="{{ url('storage/'.$post->document_file_name) }}">
-							@endif
-							<span class="card-title">{{$post->title}}</span>
-						</a>
-						<ul>
-							<li><a class="btn-floating red"><i class="material-icons">thumb_up</i></a></li>
-						</ul>
-					</div>
-				</div>
+			<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
+			<div class="card hoverable">
 				<div class="card-content">
+					<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="" style="width: relative"> -->
+						@if ($post->document_file_name == true)
+						<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
+						@endif
+					<!-- </a> -->
+					<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text"> -->
+					<span class="card-title">{{$post->title}}</span>
+					<p class="justify-align">{{$post->content}}</p>
+					<!-- </a> -->
+				</div>
+<!-- 					<div class="card-content">
 					<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
-				</div>
+				</div> -->
+	@if(isset($tagnames[$post->id]))
 				<div class="card-action">
-					<div class="chip mini-chip">lake</div>
-					<div class="chip mini-chip">mountains</div>
-					<div class="chip mini-chip">nature</div>
-					<div class="chip mini-chip more">+3 more</div>
+		@foreach($tagnames as $key => $value)
+			@foreach($value as $v)
+				@if($key == $post->id)
+					<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
+				@endif
+			@endforeach
+		@endforeach
 				</div>
+	@endif
 			</div>
+			</a>
 		</div>
-	@endforeach
+		@endforeach
 	</div>
 </div>
 

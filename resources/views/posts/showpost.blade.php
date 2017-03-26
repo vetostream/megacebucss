@@ -38,11 +38,13 @@
 					<!-- <p>Post id: {{ $post[0]->id }}</p> -->
 					<p>{{ $post[0]->content }}</p>
 				</div>
+			@if(!empty($tagnames))
 				<div class="card-action">
 				@foreach($tagnames as $tagname)
 					<div class="chip mini-chip">{{ $tagname[0]->tag_name }}</div>
 				@endforeach
 				</div>
+			@endif
 				<div class="card-action">
 				@if ($userid == $post[0]->user_id)
 					<a href="{{url('/posts/update/'.$post[0]->id.'/'.$post[0]->user_id)}}">Edit Post</a>
