@@ -44,6 +44,7 @@
 		<header>
 		<div class="col s12 l12 m12 nav-prof">
 			<ul>
+				<li id="profile-li"><a href="#profile" id="a-profile"><i class="fa fa-chevron-left" aria-hidden="true"></i>Profile</a></li>
 				<li><a href="#Ideas" id="a-ideas"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>Your Ideas</a></li>
 				<li><a href="#Research" id="a-research"><i class="fa fa-book" aria-hidden="true"></i>Your Researches</a></li>
 				<!-- <li><a href="{{ url('/profile') }}" id="a-top"><i class="fa " aria-hidden="true"></i>Top</a></li> -->

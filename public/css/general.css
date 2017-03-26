@@ -3,6 +3,14 @@
 	padding-bottom: 100px;
 }
 
+html {
+	font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+	font-family: 'Noto Sans', sans-serif;
+}
+
 /*.card {
 	z-index: -1;
 }
@@ -104,4 +112,12 @@ nav ul li{
 
 .center-form {
 	margin: 0 auto;
+}
+
+.no-pads {
+	margin: 0;
+}
+
+#profile-li {
+	display: none;
 }

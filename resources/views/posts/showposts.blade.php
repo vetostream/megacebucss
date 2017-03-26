@@ -29,12 +29,7 @@
 		
 	<!-- ROW1 -->       
 <!--     <div class="row dboard"> -->
-	<?php $count = 1; $length = count($posts)+1; $addpostcard=0; ?>
-
-	@if ($count === 1 | $count%3 === 0)
 	<div class="row">
-	@endif
-	@if ($addpostcard === 0)
 		<div class="col s12 m4 l4">
 			<div class="card-panel" style="height: 340px;">
 				<ul>
@@ -46,8 +41,6 @@
 				</ul>
 			</div>
 		</div>
-		<?php $addpostcard = 1; ?>
-	@endif
 	@foreach($posts as $post)
 			<!-- <div class="col s12 m12 l6"> -->
 			<div class="col s12 m4 l4">
@@ -88,15 +81,12 @@
 				</a>
 			</div>
 	@endforeach
-	@if ($count%3 === 0 | $count+1 === $length)
 	</div>
-	@endif
-	<?php $count++; ?>
 <!--     </div>     -->
 	<!-- ROW3 --> 
 
 	<!-- PAGINATION STARTS HERE -->
-	<div class="row">
+<!-- 	<div class="row">
 		<ul class="pagination center-align">
 			<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
 			<li class="active"><a href="#!">1</a></li>
@@ -106,7 +96,7 @@
 			<li class="waves-effect"><a href="#!">5</a></li>
 			<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
 		</ul>
-	</div>
+	</div> -->
 	<!-- PAGINATION ENDS HERE -->
 
 </div>

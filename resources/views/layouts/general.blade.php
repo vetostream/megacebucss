@@ -15,7 +15,8 @@
 		<link href="{{ asset('/css/general.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">    
+		<link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Raleway" rel="stylesheet">
 
 		<!-- Scripts -->
 		<script>

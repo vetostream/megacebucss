@@ -23,6 +23,7 @@
 			<div class="col s12">		
 
   			<ul class="collapsible" data-collapsible="accordion">
+		    
 		    <li>
 		      <div class="collapsible-header active"><i class="material-icons">filter_drama</i>Abstract</div>
 		      <div class="collapsible-body">
@@ -31,65 +32,18 @@
 		      </p>
 		      </div>
 		    </li>
-<!-- 		    <li>
-		      <div class="collapsible-header"><i class="material-icons">place</i>Details</div>
-		      <div class="collapsible-body">
-
 		    
-		      <p>
-		      	The full text of the research idea goes here. <br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat posuere elit eget ultricies. Morbi porta luctus laoreet. Nullam vitae vehicula quam. Praesent faucibus ultricies est accumsan pharetra. Aenean a arcu sed purus gravida cursus. Nunc sed tellus sollicitudin, blandit eros eu, pharetra elit. Nulla quis libero tincidunt, commodo massa vitae, sodales nisl. Ut iaculis lacinia eros.
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
+		      <div class="collapsible-body">
+		      
+		      
+			      <div class="row">
 
-		      	<br/> <br/>
-
-				In egestas fermentum finibus. Quisque et ornare magna, in tristique turpis. Cras tristique sem nec elit mattis, quis fringilla sem dignissim. Etiam ac ex non arcu finibus placerat. Praesent sagittis eget ex quis mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc ac maximus massa. Vivamus consequat sapien vel risus elementum, quis finibus nibh convallis. Aliquam iaculis ligula congue pellentesque placerat. Phasellus leo justo, luctus id eros id, auctor venenatis orci.
-		      </p>
-
+			      </div>
 		      </div>
 		    </li>
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Breakdown of resource costs</div>
-		      <div class="collapsible-body">
-		      
-		      
-		      <div class="row">
-		      	<div class="col s10 offset-s1">
-		      	<table class="bordered responsive-table" id="post-breakdown">
-		        <thead>
-		          <tr>
-		              <th data-field="id">Resource Name</th>
-		              <th data-field="name">Item Price (PHP)</th>
-		              <th data-field="price">Quantity</th>
-		          </tr>
-		        </thead>
 
-		        <tbody>
-		          <tr>
-		            <td>Gravel</td>
-		            <td>75.00</td>
-		            <td>1200 kg</td>
-		          </tr>
-		          <tr>
-		            <td>Steel Plates</td>
-		            <td>250.00</td>
-		            <td>100 units</td>
-		          </tr>
-		          <tr>
-		            <td>Carbon fiber</td>
-		            <td>500.00</td>
-		            <td>60 units</td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      		
-		      	</div>
-		      </div>
-
-		      	
-		      
-		      
-
-		      </div>
-		    </li> -->
 		  	</ul>		
 	        	
 				
@@ -111,7 +65,10 @@
 	<!-- CREATOR, ADMIN OPTIONS -->
 		<!-- desktop -->
 		<div class="row right-align hide-on-med-and-down" id="post-options">
-			<div class="col s12">    				
+			<div class="col s12">
+				@if($research->document_file_name !== "")
+				<a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" target="_blank" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Download Manuscript</a>
+				@endif
 				<a href="{{ url('research/edit') }}/{{ $research->id }}" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Edit</a>
 				<a href="#post-delete" class="red waves-effect waves-light btn"><i class="material-icons left">delete</i>Delete</a>
 			</div>
@@ -123,6 +80,9 @@
 			      <i class="material-icons">menu</i>
 			    </a>
 			    <ul>
+			    @if($research->document_file_name !== "")
+			    <li><a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" class="btn-floating yellow darken-3" target="_blank"><i class="material-icons">mode_edit</i></a></li>
+			    @endif
 			      <li><a href="{{ url('research/edit') }}/{{ $research->id }}" class="btn-floating yellow darken-3"><i class="material-icons">mode_edit</i></a></li>			      
 			      <li><a href="#post-delete" class="btn-floating red"><i class="material-icons">delete</i></a></li>
 			    </ul>

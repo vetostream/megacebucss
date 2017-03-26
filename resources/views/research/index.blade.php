@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-	<h5 class="center-align">Research Board</h5>
+	<h3 class="center-align">Research Board</h3>
 
 	<!-- SEARCH BAR -->
 <!--     <div class="row dboard">
@@ -21,13 +21,9 @@
 	</div> -->
 
 	<!-- ROW 1 -->
-	<?php $count=1; $length=count($researches);?>
+	<div class="row">
 	@foreach($researches as $research)
-
-	@if ($count === 1 | $count%2 === 0)
-	<div class="row dboard">
-	@endif
-		<div class="col s12 m12 l6">
+		<div class="col s12 m6 l6 no-pads">
 			<a href="{{ url('research/detail') }}/{{ $research->id }}" class="black-text">
 			<div class="card hoverable">
 				<div class="cardpanel-research">
@@ -48,11 +44,8 @@
 			</div>
 			</a>
 		</div>
-	@if ($count%2 === 0 | $count === $length)
-	</div>
-	@endif
-	<?php $count++; ?>
 	@endforeach
+	</div>
 	<!-- ROW 3 -->
 
 	<!-- PAGINATION STARTS HERE -->
