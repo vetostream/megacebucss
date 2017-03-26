@@ -140,9 +140,10 @@ class PostController extends Controller
 	public function showMyPosts() {
 		$userid = $this->getUserId();
 		$posts = $this->readByUserId($userid);
+		$ptags = $this->getTagsAllPosts($posts);
 		// $users = DB::table('users')->get();
 		// var_dump($posts);
-		return view('posts.showmyposts', ['posts' => $posts]);
+		return view('posts.showmyposts', ['posts' => $posts, 'tagnames' => $ptags]);
 	}
 
 	public function insertPost() {
