@@ -109,16 +109,6 @@ class ResearchController extends Controller
         return redirect('/research');
     }
 
-    /**
-     * Gets the user id
-     * Author: Tom Abao
-     * @return $userid
-     */
-    public function getUserId() {
-        $userid = Auth::user()->id;
-        return $userid;
-    }
-
     public function showManus(Request $request){
         $file_name = $request->input('file_name');
         $path = storage_path("app\\".$file_name);
@@ -135,15 +125,6 @@ class ResearchController extends Controller
         // return Response::make(file_get_contents($file), 200, [
         //     'Content-Type' => 'application/pdf'
         // ]);        
-    }
-    /**
-     * Get User Information for Profile Display
-     * Author: Tom Abao
-     * @return $userinfo
-     */
-    public function readUserInfo($userid) {
-        $userinfo = User::find($userid);
-        return $userinfo;
     }
 
     /**

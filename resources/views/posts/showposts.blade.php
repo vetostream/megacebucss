@@ -49,45 +49,44 @@
 		<?php $addpostcard = 1; ?>
 	@endif
 	@foreach($posts as $post)
-		<div class="col s12 m4 l4">
-			<div class="card">
-				<div class="card-image">
-					<div class="fixed-action-btn horizontal dboard-like" style="position: relative">
-						<a class="" style="width: relative">
-							<!-- <img src="images/sample-1.jpg"> -->
-							<!-- <img src="{{ url('postimages/'.$post->document_file_name) }}"> -->
+			<!-- <div class="col s12 m12 l6"> -->
+			<div class="col s12 m4 l4">
+				<a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text">	
+				<div class="card hoverable">
+					<div class="card-content">
+						<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="" style="width: relative"> -->
 							@if ($post->document_file_name == true)
-							<img src="{{ url('storage/'.$post->document_file_name) }}">
+							<img src="{{ url('storage/'.$post->document_file_name) }}" class="responsive-img">
 							@endif
-							<span class="card-title">{{ $post->title }}</span>
-						</a>
-						<ul>
-							<li><a class="btn-floating red"><i class="material-icons">thumb_up</i></a></li>
-						</ul>
+						<!-- </a> -->
+						<!-- <a href="{{ url('/posts/postid/'.$post->id) }}" class="black-text"> -->
+						<span class="card-title">{{$post->title}}</span>
+						<p class="justify-align">{{$post->content}}</p>
+						<!-- </a> -->
 					</div>
-				</div>
-				<div class="card-content">
-					<p class="justify-align">{{ $post->content }} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
-				</div>
-	@if(isset($tagnames[$post->id]))
-				<div class="card-action">
-				<?php 
-					// @foreach($post->Tag as $tag)
-					// <a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
-					// @endforeach
-				// var_dump($tagnames);
-				?>
-		@foreach($tagnames as $key => $value)
-			@foreach($value as $v)
-				@if($key == $post->id)
-					<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
-				@endif
+<!-- 					<div class="card-content">
+						<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
+					</div> -->
+		@if(isset($tagnames[$post->id]))
+					<div class="card-action">
+					<?php 
+						// @foreach($post->Tag as $tag)
+						// <a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
+						// @endforeach
+					// var_dump($tagnames);
+					?>
+			@foreach($tagnames as $key => $value)
+				@foreach($value as $v)
+					@if($key == $post->id)
+						<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
+					@endif
+				@endforeach
 			@endforeach
-		@endforeach
+					</div>
+		@endif
 				</div>
-	@endif
+				</a>
 			</div>
-		</div>
 	@endforeach
 	@if ($count%3 === 0 | $count+1 === $length)
 	</div>
