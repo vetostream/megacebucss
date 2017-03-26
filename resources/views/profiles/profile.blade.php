@@ -73,12 +73,23 @@
 						<div class="card-content">
 							<p class="justify-align">{{$post->content}} <a href="{{ url('/posts/postid/'.$post->id) }}">Read more</a></p>
 						</div>
+			@if(isset($tagnames[$post->id]))
 						<div class="card-action">
-							<div class="chip mini-chip">lake</div>
-							<div class="chip mini-chip">mountains</div>
-							<div class="chip mini-chip">nature</div>
-							<div class="chip mini-chip more">+3 more</div>
+						<?php 
+							// @foreach($post->Tag as $tag)
+							// <a href="#"><span class="chip">{{$tag->tag_name}}</span></a>
+							// @endforeach
+						// var_dump($tagnames);
+						?>
+				@foreach($tagnames as $key => $value)
+					@foreach($value as $v)
+						@if($key == $post->id)
+							<div class="chip mini-chip">{{ $v[0]->tag_name }}</div>
+						@endif
+					@endforeach
+				@endforeach
 						</div>
+			@endif
 					</div>
 				</div>
 			@endforeach

@@ -67,8 +67,9 @@ class ProfileController extends Controller
 		if (count($userinfo) == 1) {
 			// var_dump($userinfo);
 			$posts = app('App\Http\Controllers\PostController')->getMyPosts();
+			$ptags = app('App\Http\Controllers\PostController')->getTagsAllPosts($posts);
 			// var_dump($posts);
-			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts]);
+			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts, 'tagnames' => $ptags]);
 			// return view('profiles.profile', $userinfo);
 		}else {
 			return view('errors.404');
