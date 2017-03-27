@@ -4,7 +4,7 @@
 <div class="parallax-container">
 	<div class="parallax">
 		<!-- <img src="{{ asset('images/fire-african.jpg') }}" class="responsive-img" > -->
-		<img src="{{ asset('images/fire-african.jpg') }}" >
+		<img src="{{ asset('images/engr-workplace.jpg') }}">
 	</div>
 </div>
 
@@ -30,7 +30,7 @@
 </div> -->
 <div class="parallax-container valign-wrapper">
 	<div class="parallax">
-		<img src="{{ asset('images/engr-workplace.jpg') }}">
+		<img src="{{ asset('images/fire-african.jpg') }}" >
 		<!-- <img src="{{ asset('images/engr-workplace.jpg') }}" style="display: block; transform: translate3d(-50%, 271px, 0px);"> -->
 	</div>
 </div>
