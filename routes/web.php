@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Middleware\checkStudent;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,8 +34,8 @@ Route::post('/tagsdbResearch', 'HomeController@tagsdbResearch');
 //Research routes
 Route::get('/research','ResearchController@index'); //show list of exhibited researches, view = research.index
 Route::get('research/detail/{id}','ResearchController@show'); //show details of the chosen research by id, view = research.detail
-Route::get('/research/create','ResearchController@create'); //show form for creating Research, view = research.create
-Route::post('/research/store','ResearchController@store'); //store newly created resource
+Route::get('/research/create','ResearchController@create')->middleware(checkStudent::class); //show form for creating Research, view = research.create
+Route::post('/research/store','ResearchController@store')->middleware(checkStudent::class); //store newly created resource
 Route::get('/research/edit/{id}','ResearchController@edit'); //show form to edit exhibited research
 Route::post('/research/update/{id}','ResearchController@update'); //update edited researches
 Route::get('/research/exterminate/{id}','ResearchController@destroy'); //destroy the resource of the id indicated.
