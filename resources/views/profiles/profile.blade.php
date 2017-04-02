@@ -4,6 +4,9 @@
 
 @section('content')
 <div class="container">
+	@if(session()->has('error'))
+	<h6 class="center-align" style="color:red;">{{ session('error') }}</h6>
+	@endif
 	<div class="row header-profile">
 	  <div class="col s12 m12 l12">
 		<div class="card horizontal">

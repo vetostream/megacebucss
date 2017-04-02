@@ -160,3 +160,12 @@ nav ul li{
 	padding-bottom: 15px;
 	margin-bottom: 5px;
 }
+
+.fixed-len .input{
+	width: 100%;
+	color: #fff !important;
+}
+
+.search-auto {
+	width: 300px;
+}
