@@ -28,18 +28,6 @@ Route::post('/tagsdb', 'HomeController@tagsdb');
 Route::get('/tagsdbResearch', function () { return view('welcome'); });
 Route::post('/tagsdbResearch', 'HomeController@tagsdbResearch');
 
-// Route::get('/reportPostdb', function () {
-//     return view('welcome');
-// });
-
-Route::get('/reportPostdb/{postid}/{userid}', 'HomeController@reportPostdb');
-
-// Route::get('/unreport', function () {
-//     return view('welcome');
-// });
-
-Route::get('/unreport/{postid}/{userid}', 'HomeController@unreport');
-
 //Research routes
 Route::get('/research','ResearchController@index'); //show list of exhibited researches, view = research.index
 Route::get('research/detail/{id}','ResearchController@show'); //show details of the chosen research by id, view = research.detail
@@ -77,7 +65,9 @@ Route::post('/posts/get', 'PostController@getPost');
 // Validate edit post form of id
 Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
 Route::post('/posts/postcomment', 'PostController@insertPostComment');
-
+//zafra added report posts
+Route::get('/posts/reportPostdb/{postid}/{userid}', 'PostController@reportPostdb');
+Route::get('/posts/unreport/{postid}/{userid}', 'PostController@unreport');
 
 // Display profile, view = profiles.profile
 Route::get('/profile', 'ProfileController@index');

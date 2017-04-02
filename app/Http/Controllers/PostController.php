@@ -36,6 +36,9 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Tag;
+//zafra edit april 02 app\user and report
+use App\User;
+use App\Report;
 
 
 class PostController extends Controller
@@ -414,4 +417,49 @@ class PostController extends Controller
 		// DB::table($table)->where('id', $vid)->delete();
 		Post::destroy($postid);
 	}
+
+	//report and unreport functionality by zafra
+	public function reportPostdb($postid, $userid) {//following the conventions in the post controller
+            //assuming this function is called from the showpost.blade.php view: <a href="{{ action('HomeController@reportPostdb',['postid' => $post[0]->id, 'userid' => $post[0]->user_id]) }}">Report Post</a>
+            //to test this, try <a href="{{ action('HomeController@reportPostdb',['postid' => 1, 'userid' => 1]) }}">Report Post</a>
+            $post = Post::find($postid);
+            //$user = User::find($userid);
+            $user = User::find($this->getUserId());
+            $report = Report::where('post_id','=', $postid)->first();
+
+            //if post has no reports, then create the post, else increment the number of reports.
+            if(Report::count()==0 || $report==NULL)
+            {
+                $reportitem = Report::create([
+                    'post_id' => $post->id,
+                    'number_of_reps' => 1,
+                ]);
+            	$reportitem->User()->attach($user->id);// Attach user-report pair to pivot table
+            }
+            else if(($user->Report()->where('post_id',$post->id)->first() == NULL))
+            {
+                $reportitem = Report::where('post_id','=', $post->id)->first();
+                $reportitem->number_of_reps = $reportitem->number_of_reps + 1;
+                $reportitem->save();
+            	$reportitem->User()->attach($user->id);// Attach user-report pair to pivot table
+            }
+
+        return redirect()->action('PostController@index');
+    }
+
+    public function unreport($postid, $userid){
+            $reportitem = Report::where('post_id','=', $postid)->first();
+
+            $reportitem->User()->detach($userid);
+            $reportitem->number_of_reps = $reportitem->number_of_reps - 1;
+            $reportitem->save();
+            if($reportitem->number_of_reps < 1)
+            {
+                //delete it
+                $reportitem->delete();
+            }
+
+            return redirect()->action('PostController@index');
+    }
+
 }
