@@ -47,6 +47,52 @@ $('.chips-autocomplete').material_chip({
     }
 });
 
+$( document ).on('click','#post-like-a',function(){
+	$formData = $("form[name='like-form']").serialize();
+	$.ajax({
+		url:'/posts/like',
+		method:'get',
+		data:$formData,
+		dataType:'text'
+	}).done(function(result){
+		if (result === '1'){
+			//$number_likes = $("input[name='number_likes']").val();
+			$number_likes = $("#likecount").text();
+			Materialize.toast('Post liked!', 3000, 'rounded');
+			$('#likecount').text(parseInt($number_likes) + 1);
+			$('#post-like-a').hide();
+			$('#post-unlike-a').show();
+		}else{
+			Materialize.toast('Something went wrong.', 3000, 'rounded');
+		}
+	}).fail(function(result){
+			Materialize.toast('Something went wrong.' + result, 3000, 'rounded');
+	});
+});
+
+
+$( document ).on('click','#post-unlike-a',function(){
+	$formData = $("form[name='like-form']").serialize();
+	$.ajax({
+		url:'/posts/unlike',
+		method:'get',
+		data:$formData,
+		dataType:'text'
+	}).done(function(result){
+		if (result === '1'){
+			//$number_likes = $("input[name='number_likes']").val();
+			$number_likes = $("#likecount").text();
+			Materialize.toast('Post unliked!', 3000, 'rounded');
+			$('#likecount').text(parseInt($number_likes) - 1);
+			$('#post-unlike-a').hide();
+			$('#post-like-a').show();
+		}else{
+			Materialize.toast('Something went wrong.', 3000, 'rounded');
+		}
+	}).fail(function(result){
+			Materialize.toast('Something went wrong.' + result, 3000, 'rounded');
+	});
+});
 //$( document ).on('submit','form[name="search-form"]',function(e){
 //	e.preventDefault();
 //	var formData = $("form[name='search-form']").serialize();

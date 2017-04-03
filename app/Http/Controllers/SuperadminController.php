@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use App\User;
+use App\Report;
 
 use App\Http\Middleware\checkSuperAdmin;
 
@@ -34,12 +35,18 @@ class SuperadminController extends Controller
 
     public function viewAllUsers()
     {
-    	$users = User::all();
-    	return view('superadmin.users', compact('users'));
+        $users = User::all();
+        return view('superadmin.users', compact('users'));
 
         // $users = DB::table('users')->join('user_type', 'users.user_type_id', '=', 'user_type.id')->select('users.*', 'user_type.name as user_type_name')->get();
 
         // return view('superadmin.users')->with('users', $users);
+    }
+
+    public function viewAllReports()
+    {
+        $reports = Report::all();
+        return view('superadmin.reports', compact('reports'));
     }
 
 	public function deleteUser($id, Request $request)

@@ -66,7 +66,6 @@ return [
         //     'engine' => null,
         // ],
 
-
         //'mysql' => [
         //    'driver' => 'mysql',
         //    'host' => 'localhost',
@@ -83,7 +82,6 @@ return [
         //
         
         'mysql' => [
-<<<<<<< HEAD
            'driver' => 'mysql',
            'host' => 'localhost',
            'port' => '3306',
@@ -110,35 +108,6 @@ return [
         //     'strict' => true,
         //     'engine' => null,
         // ],
-=======
-            'driver' => 'mysql',
-            'host' => 'localhost',
-            'port' => '3306',
-            'database' => 'megacebudb',
-            'username' => 'doctorstrange',
-            'password' => '!d0ct0rstr4ng3!',
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-        ],
-        //
-        
-        //'mysql' => [
-        //    'driver' => 'mysql',
-        //    'host' => 'sql12.freemysqlhosting.net',
-        //    'port' => '3306',
-        //    'database' => 'sql12166294',
-        //    'username' => 'sql12166294',
-        //    'password' => 'FC2S8rDGwv',
-        //    'charset' => 'utf8',
-        //    'collation' => 'utf8_unicode_ci',
-        //    'prefix' => '',
-        //    'strict' => true,
-        //    'engine' => null,
-        //],
->>>>>>> 7ae01d887c194187e1958f99b340a6f96bcc777d
 
         // 'pgsql' => [
         //     'driver' => 'pgsql',

@@ -17,8 +17,9 @@
 	<div class="row" id="post-title">
 		<div class="col s12">
 			<h3>{{ $post[0]->title }}</h3>
-			<p>Posted by <a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a> on <span id="post-date">2017/08/05</span>
+			<p>Posted by <a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a> on <span id="post-date">2017/08/05</span> <span class="new badge blue" style="float:none;" data-badge-caption="Likes" id="likecount">{{ $likes }}</span><span class="new badge red" style="float:none;" data-badge-caption="Reports">{{ $report->number_of_reps}}</span></p>
 		</div>
+<!--		<input type="text" value='{{ $likes }}' name="number_likes" hidden>-->
 	</div>
 	<div class="row" id="post-content"> 
 		<div class="col s12">
@@ -108,7 +109,17 @@
 	@else
 		<div class="row right-align hide-on-med-and-down" id="post-options">
 			<div class="col s12">
-				<a href="#post-like" class="blue waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Like</a>  
+				@if($ableLike !== 0)
+				<a href="#post-like" class="blue waves-effect waves-light btn" id="post-like-a"><i class="material-icons left">thumb_up</i>Like</a>
+				<a style="display:none;" href="#post-unlike" class="grey waves-effect waves-light btn" id="post-unlike-a"><i class="material-icons left">thumb_down</i>Unlike</a>
+				@else
+				<a style="display:none;" href="#post-like" class="blue waves-effect waves-light btn" id="post-like-a"><i class="material-icons left">thumb_up</i>Like</a>
+				<a href="#post-unlike" class="grey waves-effect waves-light btn" id="post-unlike-a"><i class="material-icons left">thumb_down</i>Unlike</a>
+				@endif
+				<form name="like-form" style="display:none">
+				<input type="text" value='{{ $post[0]->id }}' name="post_id" hidden/>
+				<input type="text" value='{{ Auth::user()->id }}' name="user_id" hidden/>
+				</form>
 				<a href="#post-report" class="red waves-effect waves-light btn"><i class="material-icons left">report_problem</i>Report</a>
 			</div>
 		</div>

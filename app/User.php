@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\reportsdtl;
 
 class User extends Authenticatable
 {
@@ -29,11 +30,15 @@ class User extends Authenticatable
 
     public function Report()
     {
-        return $this->belongsToMany('App\Report', 'reportsdtl', 'user_id', 'report_id');
+        return $this->belongsToMany('App\Report', 'reportsdtl', 'user_id', 'report_id')->withPivot('message')->withTimestamps();
     }
 
     public function ResearchComment(){
         return $this->hasMany('App\ResearchComment');
+    }
+
+    public function Post(){
+        return $this->hasMany('App\Post');
     }
 
 }
