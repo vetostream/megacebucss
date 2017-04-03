@@ -237,7 +237,6 @@ class PostController extends Controller
 		
 		// $lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
 		$lastpostid = $this->create($request->title, $request->content, $picname);
-	
 		// echo "Last Post id:".$lastpostid;
 		// $path = $request->postimg->store('postimages');
 		// $path = $request->file('postimg')->storeAs('postimages', 'testing');
