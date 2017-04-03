@@ -71,24 +71,26 @@
 										<li><a href="{{ url('superadmin') }}">Admin</a></li>
 									@endif
 									<li>
-										<form>
+										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
+											Dropdown
+										</a>
+									</li>
+
+								</ul>
+
+								<ul id='dropdown1' class='dropdown-content'>
+									<li><a href="#"><i class="material-icons">settings</i></a></li>
+									<li><a href="#"><i class="material-icons">power_settings_new</i></a></li>
+								</ul>
+									<!-- <li>
+										<form name="search-form" action="{{ url('/search/everything') }}" method="get">
 											<div class="input-field">
-												<input id="search" type="search" required>
+												<input id="search-auto" type="search" name="keyword" required>
 												<label class="label-icon" for="search"><i class="material-icons">search</i></label>
 												<i class="material-icons">close</i>
 											</div>
 										</form> 
-								<ul class="right">
-								<li>
-									<form name="search-form" action="{{ url('/search/everything') }}" method="get">
-										<div class="input-field">
-											<input id="search-auto" type="search" name="keyword" required>
-											<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-											<i class="material-icons">close</i>
-										</div>
-									</form> 
-									</li>                 
-								</ul>
+									</li> -->
 								@endif
 				</nav>   
 		</div>
@@ -174,6 +176,8 @@
 
 		  $(document).ready(function(){
 		    $('ul.tabs').tabs('select_tab', 'tab_id');
+
+		    $('.dropdown-button').dropdown();
 		  });
 		</script>
 		@yield('scripts')
