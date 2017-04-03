@@ -429,13 +429,19 @@ class PostController extends Controller
 	}
 
 	//report and unreport functionality by zafra
-	public function reportPostdb($postid, $userid) {//following the conventions in the post controller
+	public function reportPostdb(Request $request) {//following the conventions in the post controller
             //assuming this function is called from the showpost.blade.php view: <a href="{{ action('HomeController@reportPostdb',['postid' => $post[0]->id, 'userid' => $post[0]->user_id]) }}">Report Post</a>
             //to test this, try <a href="{{ action('HomeController@reportPostdb',['postid' => 1, 'userid' => 1]) }}">Report Post</a>
-            $post = Post::find($postid);
+            $post = Post::find($request->postid);
             //$user = User::find($userid);
             $user = User::find($this->getUserId());
-            $report = Report::where('post_id','=', $postid)->first();
+            $report = Report::where('post_id','=', $request->postid)->first();
+
+            if($request->postreporttext == NULL)
+            	$message = "";
+            else
+            	$message = $request->postreporttext;
+
 
             //if post has no reports, then create the post, else increment the number of reports.
             if(Report::count()==0 || $report==NULL)
@@ -444,14 +450,14 @@ class PostController extends Controller
                     'post_id' => $post->id,
                     'number_of_reps' => 1,
                 ]);
-            	$reportitem->User()->attach($user->id);// Attach user-report pair to pivot table
+            	$reportitem->User()->attach($user->id,['message' => $message]);// Attach user-report pair to pivot table
             }
             else if(($user->Report()->where('post_id',$post->id)->first() == NULL))
             {
                 $reportitem = Report::where('post_id','=', $post->id)->first();
                 $reportitem->number_of_reps = $reportitem->number_of_reps + 1;
                 $reportitem->save();
-            	$reportitem->User()->attach($user->id);// Attach user-report pair to pivot table
+            	$reportitem->User()->attach($user->id,['message' => $message]);// Attach user-report pair to pivot table
             }
 
         return redirect()->action('PostController@index');

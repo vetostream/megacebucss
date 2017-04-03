@@ -18,4 +18,14 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag', 'postdtl', 'post_id', 'tag_id');
     }
+
+    public function Report()
+    {
+        return $this->hasMany('App\Report');
+    }
+
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

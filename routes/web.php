@@ -72,7 +72,8 @@ Route::post('/posts/get', 'PostController@getPost');
 Route::post('/posts/edit/{postid}/{userid}', 'PostController@editPost');
 Route::post('/posts/postcomment', 'PostController@insertPostComment');
 //zafra added report posts
-Route::get('/posts/reportPostdb/{postid}/{userid}', 'PostController@reportPostdb');
+Route::get('/posts/report', function () {	return redirect()->action('PostController@index'); });
+Route::post('/posts/report', 'PostController@reportPostdb');
 Route::get('/posts/unreport/{postid}/{userid}', 'PostController@unreport');
 Route::get('/posts/like','PostController@likePost');
 Route::get('/posts/unlike','PostController@unlikePost');
@@ -98,3 +99,5 @@ Route::get('/superadmin', 'SuperadminController@index' );
 Route::get('/superadmin/viewAllUsers', 'SuperadminController@viewAllUsers');
 Route::get('/superadmin/deleteUser/{id}', 'SuperadminController@deleteUser');
 Route::post('/superadmin/changeRole', 'SuperadminController@changeRole');
+//zafra edit:
+Route::get('/superadmin/viewAllReports', 'SuperadminController@viewAllReports');
