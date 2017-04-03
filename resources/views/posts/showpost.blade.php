@@ -21,7 +21,9 @@
 				<a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a>
 				on <span id="post-date">2017/08/05</span>
 				<span class="new badge blue" style="float:none;" data-badge-caption="Likes" id="likecount">{{ $likes }}</span>
+				@if(!empty($report))
 				<span class="new badge red" style="float:none;" data-badge-caption="Reports">{{ $report->number_of_reps}}</span>
+				@endif
 			</p>
 		</div>
 <!--		<input type="text" value='{{ $likes }}' name="number_likes" hidden>-->
