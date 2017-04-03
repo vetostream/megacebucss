@@ -92,6 +92,7 @@ class PostController extends Controller
 		}
 		// var_dump($tagnames);
 		// echo !is_null($tagnames);
+		//var_dump($report);
 		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames, 'comments' => $comments,'likes' => count($likes),
 									   'ableLike' => $ableLike, 'report' => $report]);
 		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
