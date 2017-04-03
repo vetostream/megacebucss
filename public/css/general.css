@@ -45,9 +45,9 @@ nav {
 	padding: 15px 15px 15px 15px;
 }
 
-nav ul li{
+/*nav ul li{
 	height: 100px !important;
-}
+}*/
 
 #nav-mobile > li > a {
 	line-height: 100px;
@@ -174,3 +174,22 @@ nav ul li{
 .search-auto {
 	width: 300px;
 }
+
+.dropdown-content li>a {
+	height: 100%;
+}
+
+.dropdown-content li>a>i {
+	height: 100%;
+}
+
+.dropdown-button:hover {
+	background-color: inherit;
+}
+
+
+
+/*.dropdown-content li {
+	margin:auto;
+	display: block;
+}*/
