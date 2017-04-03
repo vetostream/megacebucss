@@ -82,7 +82,7 @@ $('.chips-autocomplete').material_chip({
 //	e.preventDefault();
 //	alert("test");
 //});
->>>>>>> 5a333548a5374c18067ddf85770898675f14e282
+
 // $( document ).on('click','button[name="post-comment"]',function(e){
 // 	e.preventDefault();
 // 	$form = $("form[name='comment-form']");

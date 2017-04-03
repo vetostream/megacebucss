@@ -13,11 +13,11 @@
 				        <th>Name</th>
 				        <th>Email</th>
 				        <th>First Name</th>
-				        <th>Last Name</th>
 				        <th>Middle Name</th>
+				        <th>Last Name</th>
 				        <th>Mobile No</th>
 				        <th>Birthdate</th>
-				        <th>User Type</th>
+				        <th>Type</th>
 				    </tr>
 				</thead>
 				
@@ -27,8 +27,8 @@
 				        <td>{{ $user->name }}</td>
 				        <td>{{ $user->email }}</td>
 				        <td>{{ $user->first_name }}</td>
-				        <td>{{ $user->last_name }}</td>
 				        <td>{{ $user->middle_name }}</td>
+				        <td>{{ $user->last_name }}</td>
 				        <td>{{ $user->mobile_no }}</td>
 				        <td>{{ $user->birthdate }}</td>
 				        <td>
@@ -39,7 +39,7 @@
 				        		<option @if($user->user_type_id == 4) selected @endif value="4">Superadmin</option>
 				        	</select>
 				        </td>
-				        <td><a onclick='return confirm("Really delete user?")' href="{{ url('superadmin/deleteUser') }}/{{ $user->id }}" class="waves-effect waves-light btn"><i class="material-icons">delete</i></a></td>
+				        <td><a onclick='return confirm("Really delete user?")' href="{{ url('superadmin/deleteUser') }}/{{ $user->id }}" class="waves-effect waves-light btn red accent-4"><i class="material-icons">delete</i></a></td>
 				        <td><a id="btn-edit-user-type" class="waves-effect waves-light btn"><i class="material-icons">edit</i></a></td>
 				    </tr>
 			    	@endforeach

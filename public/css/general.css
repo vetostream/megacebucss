@@ -49,8 +49,13 @@ nav ul li{
 	height: 100px !important;
 }
 
-#nav-mobile li a {
+#nav-mobile > li > a {
 	line-height: 100px;
+}
+
+.lineheight-sm > li > a
+{
+	line-height: 2px;
 }
 
 .search-btn {
