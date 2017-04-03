@@ -83,7 +83,6 @@ return [
         //
         
         'mysql' => [
-<<<<<<< HEAD
            'driver' => 'mysql',
            'host' => 'localhost',
            'port' => '3306',
@@ -110,19 +109,6 @@ return [
         //     'strict' => true,
         //     'engine' => null,
         // ],
-=======
-            'driver' => 'mysql',
-            'host' => 'localhost',
-            'port' => '3306',
-            'database' => 'megacebudb',
-            'username' => 'doctorstrange',
-            'password' => '!d0ct0rstr4ng3!',
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-        ],
         //
         
         //'mysql' => [
@@ -138,7 +124,6 @@ return [
         //    'strict' => true,
         //    'engine' => null,
         //],
->>>>>>> 7ae01d887c194187e1958f99b340a6f96bcc777d
 
         // 'pgsql' => [
         //     'driver' => 'pgsql',
