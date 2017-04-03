@@ -8,7 +8,7 @@
 		<div class="col s12">
 			<ul class="collection">
 				<a href="{{ url('superadmin/viewAllUsers') }}" class="collection-item">Users</a> 
-				<a href="#" class="collection-item">Reports</a>
+				<a href="{{ url('superadmin/viewAllReports') }}" class="collection-item">Reports</a>
 			</ul>
 		</div>
 	</div>
