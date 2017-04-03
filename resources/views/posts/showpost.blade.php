@@ -158,16 +158,22 @@
 		<div class="modal-content">
 			<h4>Report post</h4>
 			 <div class="row">
-				<form class="col s12">
+				<form class="col s12" method="post" action="{{ url('/posts/report') }}" >
+					{{csrf_field()}}
 				   <div class="row">
 					<div class="input-field col s12">
-					  <textarea id="post-report-text" class="materialize-textarea"></textarea>
+					  <textarea id="postreporttext" name="postreporttext" class="materialize-textarea"></textarea>
+					<input type="hidden" id="postid" name="postid" value="{!!$post[0]->id!!}">
+					<input type="hidden" id="userid" name="userid" value="{!!$post[0]->user_id!!}">
 					  <label for="post-report-text">Comments</label>
 					</div>
 				  </div>
 				  <div class="row">
 					<div class="input-field col s12">
-						<a href="{{url('/posts/reportPostdb/'.$post[0]->id.'/'.$post[0]->user_id)}}" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Report Post</a>
+					<button class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;" type="submit" id="action" name="action">Report Post
+						<i class="material-icons right"></i>
+					</button>
+						<!--<a href="{{url('/posts/reportPostdb/'.$post[0]->id.'/'.$post[0]->user_id.'/')}}" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Report Post</a>-->
 						<a href="#!" class="modal-action modal-close waves-effect waves-lgiht btn-flat" >Cancel</a>
 					</div>
 				  </div>
