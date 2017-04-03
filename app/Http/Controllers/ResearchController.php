@@ -112,8 +112,8 @@ class ResearchController extends Controller
 
     public function showManus(Request $request){
         $file_name = $request->input('file_name');
-        //$path = storage_path("app\\".$file_name);
-        $path = storage_path("app/".$file_name);
+        $path = storage_path("app\\".$file_name);
+        //$path = storage_path("app/".$file_name);
 
         return Response::make(file_get_contents($path), 200, [
             'Content-Type' => 'application/pdf',
