@@ -82,9 +82,17 @@ class PostController extends Controller
 		$userid = $this->getUserId();
 		$tagnames = $this->readTagByPostId($postid);
 		$comments = DB::table('postscom')->join('users', 'postscom.user_comment', '=', 'users.id')->where('post_id', '=', $postid)->get();
+		$likes = DB::table('likedtl')->where('post_id','=',$postid)->get();
+		$checkStat = DB::table('likedtl')->where([['post_id', '=', $postid],['user_id','=',Auth::user()->id]])->first();
+		$ableLike = 1;
+		
+		if(!empty($checkStat)){
+			$ableLike = 0; //only unlike
+		}
 		// var_dump($tagnames);
 		// echo !is_null($tagnames);
-		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames, 'comments' => $comments]);
+		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames, 'comments' => $comments,'likes' => count($likes),
+									   'ableLike' => $ableLike]);
 		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
 	}
 
@@ -461,5 +469,47 @@ class PostController extends Controller
 
             return redirect()->action('PostController@index');
     }
+	
+	public function likePost(Request $request){
+		//get user id
+		$user_id = $request->input('user_id');
+		$post_id = $request->input('post_id');
+		
+		$checkStat = DB::table('likedtl')->where([['post_id', '=', $post_id],['user_id','=',$user_id]])->first();
+		
+		if(empty($checkStat)){ //if true user can like.
+			$arrData = array('post_id' => $post_id, 'user_id' => $user_id);
+		
+			try {
+				DB::table('likedtl')->insert($arrData);
+				return "1";
+			}catch(\Exception $e){
+				abort(404,"Something went wrong.");
+			}
+		}else{
+			return "0"; //user already liked.
+		}	
+	}
+	
+	public function unlikePost(Request $request){
+		$user_id = $request->input('user_id');
+		$post_id = $request->input('post_id');
+		
+		$checkStat = DB::table('likedtl')->where([['post_id', '=', $post_id],['user_id','=',$user_id]])->first();
+		
+		if(!empty($checkStat)){ //if true user can unlike
+			$arrData = array('post_id' => $post_id, 'user_id' => $user_id);
+		
+			try {
+				DB::table('likedtl')->where([['post_id', '=', $post_id],['user_id','=',$user_id]])->delete();
+				return "1";
+			}catch(\Exception $e){
+				abort(404,"Something went wrong.");
+			}
+		}else{
+			return "0"; //user didn't event like the post!
+		}
+		
+	}
 
 }

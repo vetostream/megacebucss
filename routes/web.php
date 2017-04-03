@@ -71,6 +71,8 @@ Route::post('/posts/postcomment', 'PostController@insertPostComment');
 //zafra added report posts
 Route::get('/posts/reportPostdb/{postid}/{userid}', 'PostController@reportPostdb');
 Route::get('/posts/unreport/{postid}/{userid}', 'PostController@unreport');
+Route::get('/posts/like','PostController@likePost');
+Route::get('/posts/unlike','PostController@unlikePost');
 
 // Display profile, view = profiles.profile
 Route::get('/profile', 'ProfileController@index');
