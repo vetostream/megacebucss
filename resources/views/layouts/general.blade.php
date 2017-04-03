@@ -40,10 +40,6 @@
 										<li><a href="{{ url('profile') }}">Profile</a></li>
 										<li><a href="{{ url('about') }}">About</a></li>
 										
-										@if (Auth::user()->user_type_id == 4)
-										<li><a href="{{ url('adminpower') }}">Administrator</a></li>
-										@endif
-
 										<li><a href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
@@ -66,6 +62,22 @@
 												</ul>
 										</li> -->
 								</ul>
+								<ul id="nav-mobile" class="right">
+									@if (Auth::user()->user_type_id == 3)
+										<li><a href="{{ url('admin') }}">Admin</a></li>
+									@endif
+
+									@if (Auth::user()->user_type_id == 4)
+										<li><a href="{{ url('superadmin') }}">Admin</a></li>
+									@endif
+									<li>
+										<form>
+											<div class="input-field">
+												<input id="search" type="search" required>
+												<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+												<i class="material-icons">close</i>
+											</div>
+										</form> 
 								<ul class="right">
 								<li>
 									<form name="search-form" action="{{ url('/search/everything') }}" method="get">

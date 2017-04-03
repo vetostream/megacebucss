@@ -33,6 +33,9 @@ Route::post('/tagsdbResearch', 'HomeController@tagsdbResearch');
 
 //Research routes
 Route::get('/research','ResearchController@index'); //show list of exhibited researches, view = research.index
+Route::get('/research/detail/{id}','ResearchController@show'); //show details of the chosen research by id, view = research.detail
+Route::get('/research/create','ResearchController@create'); //show form for creating Research, view = research.create
+Route::post('/research/store','ResearchController@store'); //store newly created resource
 Route::get('research/detail/{id}','ResearchController@show'); //show details of the chosen research by id, view = research.detail
 Route::get('/research/create','ResearchController@create')->middleware(checkStudent::class); //show form for creating Research, view = research.create
 Route::post('/research/store','ResearchController@store')->middleware(checkStudent::class); //store newly created resource
@@ -86,3 +89,12 @@ Route::post('/profile/editCheck', 'ProfileController@editCheck');
 Route::get('/profile/delete', 'ProfileController@deleteUser');
 // Destroy the account or account and posts of the id 
 Route::post('/profile/deleteOption','ProfileController@deleteOption');
+
+// Admin routes
+Route::get('/admin', 'AdminController@index');
+
+// SuperAdmin routes
+Route::get('/superadmin', 'SuperadminController@index' );
+Route::get('/superadmin/viewAllUsers', 'SuperadminController@viewAllUsers');
+Route::get('/superadmin/deleteUser/{id}', 'SuperadminController@deleteUser');
+Route::post('/superadmin/changeRole', 'SuperadminController@changeRole');

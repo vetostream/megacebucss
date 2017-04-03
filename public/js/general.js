@@ -23,6 +23,23 @@ $( document ).on('click','#fund-research',function(){
 	$("form[name='fund-form'").submit();
 });
 
+$(document).on('click', '#btn-edit-user-type', function()
+{
+	var tr = $(this).parent().parent();
+	var usertype = tr.find(':selected').val();
+	var userid   = tr.data('id');
+
+	$.post('/superadmin/changeRole',
+	{
+		user_id: userid,
+		usertype: usertype,
+		_token: $('meta[name="csrf-token"]').attr('content')
+	}, function(data, status)
+	{
+		Materialize.toast('User type updated!', 3000);
+	})
+})
+
 $('.chips-autocomplete').material_chip({
     autocompleteOptions: {
       limit: Infinity,
@@ -111,6 +128,7 @@ $( document ).on('click','#post-unlike-a',function(){
 //	e.preventDefault();
 //	alert("test");
 //});
+
 // $( document ).on('click','button[name="post-comment"]',function(e){
 // 	e.preventDefault();
 // 	$form = $("form[name='comment-form']");

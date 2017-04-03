@@ -46,11 +46,11 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-        ],
+        // 'sqlite' => [
+        //     'driver' => 'sqlite',
+        //     'database' => env('DB_DATABASE', database_path('database.sqlite')),
+        //     'prefix' => '',
+        // ],
 
         // 'mysql' => [
         //     'driver' => 'mysql',
@@ -66,6 +66,22 @@ return [
         //     'engine' => null,
         // ],
 
+
+        //'mysql' => [
+        //    'driver' => 'mysql',
+        //    'host' => 'localhost',
+        //    'port' => '3306',
+        //    'database' => 'megacebudb',
+        //    'username' => 'doctorstrange',
+        //    'password' => '!d0ct0rstr4ng3!',
+        //    'charset' => 'utf8',
+        //    'collation' => 'utf8_unicode_ci',
+        //    'prefix' => '',
+        //    'strict' => true,
+        //    'engine' => null,
+        //],
+        //
+        
         'mysql' => [
             'driver' => 'mysql',
             'host' => 'localhost',
@@ -95,18 +111,18 @@ return [
         //    'engine' => null,
         //],
 
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
-        ],
+        // 'pgsql' => [
+        //     'driver' => 'pgsql',
+        //     'host' => env('DB_HOST', 'localhost'),
+        //     'port' => env('DB_PORT', '5432'),
+        //     'database' => env('DB_DATABASE', 'forge'),
+        //     'username' => env('DB_USERNAME', 'forge'),
+        //     'password' => env('DB_PASSWORD', ''),
+        //     'charset' => 'utf8',
+        //     'prefix' => '',
+        //     'schema' => 'public',
+        //     'sslmode' => 'prefer',
+        // ],
 
     ],
 

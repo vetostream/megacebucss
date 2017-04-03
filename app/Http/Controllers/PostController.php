@@ -83,6 +83,7 @@ class PostController extends Controller
 		$tagnames = $this->readTagByPostId($postid);
 		$comments = DB::table('postscom')->join('users', 'postscom.user_comment', '=', 'users.id')->where('post_id', '=', $postid)->get();
 		$likes = DB::table('likedtl')->where('post_id','=',$postid)->get();
+		$report = Report::where('post_id','=', $postid)->first();
 		$checkStat = DB::table('likedtl')->where([['post_id', '=', $postid],['user_id','=',Auth::user()->id]])->first();
 		$ableLike = 1;
 		
@@ -92,7 +93,7 @@ class PostController extends Controller
 		// var_dump($tagnames);
 		// echo !is_null($tagnames);
 		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames, 'comments' => $comments,'likes' => count($likes),
-									   'ableLike' => $ableLike]);
+									   'ableLike' => $ableLike, 'report' => $report]);
 		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
 	}
 

@@ -21,8 +21,8 @@
 					<h6>{{$userinfo->birthdate}}</h6>
 				</div>
 				<div class="card-action">
-					<a href="{{url('/profile/edit')}}">Edit Profile</a>
-					<a href="{{url('/profile/delete')}}">Delete Account</a>
+					<a href="{{url('/profile/edit')}}">Update</a>
+					<a href="{{url('/profile/delete')}}">Deactivate</a>
 					<a href="{{url('/posts/insert')}}">Share Idea</a>
 					<a href="{{url('/research/create')}}">Exhibit Research</a>
 				</div>
