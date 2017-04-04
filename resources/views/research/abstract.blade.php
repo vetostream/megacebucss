@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row" id="post-title">
 		<div class="col s12">
-				<h3>Research Title: {{ $research->title }}</h3>
+				<h4>{{ $research->title }}</h4>
 				<p>Posted by <a href="{{ url('profile/profileid') }}/{{ $research->user[0]->id }}">{{ $research->user[0]->first_name.' '.$research->user[0]->last_name }}</a> on <span id="post-date">{{ $research->created_at }}</span></p>      				
 			</div>
 	</div>
@@ -104,7 +104,7 @@
 				<a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" target="_blank" class="green darken-3 waves-effect waves-light btn"><i class="material-icons left">library_books</i>Manuscript</a>
 				@endif
 				<a href="#post-fund" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">attach_money</i>Fund</a>
-				<a href="#post-report" class="red waves-effect waves-light btn"><i class="material-icons left">report_problem</i>Report</a>				
+				<!-- <a href="#post-report" class="red waves-effect waves-light btn"><i class="material-icons left">report_problem</i>Report</a>				 -->
 			</div>
 		</div>
 		<!-- mobile -->

@@ -64,8 +64,8 @@
 								<ul id="nav-mobile" class="right">
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
-											<div class="chip blue accent-1 white-text">
-												<img src="{{ asset('/images/miniavatar.jpg') }}" style="height:100%;" alt="Contact Person">
+											<div class="chip orange lighten-2 white-text">
+												<img src="{{ asset('/images/avatar-square.jpg') }}" style="height:100%;" alt="Contact Person">
 													{{Auth::user()->name}}
 											</div>
 										</a>
@@ -174,11 +174,11 @@
 			$('.chips').material_chip();
 			$('.chips-initial').material_chip({
 				data: [{
-					tag: 'Apple',
+					tag: 'add',
 				}, {
-					tag: 'Microsoft',
+					tag: 'tags',
 				}, {
-					tag: 'Google',
+					tag: 'here',
 				}],
 			});
 			$('.chips-placeholder').material_chip({

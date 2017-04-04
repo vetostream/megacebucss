@@ -16,7 +16,7 @@
 <div class="container">
 	<div class="row" id="post-title">
 		<div class="col s12">
-			<h3>{{ $post[0]->title }}</h3>
+			<h4>{{ $post[0]->title }}</h4>
 			<p>Posted by
 				<a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a>
 				on <span id="post-date">2017/08/05</span>

@@ -30,7 +30,7 @@
 							<tr>
 								<td> {{ $hist->created_at }} </td>
 								<td><a href="{{ url('profile/profileid') }}/{{ $hist->funder_id }}"> {{ $hist->first_name }} {{ $hist->middle_name }} {{ $hist->last_name }} </a></td>
-								<td> {{ $hist->amount_given }} </td>
+								<td>PHP {{ $hist->amount_given }} </td>
 							</tr>
 							@endforeach
 						</tbody>
