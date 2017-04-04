@@ -199,6 +199,12 @@ class PostController extends Controller
 		return redirect()->action('PostController@index');
 	}
 
+	public function reportDelete($postid, $userid) {
+		$this->unreport($postid, $userid);
+		$this->delete($postid);
+		return redirect()->action('PostController@index');
+	}
+
 	/**
 	 * Gets array of user inputs
 	 * @param null

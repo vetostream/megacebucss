@@ -78,6 +78,9 @@ Route::get('/posts/unreport/{postid}/{userid}', 'PostController@unreport');
 Route::get('/posts/like','PostController@likePost');
 Route::get('/posts/unlike','PostController@unlikePost');
 
+// Delete post from report
+Route::get('/posts/reportDelete/{postid}/{userid}','PostController@reportDelete');
+
 // Display profile, view = profiles.profile
 Route::get('/profile', 'ProfileController@index');
 // Display profile via id, view = profiles.viewprofile
