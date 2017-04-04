@@ -164,15 +164,20 @@
 		<!-- fund post -->
 		<div id="post-fund" class="modal">
 			<div class="modal-content">
-				<h4>Propose fund amount</h4>				
+				<h5>Fund Research</h5>
+				<hr><br>
 				 <div class="row">
 				    <form class="col s12" action="{{ url('research/fund') }}/{{ $research->id }}/{{ $user->id }}" method="POST" name="fund-form">
 				    {{ csrf_field() }}
 				       <div class="row">
-				        <div class="input-field col s12">				          
-				          <input id="post-fund-text" name='amount' type='number' min='500.00' step='100.00' required>
-				          <label for="post-fund-text">Input amount</label>
-				        </div>
+					       <div class='col s12'>
+					       		PHP
+						        <div class="input-field inline">
+				          			<input id="post-fund-text" name='amount' type='number' min='500.00' step='100.00' required>
+						          	<label for="post-fund-text">Amount</label>
+						        </div>
+						        <p>Reach {{ $research->user[0]->first_name }} {{ $research->user[0]->last_name }} through e-mail at <a href="mailto:{{ $research->user[0]->email }}?Subject=Cebubec Research Funding&Body=Hello! I have seen your research in Cebubec and I am interested in funding you some amount.">{{ $research->user[0]->email }}</a> or through phone at {{ $research->user[0]->mobile_no }} to notify the student about your funding intention.</p>
+					      </div>
 				      </div>
 				      <div class="row">
 				        <div class="input-field col s12">
