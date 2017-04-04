@@ -76,7 +76,7 @@
 								</ul>
 
 								<ul id='dropdown1' class='dropdown-content'>
-									<li><a class="center-align" href="{{ url('profile') }}"><i class="material-icons">settings</i></a></li>
+									<li><a class="center-align" href="{{ url('profile') }}"><i class="material-icons">supervisor_account</i></a></li>
 									<li><a class="center-align" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">power_settings_new</i></a>
 										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
