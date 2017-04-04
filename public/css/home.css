@@ -1,0 +1,23 @@
+.btn-jumbo
+{
+	width: 260px;
+	height: 100px;
+	line-height: 100px;
+	margin-top: 180px;
+	font-size: 120%;
+	font-weight: bold;
+}
+
+.home-bg-1
+{
+	/*background-color: rgba(0,0,0,1);*/
+	min-height: 510px;
+	/*background-repeat: repeat-x;*/
+	background-size: 145%;
+	background-position: center;
+}
+
+.row-no-margin
+{
+	margin-bottom: 0;
+}

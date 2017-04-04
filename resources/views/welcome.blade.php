@@ -13,13 +13,10 @@
 		<img src="{{ asset('images/fire-african.jpg') }}" style="display: block; transform: translate3d(50%, 271px, 0px);">
 	</div>
 </div> -->
-
-<div class="section white">
-	<div class="row container" style="padding-top: 14px;">
-		<h2 class="orange-text">About Cebubec</h2>
-		<p class="grey-text text-darken-3 lighten-3">
-		Ideas. We have plenty of them. There are good ideas and there are bad ideas. Nevertheless, we need ideas as they are the very foundation with which our society is built. As such, this system crowdsources ideas for the benefit of the Philippines from its citizens. 
-		</p>
+<div class="row row-no-margin home-wrapper">
+	<div class="center home-bg-1" style="background-image: url('{{ asset("images/home.png") }}');">
+		<!-- <h3 class="grey-text text-darken-3"><b>Have an idea? Share it here!</b></h3> -->
+		<a href='#' class='waves-effect waves-light btn btn-jumbo amber accent-3'>Share Your Idea <!-- 	 --></a>
 	</div>
 </div>
 <!-- 

@@ -15,6 +15,7 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.css" rel="stylesheet"/>
 		<link href="{{ asset('/css/general.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
+		<link href="{{ asset('/css/home.css') }}" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Raleway" rel="stylesheet">
@@ -157,7 +158,8 @@
   </div>	
         	
 		<script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/materialize.min.js') }}"></script>
+		<!-- <script type="text/javascript" src="{{ asset('/js/materialize.min.js') }}"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
 		<script type="text/javascript" src="{{ asset('/js/general.js') }}"></script>
 		<script type="text/javascript">
 			$('.datepicker').pickadate({
@@ -168,6 +170,7 @@
 
 			 $(document).ready(function(){
 			    $('.modal').modal();
+   	 			$('.tooltipped').tooltip({delay: 50});
 			  });
 
 		    $('.parallax').parallax();
