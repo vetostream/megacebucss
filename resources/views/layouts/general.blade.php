@@ -37,14 +37,8 @@
 								@else
 										<li><a href="{{ url('posts') }}">Ideas</a></li>
 										<li><a href="{{ url('research') }}">Research</a></li>
-										<li><a href="{{ url('profile') }}">Profile</a></li>
 										<li><a href="{{ url('about') }}">About</a></li>
-										
-										<li><a href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-												{{ csrf_field() }}
-										</form>
-										</li>
+									
 <!--                     <li class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 														{{ Auth::user()->name }} <span class="caret"></span>
@@ -72,15 +66,22 @@
 									@endif
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
-											Dropdown
+											<div class="chip">
+												<img src="{{ asset('/images/miniavatar.jpg') }}" style="height:100%;" alt="Contact Person">
+													{{Auth::user()->name}}
+											</div>
 										</a>
 									</li>
 
 								</ul>
 
 								<ul id='dropdown1' class='dropdown-content'>
-									<li><a href="#"><i class="material-icons">settings</i></a></li>
-									<li><a href="#"><i class="material-icons">power_settings_new</i></a></li>
+									<li><a class="center-align" href="{{ url('profile') }}"><i class="material-icons">settings</i></a></li>
+									<li><a class="center-align" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">power_settings_new</i></a>
+										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+												{{ csrf_field() }}
+										</form>
+									</li>										
 								</ul>
 									<!-- <li>
 										<form name="search-form" action="{{ url('/search/everything') }}" method="get">

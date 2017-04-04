@@ -92,6 +92,7 @@ class PostController extends Controller
 		}
 		// var_dump($tagnames);
 		// echo !is_null($tagnames);
+		//var_dump($report);
 		return view('posts.showpost', ['post' => $post, 'userid' => $userid, 'tagnames' => $tagnames, 'comments' => $comments,'likes' => count($likes),
 									   'ableLike' => $ableLike, 'report' => $report]);
 		// return view('posts.showpost', ['post' => $post, 'userid' => $userid]);
@@ -233,10 +234,8 @@ class PostController extends Controller
 			$path = $request->file($input[2])->store('public');
 			$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
 		}
-
+		
 		// $lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
-		$lastpostid = $this->create($request->title, $request->content, $picname);
-		//$lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
 		$lastpostid = $this->create($request->title, $request->content, $picname);
 		// echo "Last Post id:".$lastpostid;
 		// $path = $request->postimg->store('postimages');
