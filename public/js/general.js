@@ -95,6 +95,26 @@ $( document ).on('click','#post-unlike-a',function(){
 			Materialize.toast('Something went wrong.' + result, 3000, 'rounded');
 	});
 });
+
+$( document ).on('click','#btn-accept-request',function(){
+	var $tr = $(this).closest('tr');
+	var $name = $tr.data('name');
+	var $id = $tr.data('id');
+	
+	$.ajax({
+		url: '/superadmin/changeusertype/',
+		method: 'GET',
+		data: {'user_id':$id},
+		dataType: 'text'
+	}).done(function(result){
+		console.log(result);
+	}).fail(function(result){
+		console.log(result);
+	});
+	
+	$tr.fadeOut(1000);
+	Materialize.toast($name + ' user type changed', 3000, 'rounded');
+});
 //$( document ).on('submit','form[name="search-form"]',function(e){
 //	e.preventDefault();
 //	var formData = $("form[name='search-form']").serialize();

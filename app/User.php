@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\reportsdtl;
+use App\UserRequest;
 
 class User extends Authenticatable
 {
@@ -39,6 +40,10 @@ class User extends Authenticatable
 
     public function Post(){
         return $this->hasMany('App\Post');
+    }
+    
+    public function userRequests(){
+        return $this->hasOne('App\UserRequest');
     }
 
 }

@@ -93,6 +93,7 @@ Route::post('/profile/editCheck', 'ProfileController@editCheck');
 Route::get('/profile/delete', 'ProfileController@deleteUser');
 // Destroy the account or account and posts of the id 
 Route::post('/profile/deleteOption','ProfileController@deleteOption');
+Route::get('/profile/notifications','ProfileController@notifications');
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');
@@ -102,5 +103,8 @@ Route::get('/superadmin', 'SuperadminController@index' );
 Route::get('/superadmin/viewAllUsers', 'SuperadminController@viewAllUsers');
 Route::get('/superadmin/deleteUser/{id}', 'SuperadminController@deleteUser');
 Route::post('/superadmin/changeRole', 'SuperadminController@changeRole');
+Route::get('/superadmin/viewAllRequests','SuperadminController@showRequests');
+Route::get('/superadmin/changeusertype','SuperadminController@changeType');
+
 //zafra edit:
 Route::get('/superadmin/viewAllReports', 'SuperadminController@viewAllReports');

@@ -44,6 +44,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Redirector;
+use App\UserRequest;
 
 class ProfileController extends Controller
 {
@@ -231,5 +232,12 @@ class ProfileController extends Controller
 	 */
 	public function deletePosts($id) {
 		$deletedRows = Post::where('user_id', $id)->delete();
+	}
+	
+	public function notifications(Request $request){
+		$user_id = $request->input('user_id');
+		$reqs = UserRequest::where([['user_id','=',$user_id],['ack_status','=','1']])->first();
+		
+		return view('profiles.notifications');
 	}
 }
