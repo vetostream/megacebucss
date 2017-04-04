@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row" id="post-title">
 		<div class="col s12">
-				<h3>Research Title: {{ $research->title }}</h3>
+				<h4>{{ $research->title }}</h4>
 				<p>Posted by <a href="{{ url('profile') }}">{{ $research->user[0]->first_name.' '.$research->user[0]->last_name }}</a> on <span id="post-date">{{ $research->created_at }}</span></p>      				
 			</div>
 	</div>

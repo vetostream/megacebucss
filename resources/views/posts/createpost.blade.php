@@ -9,21 +9,21 @@
 	<div class="col s12 m12">
 	  <div class="card grey lighten-5">
 		<div class="card-content black-text">
-		  <span class="card-title">Create Post</span>
-		  <hr>
+		  <span class="card-title">Post an Idea</span>
+		  <!-- <hr> -->
 		  <div class="row">
 			<form class="col s12" method="post" action="{{ url('/posts/get') }}" enctype="multipart/form-data" id="createpostform" name="createpostform">
 			{{ csrf_field() }}
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('title') ? ' has-error' : '' }}">
 					  <input id="title" type="text" class="validate" name="title" required>
-					  <label for="title">Post Title</label>
+					  <label for="title">Title</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('content') ? ' has-error' : '' }}">
 					  <textarea id="content" class="materialize-textarea" name="content"></textarea>
-					  <label for="content">Content</label>
+					  <label for="content">Description</label>
 					</div>
 				</div>
 				<div class="row">

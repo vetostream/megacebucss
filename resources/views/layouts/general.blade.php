@@ -174,11 +174,11 @@
 			$('.chips').material_chip();
 			$('.chips-initial').material_chip({
 				data: [{
-					tag: 'Apple',
+					tag: 'add',
 				}, {
-					tag: 'Microsoft',
+					tag: 'tags',
 				}, {
-					tag: 'Google',
+					tag: 'here',
 				}],
 			});
 			$('.chips-placeholder').material_chip({

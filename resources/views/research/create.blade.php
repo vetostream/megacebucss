@@ -10,26 +10,26 @@
 	  <div class="card grey lighten-5">
 		<div class="card-content black-text">
 		  <span class="card-title">Exhibit Research</span>
-		  <hr>
+		  <!-- <hr> -->
 		  <div class="row">
 			<form class="col s12" method="post" action="{{ url('research/store') }}" enctype="multipart/form-data" id="createresearchform" name="createresearchform">
 			{{ csrf_field() }}
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('title') ? ' has-error' : '' }}">
 					  <input id="title" type="text" class="validate" name="title" required>
-					  <label for="title">Research Title</label>
+					  <label for="title">Title</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('research_abstract') ? ' has-error' : '' }}">
 					  <textarea id="research_abstract" class="materialize-textarea" name="research_abstract"></textarea>
-					  <label for="research_abstract">Research Abstract</label>
+					  <label for="research_abstract">Abstract</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12 {{ $errors->has('fund_goal') ? ' has-error' : '' }}">
 					  <input id="fund-goal" type="number" class="validate" name="fund_goal" required>
-					  <label for="fund-goal">Estimated cost</label>
+					  <label for="fund-goal">Funding Amount Required</label>
 					</div>
 				</div>				
 				<div class="row">
