@@ -175,17 +175,17 @@ nav {
 	width: 300px;
 }
 
-.dropdown-content li>a {
+.dropdown-content li > a {
 	height: 100%;
 }
 
-.dropdown-content li>a>i {
-	height: 100%;
-}
+/*.dropdown-content li > a >i {
+	height: 100% !important;
+}*/
 
-.dropdown-button:hover {
+/*.dropdown-button:hover {
 	background-color: inherit;
-}
+}*/
 
 
 

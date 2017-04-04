@@ -11,7 +11,8 @@
 		<title></title>
 
 		<!-- Styles -->
-		<link href="{{ asset('/css/materialize.min.css') }}" rel="stylesheet">
+<!--		<link href="{{ asset('/css/materialize.min.css') }}" rel="stylesheet">-->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.css" rel="stylesheet"/>
 		<link href="{{ asset('/css/general.css') }}" rel="stylesheet">
 		<link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -64,7 +65,7 @@
 								<ul id="nav-mobile" class="right">
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
-											<div class="chip orange lighten-2 white-text">
+											<div class="chip orange accent-3 white-text">
 												<img src="{{ asset('/images/avatar-square.jpg') }}" style="height:100%;" alt="Contact Person">
 													{{Auth::user()->name}}
 											</div>
@@ -74,8 +75,8 @@
 								</ul>
 
 								<ul id='dropdown1' class='dropdown-content'>
-									<li><a class="center-align" href="{{ url('profile') }}"><i class="material-icons">perm_identity</i></a></li>
-									<li><a class="center-align" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">input</i></a>
+									<li><a class="" href="{{ url('profile') }}"><i class="material-icons">perm_identity</i>Profile</a></li>
+									<li><a class="" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">input</i>Logout</a>
 										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
 										</form>
@@ -125,7 +126,7 @@
 		
 @if(!Auth::guest())
   <div class="fixed-action-btn horizontal" style="padding-bottom:10px; padding-right: 10px;">
-    <a class="btn-floating btn-large cyan pulse">
+    <a class="btn-floating btn-large orange accent-4 pulse">
       <i class="large material-icons">view_headline</i>
     </a>
     <ul>
