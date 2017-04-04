@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'user_type_id' => 1,
         ]);
         
-        $this->activationService->sendActivationMail($user);
+        //$this->activationService->sendActivationMail($user);
         
         return $user;
     }
