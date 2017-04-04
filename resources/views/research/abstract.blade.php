@@ -142,7 +142,8 @@
 			<div class="modal-content">
 				<h4>Report post</h4>				
 				 <div class="row">
-				    <form class="col s12">
+				    <form class="col s12" method="post" action="{{ url('/posts/report') }}">
+				    	{{ csrf_field() }}
 				       <div class="row">
 				        <div class="input-field col s12">
 				          <textarea id="post-report-text" class="materialize-textarea"></textarea>
@@ -151,7 +152,7 @@
 				      </div>
 				      <div class="row">
 				        <div class="input-field col s12">
-				          	<a href="#!" class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;">Report Post</a>
+				          	<button class="red modal-action modal-close waves-effect waves-light btn-flat" style="color: #fff;" type="submit" id="action" name="action">Report Post</button>
 	            			<a href="#!" class="modal-action modal-close waves-effect waves-lgiht btn-flat" >Cancel</a>
 				        </div>
 				      </div>				     

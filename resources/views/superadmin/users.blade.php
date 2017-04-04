@@ -8,7 +8,7 @@
 
 			<div class='card'>
 				<div class="card-content">
-					<div class='card-title'><i class='material-icons'>list</i> User Roles</div>
+					<div class='card-title'><i class='small material-icons'>supervisor_account</i> User Roles</div>
 					<table id="table-users" class="responsive-table highlight">
 						<thead>
 							<tr>
