@@ -64,7 +64,7 @@
 								<ul id="nav-mobile" class="right">
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
-											<div class="chip blue accent-1 white-text">
+											<div class="chip orange lighten-2 white-text">
 												<img src="{{ asset('/images/miniavatar.jpg') }}" style="height:100%;" alt="Contact Person">
 													{{Auth::user()->name}}
 											</div>
