@@ -63,6 +63,7 @@
 										</li> -->
 								</ul>
 								<ul id="nav-mobile" class="right">
+								<li><a href="{{ url('profile/notifications') }}"><span class="new badge" data-badge-caption="Notifications">4</span></a></li>								
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
 											<div class="chip orange accent-3 white-text">
