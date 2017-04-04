@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserRequest;
 use Validator;
 use App\Http\Controllers\Controller;
 use App\ActivationService;
@@ -81,6 +82,22 @@ class RegisterController extends Controller
             'birthdate' => $data['birth_date'],
             'user_type_id' => 1,
         ]);
+
+        try
+        {
+            if(isset($data['request_student']))
+            {
+                $request = new UserRequest;
+                $request->ack_status = 0;
+                $request->user_id = $user->id;
+
+                $request->save();
+            }
+        }
+        catch(\Exception $e)
+        {
+            abort(403, 'No request: ' . $e);
+        }
         
         //$this->activationService->sendActivationMail($user);
         
