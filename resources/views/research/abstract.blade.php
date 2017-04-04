@@ -25,7 +25,7 @@
   			<ul class="collapsible" data-collapsible="accordion">
 		    
 		    <li>
-		      <div class="collapsible-header active"><i class="material-icons">filter_drama</i>Abstract</div>
+		      <div class="collapsible-header active"><i class="material-icons">book</i>Abstract</div>
 		      <div class="collapsible-body">
 		      <p>
 		      	{{ $research->research_abstract }}
@@ -34,7 +34,7 @@
 		    </li>
 		    
 		    <li>
-		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
+		      <div class="collapsible-header"><i class="material-icons">comments</i>Comments</div>
 		      <div class="collapsible-body">		      		
 			      <div class="row">
 			      @if(empty($comments))

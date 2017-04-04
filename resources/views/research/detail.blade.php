@@ -5,12 +5,13 @@
 	<div class="row" id="post-title">
 		<div class="col s12">
 				<h3>Research Title: {{ $research->title }}</h3>
-				<p>Posted by <a href="{{ url('profile/profileid') }}/{{ $research->user[0]->id }}">{{ $research->user[0]->first_name.' '.$research->user[0]->last_name }}</a> on <span id="post-date">{{ $research->created_at }}</span></p>      				
+				<p>Posted by <a href="{{ url('profile') }}">{{ $research->user[0]->first_name.' '.$research->user[0]->last_name }}</a> on <span id="post-date">{{ $research->created_at }}</span></p>      				
 			</div>
 	</div>
 
 	<div class="row" id="post-progress">
 		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> received</p>
+		<span><a href="{{ url('research/fund/history') }}/{{ $research->id }}">See History</a></span>
 		<div id="post-progressbar" style="position: relative; width: 100%; height: 30px; background-color: #bdbdbd">
 		  <div id="post-progressstatus" style="position: absolute; width:{{ $research->fund_percent }} %; height: 100%; background-color: #00c853;">
 		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">{{ $research->fund_percent }}%</div>
@@ -25,7 +26,7 @@
   			<ul class="collapsible" data-collapsible="accordion">
 		    
 		    <li>
-		      <div class="collapsible-header active"><i class="material-icons">filter_drama</i>Abstract</div>
+		      <div class="collapsible-header active"><i class="material-icons">book</i>Abstract</div>
 		      <div class="collapsible-body">
 		      <p>
 		      	{{ $research->research_abstract }}
@@ -34,7 +35,7 @@
 		    </li>
 		    
 		    <li>
-		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
+		      <div class="collapsible-header"><i class="material-icons">comments</i>Comments</div>
 		      <div class="collapsible-body">		      		
 			      <div class="row">
 			      @if(empty($comments))

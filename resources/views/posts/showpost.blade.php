@@ -51,7 +51,7 @@
 	<div class="col s12">
 		<ul class="collapsible" data-collapsible="accordion">
 		<li class="active">
-		<div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
+		<div class="collapsible-header"><i class="material-icons">comments</i>Comments</div>
 		<div class="collapsible-body">
 			<div class="row">
 			@if(empty($comments))
