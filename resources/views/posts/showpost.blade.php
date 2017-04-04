@@ -17,7 +17,7 @@
 	<div class="row" id="post-title">
 		<div class="col s12">
 			<h3>{{ $post[0]->title }}</h3>
-			<p>Posted by <a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a> on <span id="post-date">2017/08/05</span> <span class="new badge blue" style="float:none;" data-badge-caption="Likes" id="likecount">{{ $likes }}</span><span class="new badge red" style="float:none;" data-badge-caption="Reports">{{ $report->number_of_reps}}</span></p>
+			<p>Posted by <a href="{{url('/profile/profileid/'.$post[0]->user_id)}}">{{ $post[0]->name }}</a> on <span id="post-date">2017/08/05</span> <span class="new badge blue" style="float:none;" data-badge-caption="Likes" id="likecount">{{ $likes }}</span>
 		</div>
 <!--		<input type="text" value='{{ $likes }}' name="number_likes" hidden>-->
 	</div>
@@ -44,7 +44,7 @@
 	<div class="col s12">
 		<ul class="collapsible" data-collapsible="accordion">
 		<li class="active">
-		<div class="collapsible-header"><i class="material-icons">whatshot</i>Comments</div>
+		<div class="collapsible-header"><i class="material-icons">comments</i>Comments</div>
 		<div class="collapsible-body">
 			<div class="row">
 			@if(empty($comments))

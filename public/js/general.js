@@ -26,8 +26,10 @@ $( document ).on('click','#fund-research',function(){
 $(document).on('click', '#btn-edit-user-type', function()
 {
 	var tr = $(this).parent().parent();
-	var usertype = tr.find(':selected').val();
+	var usertype     = tr.find(':selected').val();
+	var usertypeText = tr.find(':selected').text();
 	var userid   = tr.data('id');
+	var username = tr.data('name');
 
 	$.post('/superadmin/changeRole',
 	{
@@ -36,7 +38,7 @@ $(document).on('click', '#btn-edit-user-type', function()
 		_token: $('meta[name="csrf-token"]').attr('content')
 	}, function(data, status)
 	{
-		Materialize.toast('User type updated!', 3000);
+		Materialize.toast(username + '\'s user type updated to ' + usertypeText, 3000);
 	})
 })
 

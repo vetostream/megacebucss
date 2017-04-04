@@ -233,15 +233,11 @@ class PostController extends Controller
 			$path = $request->file($input[2])->store('public');
 			$picname = pathinfo($path, PATHINFO_FILENAME).'.'.pathinfo($path, PATHINFO_EXTENSION);
 		}
-<<<<<<< HEAD
 
 		// $lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
 		$lastpostid = $this->create($request->title, $request->content, $picname);
-		
-=======
 		//$lastpostid = $this->create($request->$input[0], $request->$input[1], $picname);
 		$lastpostid = $this->create($request->title, $request->content, $picname);
->>>>>>> 7ae01d887c194187e1958f99b340a6f96bcc777d
 		// echo "Last Post id:".$lastpostid;
 		// $path = $request->postimg->store('postimages');
 		// $path = $request->file('postimg')->storeAs('postimages', 'testing');
