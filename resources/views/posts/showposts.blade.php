@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="container">
-	<h3 class="center-align">Ideas</h3>
+	<h4 class="center-align">Ideaboard</h4>
 
   <!-- SEARCH BAR -->
 <!--     <div class="row dboard">

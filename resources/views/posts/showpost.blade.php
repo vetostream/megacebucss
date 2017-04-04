@@ -63,10 +63,10 @@
 				<div class="col s12 m12 l12">
 					<div class="card-panel grey lighten-5 z-depth-1">
 					<div class="row valign-wrapper">
-						<div class="col s2">
+						<div class="col s1">
 						<img src="{{ asset('images/usericon.png') }}" alt="" class="circle responsive-img">
 						</div>
-						<div class="col s10">
+						<div class="col s11">
 						<span class="black-text">
 							<p><b>{{ $c->name }}</b> says:<br>{{$c->content}}</p>
 						</span>

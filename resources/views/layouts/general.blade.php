@@ -35,9 +35,14 @@
 										<li><a href="{{ url('login') }}">Login</a></li>
 										<li><a href="{{ url('register') }}">Register</a></li>
 								@else
+
+									@if (Auth::user()->user_type_id == 4)
+										<li><a href="{{ url('superadmin') }}">Admin</a></li>
+									@endif
 										<li><a href="{{ url('posts') }}">Ideas</a></li>
 										<li><a href="{{ url('research') }}">Research</a></li>
 										<li><a href="{{ url('about') }}">About</a></li>
+
 									
 <!--                     <li class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -57,16 +62,9 @@
 										</li> -->
 								</ul>
 								<ul id="nav-mobile" class="right">
-									@if (Auth::user()->user_type_id == 3)
-										<li><a href="{{ url('admin') }}">Admin</a></li>
-									@endif
-
-									@if (Auth::user()->user_type_id == 4)
-										<li><a href="{{ url('superadmin') }}">Admin</a></li>
-									@endif
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
-											<div class="chip">
+											<div class="chip blue accent-1 white-text">
 												<img src="{{ asset('/images/miniavatar.jpg') }}" style="height:100%;" alt="Contact Person">
 													{{Auth::user()->name}}
 											</div>
@@ -76,8 +74,8 @@
 								</ul>
 
 								<ul id='dropdown1' class='dropdown-content'>
-									<li><a class="center-align" href="{{ url('profile') }}"><i class="material-icons">supervisor_account</i></a></li>
-									<li><a class="center-align" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">power_settings_new</i></a>
+									<li><a class="center-align" href="{{ url('profile') }}"><i class="material-icons">perm_identity</i></a></li>
+									<li><a class="center-align" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">input</i></a>
 										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
 										</form>

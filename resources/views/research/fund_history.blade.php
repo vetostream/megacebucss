@@ -18,7 +18,7 @@
 		<div class="col s12">
 			<div class="card">
 				<div class="card-content">
-					<span class="card-title"><i class='material-icons'>list</i> Fund History</span>
+					<span class="card-title"><i class='material-icons'>history</i> Fund History</span>
 					<table class="responsive-table highlight">
 						<thead>
 							<th>Date</th>

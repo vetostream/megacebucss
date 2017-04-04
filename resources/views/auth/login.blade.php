@@ -2,9 +2,8 @@
 
 @section('content')
     <center>
-      <div class="container" style="padding-top: 200px;">
+      <div class="container" style="padding-top: 100px;">
         <div class="col s12 m12 l12">
-            <p>Please login using correct credentials</p>    
         </div>
 
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE; height: 100%; width: 600px;">
