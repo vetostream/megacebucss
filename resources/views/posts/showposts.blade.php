@@ -27,7 +27,7 @@
 		</div>    
 	</div> -->
 
-	<div class='row'>
+<!--	<div class='row'>
 		<div class='col s12'>
 
 			<form name="search-form" action="{{ url('/search/everything') }}" method="get">
@@ -39,7 +39,7 @@
 			</form>
 
 		</div>
-	</div>
+	</div>-->
 		
 	<!-- ROW1 -->
 	<div class="pinterest-col">

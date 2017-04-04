@@ -124,6 +124,36 @@
 		</footer> -->
 
 		<!-- Scripts -->
+  <div class="fixed-action-btn horizontal" style="padding-bottom:10px; padding-right: 10px;">
+    <a class="btn-floating btn-large cyan pulse">
+      <i class="large material-icons">view_headline</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red" href="#search-modal"><i class="material-icons">search</i></a></li>
+	@if(Auth::user()->user_type_id === 2)
+	<li><a class="btn-floating yellow darken-1" href="{{ url('/research/create') }}"><i class="material-icons">library_books</i></a></li>
+	@endif
+      <li><a class="btn-floating green" href="{{ url('/posts/insert') }}"><i class="material-icons">mode_edit</i></a></li>
+    </ul>
+  </div>
+	
+  <div id="search-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+    <form class="col s12" name="search-form" action="{{ url('/search/everything') }}" method="get">
+      <div class="row">
+        <div class="input-field col s12 m12 l12">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" class="validate" name="keyword">
+          <label for="icon_prefix">Search</label>
+        </div>
+      </div>
+    </form>	
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>	
+        	
 		<script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('/js/materialize.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('/js/general.js') }}"></script>
@@ -181,6 +211,6 @@
 		    $('.dropdown-button').dropdown();
 		  });
 		</script>
-		@yield('scripts')
+		@yield('scripts')	
 </body>
 </html>
