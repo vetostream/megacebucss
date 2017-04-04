@@ -122,6 +122,8 @@
 		</footer> -->
 
 		<!-- Scripts -->
+		
+@if(!Auth::guest())
   <div class="fixed-action-btn horizontal" style="padding-bottom:10px; padding-right: 10px;">
     <a class="btn-floating btn-large cyan pulse">
       <i class="large material-icons">view_headline</i>
@@ -134,6 +136,7 @@
       <li><a class="btn-floating green" href="{{ url('/posts/insert') }}"><i class="material-icons">mode_edit</i></a></li>
     </ul>
   </div>
+@endif
 	
   <div id="search-modal" class="modal bottom-sheet">
     <div class="modal-content">
