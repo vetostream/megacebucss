@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="row" id="post-progress">
-		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> / <span>{{ $research->fund_goal }}</span></p>
+		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> / <span>PHP {{ $research->fund_goal }}</span></p>
 		<div id="post-progressbar" style="position: relative; width: 100%; height: 30px; background-color: #bdbdbd">
 		  <div id="post-progressstatus" style="position: absolute; width:{{ $research->fund_percent }}%; height: 100%; background-color: #00c853;">
 		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">{{ $research->fund_percent }} %</div>
