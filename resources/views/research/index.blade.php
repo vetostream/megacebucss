@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-	<h3 class="center-align">Research Board</h3>
+	<h4 class="center-align">Research Board</h4>
 
 	<!-- SEARCH BAR -->
 <!--     <div class="row dboard">

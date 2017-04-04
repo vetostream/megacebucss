@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="row" id="post-progress">
-		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> received | Goal <span>PHP {{ $research->fund_goal }}</span></p>
+		<p>Funding progress: PHP <span id="post-progressamount">{{ $research->fund_total }}</span> / <span>{{ $research->fund_goal }}</span></p>
 		<div id="post-progressbar" style="position: relative; width: 100%; height: 30px; background-color: #bdbdbd">
 		  <div id="post-progressstatus" style="position: absolute; width:{{ $research->fund_percent }}%; height: 100%; background-color: #00c853;">
 		  	<div id="post-progresslabel" style="text-align: center; line-height: 30px; color: white;">{{ $research->fund_percent }} %</div>
@@ -46,10 +46,10 @@
 				            <div class="col s12 m12 l12">
 						        <div class="card-panel grey lighten-5 z-depth-1">
 						          <div class="row valign-wrapper">
-						            <div class="col s2">
-						              <img src="{{ asset('images/usericon.png') }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+						            <div class="col s1">
+						              <img src="{{ asset('images/usericon.png') }}" width='70px' alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 						            </div>
-						            <div class="col s10">
+						            <div class="col s11">
 						              <span class="black-text">
 						              	<p><b>{{ $c->name }}</b> says:<br>{{$c->content}}</p>
 	<!-- 					                <p>{{$c->content}}</p> -->
@@ -101,9 +101,9 @@
 		<div class="row right-align hide-on-med-and-down" id="post-options">
 			<div class="col s12">
 				@if($research->document_file_name !== "")
-				<a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" target="_blank" class="green darken-3 waves-effect waves-light btn"><i class="material-icons left">library_books</i>Download Manuscript</a>
+				<a href="{{ url('research/download') }}?file_name={{ $research->document_file_name }}" target="_blank" class="green darken-3 waves-effect waves-light btn"><i class="material-icons left">library_books</i>Manuscript</a>
 				@endif
-				<a href="#post-fund" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">loyalty</i>Fund</a>
+				<a href="#post-fund" class="yellow darken-3 waves-effect waves-light btn"><i class="material-icons left">attach_money</i>Fund</a>
 				<a href="#post-report" class="red waves-effect waves-light btn"><i class="material-icons left">report_problem</i>Report</a>				
 			</div>
 		</div>
