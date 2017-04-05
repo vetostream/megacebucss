@@ -142,7 +142,7 @@ class ResearchController extends Controller
             $research = Research::findOrFail($id);
 
             $user = User::where('id', '=', $research->user_id)->get();
-            $funds = Funds::where('research_id', '=', $id)->get();
+            $funds = Funds::where([['research_id', '=', $id],['ack_status','=','1']])->get();
             $comments = DB::table('researchcom')->join('users', 'researchcom.user_comment', '=', 'users.id')->where('research_id', '=', $id)->get();
             
             $fund_total = 0;
@@ -153,7 +153,7 @@ class ResearchController extends Controller
             }
 
             $research->fund_total = $fund_total;
-            $research->fund_percent = ($fund_total/$research->fund_goal) * 100;
+            $research->fund_percent = (int)(($fund_total/$research->fund_goal) * 100);
 
             $research->user = $user;
 
@@ -254,9 +254,8 @@ class ResearchController extends Controller
     public function fundHistory(Request $request, $id)
     {
         // $history = Funds::where('research_id', '=', $id)->get();
-
-        $history = DB::table('funds')->join('users', 'funds.funder_id', '=', 'users.id')->where('research_id', '=', $id)->get();
-
+        
+        $history = DB::table('funds')->join('users', 'funds.funder_id', '=', 'users.id')->where([['research_id', '=', $id],['ack_status','=','1']])->get();
         return view('research/fund_history')->with('history', $history);
     }
 

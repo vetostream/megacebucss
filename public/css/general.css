@@ -127,6 +127,10 @@ nav {
 	display: none;
 }
 
+#notif-li {
+	display:none;
+}
+
 .pinterest-col {
 	-webkit-column-count: 3;
 	-webkit-column-gap:10px;

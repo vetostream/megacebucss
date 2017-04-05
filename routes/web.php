@@ -96,6 +96,8 @@ Route::get('/profile/delete', 'ProfileController@deleteUser');
 // Destroy the account or account and posts of the id 
 Route::post('/profile/deleteOption','ProfileController@deleteOption');
 Route::get('/profile/notifications','ProfileController@notifications');
+Route::get('/profile/acknowledge','ProfileController@acknowledge');
+Route::get('/profile/notificationsajax','ProfileController@notifications_ajax');
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');
