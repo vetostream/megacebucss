@@ -3,18 +3,33 @@
 	width: 250px;
 	height: 80px;
 	line-height: 80px;
-	margin-top: 180px;
 	font-size: 130%;
 	font-weight: bold;
 }
 
 .home-bg-1
 {
-	/*background-color: rgba(0,0,0,1);*/
+	padding-top: 130px;
 	min-height: 510px;
 	/*background-repeat: repeat-x;*/
 	background-size: 145%;
 	background-position: center;
+}
+
+.home-bg-2
+{
+	/*background-color: rgba(0,0,0,1);*/
+	padding-top: 150px;
+	min-height: 510px;
+	/*background-repeat: repeat-x;*/
+	background-size: 100%;
+	background-position: center;
+}
+
+.home-text-1
+{
+	font-size: 40px;
+	color: white;
 }
 
 .row-no-margin

@@ -245,6 +245,7 @@ class ResearchController extends Controller
         $fund->amount_given = $request->input('amount');
         $fund->funder_id    = $funder_id;
         $fund->research_id  = $research_id;
+        $fund->ack_status   = 0;
 
         $fund->save();
 
