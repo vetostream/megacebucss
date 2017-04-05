@@ -39,7 +39,7 @@
 						</thead>						
 						<tbody>
 						@foreach($funders as $user)
-							<tr data-name='{{$user->name}}' data-id='{{$user->id}}' data-research='{{$user->research_id}}'>
+							<tr data-name='{{$user->name}}' data-id='{{$user->id}}' data-research='{{$user->research_id}}' data-fund='{{$user->fund_id_tab}}'>
 							<td>{{$user->email}}</td>
 							<td>{{$user->name}}</td>
 							<td>{{$user->first_name}}</td>

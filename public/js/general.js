@@ -141,11 +141,12 @@ $( document ).on('click','#btn-accept-fund',function(){
 	var $name = $tr.data('name');
 	var $id = $tr.data('id');
 	var $research_id = $tr.data('research');
+	var $fund_id = $tr.data('fund');
 	
 	$.ajax({
 		url: '/profile/acknowledge/',
 		method: 'GET',
-		data: {'user_id':$id,'ack_type':'fund_status','research_id':$research_id},
+		data: {'user_id':$id,'ack_type':'fund_status','research_id':$research_id,'fund_id':$fund_id},
 		dataType: 'text'
 	}).done(function(result){
 		console.log(result);

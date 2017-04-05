@@ -253,6 +253,7 @@ class ProfileController extends Controller
 				$funder = User::find($f->funder_id);
 				$funder->amount_given = $f->amount_given;
 				$funder->research_id = $f->research_id;
+				$funder->fund_id_tab = $f->id;
 				array_push($funders,$funder);
 			}
 		}
@@ -274,6 +275,7 @@ class ProfileController extends Controller
 		$user_id = $request->input('user_id');
 		$ack_type = $request->input('ack_type');
 		$research_id = $request->input('research_id');
+		$fund_id = $request->input('fund_id');
 		$res = 0;
 		
 		if($ack_type === 'user_type'){
@@ -287,7 +289,8 @@ class ProfileController extends Controller
 			}
 		}else if($ack_type === 'fund_status'){
 			try {
-				$fund = Funds::where([['funder_id','=',$user_id],['research_id','=',$research_id]])->first();
+				//$fund = Funds::where([['funder_id','=',$user_id],['research_id','=',$research_id],['ack_status','=','0']])->first();
+				$fund = Funds::findOrFail($fund_id);
 				$fund->ack_status = 1;
 				$fund->save();
 				$res = 1;

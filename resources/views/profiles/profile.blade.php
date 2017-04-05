@@ -15,10 +15,19 @@
 		  </div>
 		  <div class="card-stacked">
 				<div class="card-content">
-					<h3>{{$userinfo->first_name.' '.$userinfo->middle_name.' '.$userinfo->last_name}}</h3>
+					<h5>{{$userinfo->first_name.' '.$userinfo->middle_name.' '.$userinfo->last_name}}</h5>						
 					<h6>{{$userinfo->email}}</h6>
 					<h6>{{$userinfo->mobile_no}}</h6>
 					<h6>{{$userinfo->birthdate}}</h6>
+					@if($userinfo->user_type_id === 1)
+						<span class="new badge green left rm-margin" data-badge-caption="Citizen"></span> <a class="waves-effect waves-light btn btn-small">button</a>
+					@elseif($userinfo->user_type_id === 2)
+						<span class="new badge blue left rm-margin" data-badge-caption="Student"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Request for student functionality"><i class="material-icons">school</i></a>
+					@elseif($userinfo->user_type_id === 3)
+						<span class="new badge orange left rm-margin" data-badge-caption="Administrator"></span>
+					@else
+						<span class="new badge orange left rm-margin" data-badge-caption="Super Administrator"></span>						
+					@endif						
 				</div>
 				<div class="card-action">
 					<a href="{{url('/profile/edit')}}">Update</a>
@@ -46,8 +55,8 @@
 		<div class="col s12 l12 m12 nav-prof">
 			<ul>
 				<li id="profile-li"><a href="#profile" id="a-profile"><i class="fa fa-chevron-left" aria-hidden="true"></i>Profile</a></li>
-				<li><a href="#Ideas" id="a-ideas"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>Your Ideas</a></li>
-				<li><a href="#Research" id="a-research"><i class="fa fa-book" aria-hidden="true"></i>Your Researches</a></li>
+				<li><a href="#Ideas" id="a-ideas"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>My Ideas</a></li>
+				<li><a href="#Research" id="a-research"><i class="fa fa-book" aria-hidden="true"></i>My Researches</a></li>
 				<!-- <li><a href="{{ url('/profile') }}" id="a-top"><i class="fa " aria-hidden="true"></i>Top</a></li> -->
 			</ul>
 		</div>

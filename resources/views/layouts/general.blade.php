@@ -132,11 +132,11 @@
       <i class="large material-icons">view_headline</i>
     </a>
     <ul>
-      <li><a class="btn-floating red" href="#search-modal"><i class="material-icons">search</i></a></li>
+      <li><a class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Search" href="#search-modal"><i class="material-icons">search</i></a></li>
 	@if(Auth::user()->user_type_id === 2)
-	<li><a class="btn-floating yellow darken-1" href="{{ url('/research/create') }}"><i class="material-icons">library_books</i></a></li>
+	<li><a class="btn-floating green darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Exhibit research" href="{{ url('/research/create') }}"><i class="material-icons">library_books</i></a></li>
 	@endif
-      <li><a class="btn-floating green" href="{{ url('/posts/insert') }}"><i class="material-icons">mode_edit</i></a></li>
+      <li><a class="btn-floating yellow tooltipped" data-position="top" data-delay="50" data-tooltip="Share idea" href="{{ url('/posts/insert') }}"><i class="material-icons">mode_edit</i></a></li>
     </ul>
   </div>
 @endif

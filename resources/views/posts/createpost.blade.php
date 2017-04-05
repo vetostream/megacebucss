@@ -9,7 +9,7 @@
 	<div class="col s12 m12">
 	  <div class="card grey lighten-5">
 		<div class="card-content black-text">
-		  <span class="card-title">Post an Idea</span>
+		  <span class="card-title">Share an Idea</span>
 		  <!-- <hr> -->
 		  <div class="row">
 			<form class="col s12" method="post" action="{{ url('/posts/get') }}" enctype="multipart/form-data" id="createpostform" name="createpostform">
@@ -56,7 +56,7 @@
 		  </div>
 		</div>
 		<div class="card-action">
-			<button class="btn waves-effect waves-light blue darken-3 submit-post" type="submit" id="action" name="action">Post
+			<button class="btn waves-effect waves-light blue darken-3 submit-post" type="submit" id="action" name="action">Share
 				<i class="material-icons right">send</i>
 			</button>
 			<!-- <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons right">send</i>Post</a> -->
