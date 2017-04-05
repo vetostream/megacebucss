@@ -98,6 +98,8 @@ Route::post('/profile/deleteOption','ProfileController@deleteOption');
 Route::get('/profile/notifications','ProfileController@notifications');
 Route::get('/profile/acknowledge','ProfileController@acknowledge');
 Route::get('/profile/notificationsajax','ProfileController@notifications_ajax');
+// Request citizen to student
+Route::get('/profile/requestStudent','ProfileController@requestStudent');
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');

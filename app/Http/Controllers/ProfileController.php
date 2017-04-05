@@ -338,4 +338,21 @@ class ProfileController extends Controller
 		//var_dump($reqs);
 		return $notifs;
 	}
+
+	public function requestStudent(Request $request)
+	{
+		$user_id = $request->input('user_id');
+		try
+        {
+            $req = new UserRequest;
+            $req->ack_status = 0;
+            $req->user_id = $user_id;
+
+            $req->save();
+        }
+        catch(\Exception $e)
+        {
+            abort(403, 'No request: ' . $e);
+        }
+	}
 }

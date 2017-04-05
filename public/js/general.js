@@ -159,6 +159,23 @@ $( document ).on('click','#btn-accept-fund',function(){
 	});
 });
 
+//{{ url('/profile/requestStudent') }}?user_id={{ $userinfo->id }}
+$( document ).on('click','#btn-request-student',function()
+{
+	var userid = $(this).data('id');
+	console.log(userid);
+
+	$.get('/profile/requestStudent', 
+	{
+		user_id: userid
+	}, function(data, status)
+	{
+		$('#btn-request-student').hide('slow');
+		Materialize.toast('Requested to become student!');
+	});
+
+});
+
 
 //$( document ).on('submit','form[name="search-form"]',function(e){
 //	e.preventDefault();

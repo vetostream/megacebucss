@@ -20,13 +20,14 @@
 					<h6>{{$userinfo->mobile_no}}</h6>
 					<h6>{{$userinfo->birthdate}}</h6>
 					@if($userinfo->user_type_id === 1)
-						<span class="new badge green left rm-margin" data-badge-caption="Citizen"></span> <a class="waves-effect waves-light btn btn-small">button</a>
+						<span class="new badge green left rm-margin" data-badge-caption="Citizen"></span>&nbsp;&nbsp;
+						<a id='btn-request-student' data-id='{{ $userinfo->id }}' href="#" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Request for student functionality"><i class="material-icons">school</i></a>
 					@elseif($userinfo->user_type_id === 2)
-						<span class="new badge blue left rm-margin" data-badge-caption="Student"></span>&nbsp;&nbsp;&nbsp;<a href="#" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Request for student functionality"><i class="material-icons">school</i></a>
+						<span class="new badge blue left rm-margin" data-badge-caption="Student"></span>
 					@elseif($userinfo->user_type_id === 3)
 						<span class="new badge orange left rm-margin" data-badge-caption="Administrator"></span>
 					@else
-						<span class="new badge orange left rm-margin" data-badge-caption="Super Administrator"></span>						
+						<span class="new badge orange left rm-margin" data-badge-caption="Administrator"></span>						
 					@endif						
 				</div>
 				<div class="card-action">
