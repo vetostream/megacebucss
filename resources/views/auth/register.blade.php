@@ -3,6 +3,7 @@
 @section('content')
 <div class="container" style="padding-top: 75px;">
 <h5 class='center'>Registration</h5><br>
+<span>Register to share your ideas or exhibit your research!</span>
         @if ($errors->has('name'))
             <div class="col s6 m6 l6 center-align error-block">
                 <p>{{ $errors->first('name') }}</p>

@@ -32,11 +32,12 @@
 				<nav>
 						<div class="nav-wrapper">
 						<a href="{{ url('/') }}" class="brand-logo center"><img src="{{ asset('/images/logo.png') }}" id="brand-pic"/></a>
-								<ul id="nav-mobile" class="left hide-on-med-and-down">
 								@if (Auth::guest())
+								<ul id="nav-mobile" class="right hide-on-med-and-down">
 										<li><a href="{{ url('login') }}">Login</a></li>
 										<li><a href="{{ url('register') }}">Register</a></li>
 								@else
+								<ul id="nav-mobile" class="left hide-on-med-and-down">
 
 									@if (Auth::user()->user_type_id == 4)
 										<li><a href="{{ url('superadmin') }}">Admin</a></li>
