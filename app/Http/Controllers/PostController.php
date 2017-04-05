@@ -67,7 +67,12 @@ class PostController extends Controller
 		$userid = $this->getUserId();
 		// $name = $this->readUserName($userid);
 		$ptags = $this->getTagsAllPosts($posts);
-		return view('posts.showposts', ['posts' => $posts, 'userid' => $userid, 'tagnames' => $ptags]);
+		
+		if(Auth::user()->user_type_id === 4){
+			return redirect('/superadmin');
+		}else{
+			return view('posts.showposts', ['posts' => $posts, 'userid' => $userid, 'tagnames' => $ptags]);
+		}
 		// return view('posts.showposts', ['posts' => $posts, 'userid' => $userid]);
 		// $page = $posts->simplePaginate(1);
 	}
