@@ -172,6 +172,8 @@
 			 $(document).ready(function(){
 			 	$('.modal').modal();
 				$('.tooltipped').tooltip({delay: 50});
+				
+				@if(!Auth::guest())
 				$.ajax({
 					url: '/profile/notificationsajax/',
 					method: 'GET',
@@ -188,6 +190,7 @@
 				}).fail(function(result){
 					console.log(result);
 				});
+				@endif
 			});
 
 		    $('.parallax').parallax();
