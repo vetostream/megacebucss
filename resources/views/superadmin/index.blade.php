@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-	<h3 class="center-align">Administrator</h3>
+	<h4 class="center-align">Administrator</h4>
 
 	<div class="row">
 		<div class="col s12">
