@@ -54,6 +54,8 @@ Route::get('/error404', function () {
     return view('errors/404');
 });
 
+Route::get('/publicposts', 'PublicPostController@index');
+Route::get('/publicposts/postid/{postid}', 'PublicPostController@showPublicPost');
 // Lists all posts, view = posts.showposts
 Route::get('/posts', 'PostController@index');
 // Lists one post via id, view = posts.showpost
