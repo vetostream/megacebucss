@@ -28,7 +28,7 @@ class PublicPostController extends Controller
     {
         $posts = app('App\Http\Controllers\PostController')->read();
         $ptags = app('App\Http\Controllers\PostController')->getTagsAllPosts($posts);
-        return view('posts.showposts', ['posts' => $posts, 'tagnames' => $ptags]);
+        return view('posts.showpublicposts', ['posts' => $posts, 'tagnames' => $ptags]);
     }
     
 

@@ -36,53 +36,7 @@
 								@if (Auth::guest())
 										<li><a href="{{ url('login') }}">Login</a></li>
 										<li><a href="{{ url('register') }}">Register</a></li>
-								@else
-
-									@if (Auth::user()->user_type_id == 4)
-										<li><a href="{{ url('superadmin') }}">Admin</a></li>
-									@endif
-										<li><a href="{{ url('posts') }}">Ideas</a></li>
-										<li><a href="{{ url('research') }}">Research</a></li>
-										<li><a href="{{ url('about') }}">About</a></li>
-
-									
-<!--                     <li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-														{{ Auth::user()->name }} <span class="caret"></span>
-												</a>
-
-												<ul class="dropdown-menu" role="menu">
-														<li>
-																<a href="{{ url('/logout') }}"
-																		onclick="event.preventDefault();
-																						 document.getElementById('logout-form').submit();">
-																		Logout
-																</a>
-
-														</li>
-												</ul>
-										</li> -->
-								</ul>
-								<ul id="nav-mobile" class="right">
-								<li id="notif-li"><a href="{{ url('profile/notifications') }}?user_id={{Auth::user()->id}}"><span class="new badge green" id="notif-span" data-badge-caption="Notifications">4</span></a></li>								
-									<li>
-										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
-											<div class="chip orange accent-3 white-text">
-												<img src="{{ asset('/images/avatar-square.jpg') }}" style="height:100%;" alt="Contact Person">
-													{{Auth::user()->name}}
-											</div>
-										</a>
-									</li>
-
-								</ul>
-
-								<ul id='dropdown1' class='dropdown-content'>
-									<li><a class="" href="{{ url('profile') }}"><i class="material-icons">perm_identity</i>Profile</a></li>
-									<li><a class="" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons">input</i>Logout</a>
-										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-												{{ csrf_field() }}
-										</form>
-									</li>										
+								
 								</ul>
 									<!-- <li>
 										<form name="search-form" action="{{ url('/search/everything') }}" method="get">
@@ -133,9 +87,6 @@
     </a>
     <ul>
       <li><a class="btn-floating red" href="#search-modal"><i class="material-icons">search</i></a></li>
-	@if(Auth::user()->user_type_id === 2)
-	<li><a class="btn-floating yellow darken-1" href="{{ url('/research/create') }}"><i class="material-icons">library_books</i></a></li>
-	@endif
       <li><a class="btn-floating green" href="{{ url('/posts/insert') }}"><i class="material-icons">mode_edit</i></a></li>
     </ul>
   </div>
@@ -169,26 +120,9 @@
 				format: 'yyyy-mm-dd'
 			});
 
-			 $(document).ready(function(){
-			 	$('.modal').modal();
-				$('.tooltipped').tooltip({delay: 50});
-				$.ajax({
-					url: '/profile/notificationsajax/',
-					method: 'GET',
-					data: {'user_id':"{{Auth::user()->id}}"},
-					dataType: 'text'
-				}).done(function(result){
-					console.log(result);
-					if(result != '0'){
-						$("#notif-li").show();
-						$("#notif-span").text(result);
-					}else{
-						$("#notif-li").hide();
-					}
-				}).fail(function(result){
-					console.log(result);
-				});
-			});
+			$('.modal').modal();
+			$('.tooltipped').tooltip({delay: 50});
+			
 
 		    $('.parallax').parallax();
 
