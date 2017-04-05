@@ -71,10 +71,12 @@ class ProfileController extends Controller
 			// var_dump($userinfo);
 			$posts = app('App\Http\Controllers\PostController')->getMyPosts();
 			$ptags = app('App\Http\Controllers\PostController')->getTagsAllPosts($posts);
-        	$researches = Research::where('user_id', $userid)->get(); 
+        	$researches = Research::where('user_id', $userid)->get();
+			
+			$studreq = UserRequest::where('user_id','=',$userid)->first();
 			// var_dump($posts);
 			// var_dump($researches);
-			return view('profiles.profile', ['userinfo' => $userinfo, 'posts' => $posts, 'tagnames' => $ptags, 'researches' => $researches]);
+			return view('profiles.profile', ['studreq' => $studreq, 'userinfo' => $userinfo, 'posts' => $posts, 'tagnames' => $ptags, 'researches' => $researches]);
 			// return view('profiles.profile', $userinfo);
 		}else {
 			return view('errors.404');

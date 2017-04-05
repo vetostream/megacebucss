@@ -19,6 +19,7 @@
 					<h6>{{$userinfo->email}}</h6>
 					<h6>{{$userinfo->mobile_no}}</h6>
 					<h6>{{$userinfo->birthdate}}</h6>
+						
 					@if($userinfo->user_type_id === 1)
 						<span class="new badge green left rm-margin" data-badge-caption="Citizen"></span>&nbsp;&nbsp;
 						<a id='btn-request-student' data-id='{{ $userinfo->id }}' href="#" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Request for student functionality"><i class="material-icons">school</i></a>
@@ -57,7 +58,9 @@
 			<ul>
 				<li id="profile-li"><a href="#profile" id="a-profile"><i class="fa fa-chevron-left" aria-hidden="true"></i>Profile</a></li>
 				<li><a href="#Ideas" id="a-ideas"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>My Ideas</a></li>
+					@if(Auth::user()->user_type_id === 2)
 				<li><a href="#Research" id="a-research"><i class="fa fa-book" aria-hidden="true"></i>My Researches</a></li>
+					@endif
 				<!-- <li><a href="{{ url('/profile') }}" id="a-top"><i class="fa " aria-hidden="true"></i>Top</a></li> -->
 			</ul>
 		</div>
