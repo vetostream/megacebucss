@@ -152,7 +152,7 @@ $( document ).on('click','#btn-accept-fund',function(){
 		console.log(result);
 		if(result === '1'){
 			Materialize.toast($name+'\'s fund request accepted!', 3000, 'rounded');
-			$(this).fadeOut(1000);
+			$tr.hide("slow");
 		}
 	}).fail(function(result){
 		console.log(result);
