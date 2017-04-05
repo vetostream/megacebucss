@@ -16,7 +16,7 @@
                             <p>@if($reqs === 1)You now have student privileges, Congratulations! @else No notifications. @endif</p>
                         </div>
                         <div class="col s6 m6 l6 right-align">
-                            @if($reqs === 1)<a onclick="acknowledge(40,'user_type')" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">done</i></a>@endif
+                            @if($reqs === 1)<a onclick="acknowledge({{Auth::user()->id}},'user_type')" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">done</i></a>@endif
                         </div>
                         </div>
                     </div>
