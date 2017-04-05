@@ -107,14 +107,58 @@ $( document ).on('click','#btn-accept-request',function(){
 		data: {'user_id':$id},
 		dataType: 'text'
 	}).done(function(result){
+		if(result === 1){
+			Materialize.toast($name + ' user type changed', 3000, 'rounded');
+			$tr.fadeOut(1000);			
+		}
 		console.log(result);
 	}).fail(function(result){
 		console.log(result);
 	});
-	
-	$tr.fadeOut(1000);
-	Materialize.toast($name + ' user type changed', 3000, 'rounded');
 });
+
+
+function acknowledge($user_id, $ack_type){
+	$.ajax({
+		url: '/profile/acknowledge/',
+		method: 'GET',
+		data: {'user_id':$user_id,'ack_type':$ack_type},
+		dataType: 'text'
+	}).done(function(result){
+		console.log(result);
+		if(result === '1'){
+			Materialize.toast('Notification acknowledged.', 3000, 'rounded');
+			$('#user-type-ack').fadeOut(1000);
+		}
+	}).fail(function(result){
+		console.log(result);
+	});		
+	
+}
+
+$( document ).on('click','#btn-accept-fund',function(){
+	var $tr = $(this).closest('tr');
+	var $name = $tr.data('name');
+	var $id = $tr.data('id');
+	var $research_id = $tr.data('research');
+	
+	$.ajax({
+		url: '/profile/acknowledge/',
+		method: 'GET',
+		data: {'user_id':$id,'ack_type':'fund_status','research_id':$research_id},
+		dataType: 'text'
+	}).done(function(result){
+		console.log(result);
+		if(result === '1'){
+			Materialize.toast($name+'\'s fund request accepted!', 3000, 'rounded');
+			$('#btn-accept-fund').fadeOut(1000);
+		}
+	}).fail(function(result){
+		console.log(result);
+	});
+});
+
+
 //$( document ).on('submit','form[name="search-form"]',function(e){
 //	e.preventDefault();
 //	var formData = $("form[name='search-form']").serialize();

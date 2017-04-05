@@ -40,6 +40,7 @@ namespace App\Http\Controllers;
 use App\Models\Users as User;
 use App\Models\Post as Post;
 use App\Research;
+use App\Funds;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -237,7 +238,101 @@ class ProfileController extends Controller
 	public function notifications(Request $request){
 		$user_id = $request->input('user_id');
 		$reqs = UserRequest::where([['user_id','=',$user_id],['ack_status','=','1']])->first();
+		$arrResearch = [];
+		$research = Research::where('user_id','=',$user_id)->get();
+		$funders = array();
 		
-		return view('profiles.notifications');
+		foreach($research as $r){ //iterate research ids
+			array_push($arrResearch, $r->id);
+		}
+		
+		$funds = Funds::whereIn('research_id',$arrResearch)->get();
+		
+		foreach($funds as $f){
+			if ($f->ack_status === 0){
+				$funder = User::find($f->funder_id);
+				$funder->amount_given = $f->amount_given;
+				$funder->research_id = $f->research_id;
+				array_push($funders,$funder);
+			}
+		}
+		
+		//var_dump($funders);
+		
+		if(empty($reqs)){
+			$reqs = 0;
+		}else{
+			$reqs = 1;
+		}
+		
+		//var_dump($reqs);
+		
+		return view('profiles.notifications')->with('reqs',$reqs)->with('funders',$funders);
+	}
+	
+	public function acknowledge(Request $request){
+		$user_id = $request->input('user_id');
+		$ack_type = $request->input('ack_type');
+		$research_id = $request->input('research_id');
+		$res = 0;
+		
+		if($ack_type === 'user_type'){
+			try {
+				$reqs = UserRequest::where('user_id','=',$user_id)->first();
+				$reqs->ack_status = 3;
+				$reqs->save();
+				$res = 1;
+			} catch(\Exception $e){
+				abort(403,"Can't acknowledge notifications " . $e);
+			}
+		}else if($ack_type === 'fund_status'){
+			try {
+				$fund = Funds::where([['funder_id','=',$user_id],['research_id','=',$research_id]])->first();
+				$fund->ack_status = 1;
+				$fund->save();
+				$res = 1;
+			} catch(\Exception $e){
+				abort(403,"Can't accept fund " . $e);
+			}
+		}
+		
+		return $res;
+	}
+	
+	public function notifications_ajax(Request $request){
+		$user_id = $request->input('user_id');
+		$reqs = UserRequest::where([['user_id','=',$user_id],['ack_status','=','1']])->first();
+		$arrResearch = [];
+		$research = Research::where('user_id','=',$user_id)->get();
+		$funders = array();
+		$notifs = 0;
+		
+		foreach($research as $r){ //iterate research ids
+			array_push($arrResearch, $r->id);
+		}
+		
+		$funds = Funds::whereIn('research_id',$arrResearch)->get();
+		
+		foreach($funds as $f){
+			if ($f->ack_status === 0){
+				$funder = User::find($f->funder_id);
+				$funder->amount_given = $f->amount_given;
+				$funder->research_id = $f->research_id;
+				array_push($funders,$funder);
+			}
+		}
+		
+		//var_dump($funders);
+		
+		if(empty($reqs)){
+			$reqs = 0;
+		}else{
+			$reqs = 1;
+		}
+		
+		$notifs = count($funders) + $reqs;
+		
+		//var_dump($reqs);
+		return $notifs;
 	}
 }

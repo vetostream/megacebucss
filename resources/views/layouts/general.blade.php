@@ -64,7 +64,7 @@
 										</li> -->
 								</ul>
 								<ul id="nav-mobile" class="right">
-								<li><a href="{{ url('profile/notifications') }}"><span class="new badge" data-badge-caption="Notifications">4</span></a></li>								
+								<li id="notif-li"><a href="{{ url('profile/notifications') }}?user_id={{Auth::user()->id}}"><span class="new badge green" id="notif-span" data-badge-caption="Notifications">4</span></a></li>								
 									<li>
 										<a class="dropdown-button" href='#!' data-activates='dropdown1'>
 											<div class="chip orange accent-3 white-text">
@@ -171,7 +171,23 @@
 
 			 $(document).ready(function(){
 			    $('.modal').modal();
-   	 			$('.tooltipped').tooltip({delay: 50});
+			$('.tooltipped').tooltip({delay: 50});
+			$.ajax({
+				url: '/profile/notificationsajax/',
+				method: 'GET',
+				data: {'user_id':"{{Auth::user()->id}}"},
+				dataType: 'text'
+			}).done(function(result){
+				console.log(result);
+				if(result != '0'){
+					$("#notif-li").show();
+					$("#notif-span").text(result);
+				}else{
+					$("#notif-li").hide();
+				}
+			}).fail(function(result){
+				console.log(result);
+			});
 			  });
 
 		    $('.parallax').parallax();
